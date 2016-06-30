@@ -99,6 +99,43 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             }
         }
     })
+    .state('app.myhelps', {
+        url: '/myhelps',
+        views: {
+            'menuContent': {
+                templateUrl: 'templates/views/myhelps.html',
+                controller: 'MyhelpsCtrl'
+            }
+        }
+    })
+
+    .state('app.wanthelp', {
+        url: '/wanthelp',
+        views: {
+            'menuContent': {
+                templateUrl: 'templates/views/wanthelp.html',
+                controller: 'WanthelpCtrl'
+            }
+        }
+    })
+    .state('app.notifications', {
+        url: '/notifications',
+        views: {
+            'menuContent': {
+                templateUrl: 'templates/views/notifications.html',
+                controller: 'NotificationsCtrl'
+            }
+        }
+    })
+    .state('app.aboutthis', {
+        url: '/aboutthis',
+        views: {
+            'menuContent': {
+                templateUrl: 'templates/views/aboutthis.html',
+                controller: 'AboutthisCtrl'
+            }
+        }
+    })
 
 
     ;

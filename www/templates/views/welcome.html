@@ -1,5 +1,5 @@
 
-<ion-view view-title="Ionic Components+">
+<ion-view view-title="Bienvenida">
   <ion-content>
    <div class="im-wrapper welcome">
 			<h4 class="border-top center">
@@ -7,14 +7,31 @@
 			    Bienvenido !
 			</h4>
 			<p>
-				Bienvenido a la app que te ayuda a conseguir ayuda en tu ciudad, para tus necesidades basicas, como ropa o comida..
+				Bienvenido a la app en la que puedes ayudar o ser ayudado
+			</p>
+			<p>
+				Pide la ayuda basica de ropa y comida.
+			</p>
+			<p>
+				ó Ayuda a otras familias con estos recursos.
 			</p>
 			<p>
 				No estas solo, la tecnologia puede ayudarte, a que <b>la gente solidaria de tu ciudad te escuche.</b>
 			</p>
 			<div class="center">
-				<button class="button icon-right ion-ios-shuffle-strong button-dark">Continuar</button>
-			</div>
+				<div class="row">
+					<div class="col">
+	          <button ng-click="goNeedHelp()" type="button" class="button icon-right  button-balanced circleblue">
+	          Necesito Ayuda
+	          </button>
+			    </div>
+			    <div class="col">
+	          <button ng-click="goWanthelp()" type="button" class="button icon-right  button-calm circleblue">
+	          Quiero Ayudar
+	          </button>
+					</div>
+			  </div>
+		  </div>
 		</div>
 	</ion-content>
 </ion-view>

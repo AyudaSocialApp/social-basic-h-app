@@ -1,0 +1,54 @@
+<ion-modal-view  cache-view="false" >
+  <ion-header-bar >
+    <h1 class="title">Registro Colaborador</h1>
+    <div class="buttons">
+      <button class="button" ng-click="closeModalRegisterR1()"><big>X</big></button>
+    </div>
+  </ion-header-bar>
+
+  <ion-content>
+
+		<div class="list card stable-bg paddingform">
+
+
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">¿Usted representa a? </span>
+        Particular  <input checked="" type="radio" ng-model="obj.type_contributors_id" value="1">
+        Familia <input type="radio" ng-model="obj.type_contributors_id" value="2">
+        Empresa <input type="radio" ng-model="obj.type_contributors_id" value="3">
+      </label>
+
+      <label class="item item-input item-stacked-label">
+		    <span class="input-label">Nombres</span>
+		    <input type="text" placeholder="" ng-model="obj.names" >
+		  </label>
+
+		  <label class="item item-input item-stacked-label">
+		    <span class="input-label">Apellidos</span>
+		    <input type="text" placeholder="" ng-model="obj.last_names" >
+		  </label>
+
+      <label class="item item-input item-select " >
+          <span class="input-label">Tipo Identificación </span>
+          <select
+            required
+            ng-model="obj.type_identifications_id"
+            ng-options="ti as ti.name for ti in list_type_identifications track by ti.id" 
+          >
+          </select>
+      </label>
+
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">N° Identificación/NIT</span>
+        <input type="number" placeholder="" ng-model="obj.nit_id">
+      </label>
+
+
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Foto  <i>(persona, familia o empresa)</i> </span>
+        <input type="file" placeholder="" ng-model="obj.base64">
+      </label>
+
+    </div>
+  </ion-content>
+</ion-modal-view>

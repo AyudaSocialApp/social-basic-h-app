@@ -14,6 +14,9 @@
         <button id="fab" class="button button-positive button-fab button-fab-bottom-right">
             <i class="icon ion-social-twitter"></i>
         </button>
+        <button id="fab2" class="button button-positive button-fab button-fab-bottom-left">
+            <i class="icon ion-social-facebook"></i>
+        </button>
         <ion-nav-view name="menuContent"></ion-nav-view>
     </ion-side-menu-content>
     <ion-side-menu side="left">
@@ -25,22 +28,42 @@
         </ion-header-bar>
         <ion-content class="stable-bg has-expanded-header">
             <ion-list>
-                <ion-item nav-clear menu-close href="#/app/components">
-                    Components+
-                </ion-item>
-                <ion-item nav-clear menu-close href="#/app/extensions">
-                    Extensions
-                </ion-item>
-                <ion-item nav-clear menu-close href="#/app/lists">
-                    Motion Lists
-                </ion-item>
-                <ion-item nav-clear menu-close href="#/app/motion">
-                    Motion Elements
-                </ion-item>
-                <ion-item nav-clear menu-close href="#/app/ink">
-                    Ink
-                </ion-item>
+              <ion-item nav-clear menu-close href="#/app/welcome">
+                <span class="ion-home"></span>  Inicio
+              </ion-item>
+              <ion-item nav-clear menu-close href="#/app/myhelps">
+                <span class="ion-help-buoy"> </span> Mis ayudas
+              </ion-item>
+              <ion-item nav-clear menu-close href="#/app/wanthelp">
+                <span class="ion-umbrella"></span> Necesitados
+              </ion-item>
+              <ion-item nav-clear menu-close href="#/app/notifications">
+                <span class="ion-android-notifications"></span>  Notificaciones
+              </ion-item>
+              <ion-item nav-clear menu-close href="#/app/aboutthis">
+                 <span class="ion-information-circled"></span> <i>Sobre esto</i>
+              </ion-item>
             </ion-list>
+            <br/>
+            <div class="center">
+                <h5>Patrocina</h5>
+                <div class="row">
+                    <div class="col">
+                      <button class="button button-raised button-stable ink-dark">P1</button>
+                    </div>
+                    <div class="col">
+                      <button class="button button-raised button-stable ink-dark">P2</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                      <button class="button button-raised button-stable ink-dark">P3</button>
+                    </div>
+                    <div class="col">
+                      <button class="button button-raised button-stable ink-dark">P4</button>
+                    </div>
+                </div>
+            </div>
         </ion-content>
     </ion-side-menu>
 </ion-side-menus>

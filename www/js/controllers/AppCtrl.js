@@ -9,10 +9,17 @@
         });
     }
 
+
     var fab = document.getElementById('fab');
     fab.addEventListener('click', function () {
         //location.href = 'https://twitter.com/satish_vr2011';
-        window.open('https://www.google.com.co', '_blank');
+        window.open('https://twitter.com/', '_blank');
+    });
+
+    var fab2 = document.getElementById('fab2');
+    fab2.addEventListener('click', function () {
+        //location.href = 'https://twitter.com/satish_vr2011';
+        window.open('https://www.facebook.com/', '_blank');
     });
 
     // .fromTemplate() method
@@ -35,4 +42,17 @@
     $scope.$on('$destroy', function () {
         $scope.popover.remove();
     });
+
+
+  // init vars localstorage
+    if(localStorage.getItem('r1') === null){
+      localStorage.setItem('r1',"");
+    }
+
+    if(localStorage.getItem('r2') === null){
+      localStorage.setItem('r2',"");
+    }
+    // end init vars localstorage
+
+
 });

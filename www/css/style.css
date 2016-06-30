@@ -213,10 +213,79 @@ p {
 }
 
 .welcome{
-  margin-top: 100px;
+  margin-top: 20px;
+}
+
+.contentpadding{
+  margin-top: 20px;
 }
 
 .center{
   width: 100%;
   text-align: center;
+}
+
+.return{
+  font-size: 34px;
+}
+
+.circleneedy{
+  border-radius: 50%;
+  background: #FFE9E9;
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+  max-width: 130px;
+  min-height: 130px;
+  -moz-box-shadow: 3px 4px 8px #303038;
+  -webkit-box-shadow: 3px 4px 8px #303038;
+  box-shadow: 3px 4px 8px #303038;
+}
+
+.circleblue{
+  border-radius: 50%;
+  cursor: pointer;
+  white-space: normal;
+  line-height: 110%;
+  width: 135px;
+  height: 50%;
+  font-size: 11px;
+  min-height: 130px;
+  -moz-box-shadow: 3px 4px 8px #303038;
+  -webkit-box-shadow: 3px 4px 8px #303038;
+  box-shadow: 3px 4px 8px #303038;
+}
+
+.button-pagraph {
+  padding-top: 20px;
+  color: #FFFFFF;
+}
+
+
+.itemlist{
+  background-color: #EEEDED;
+  margin: 6px;
+  border:inset 1px #000000;
+  -moz-border-radius: 13px;
+  -webkit-border-radius: 13px;
+  border-radius: 13px;
+}
+
+.seeicon{
+  color: blue;
+  font-size: 24px;
+  padding-left: 10px;
+}
+
+.itemlistnotification{
+  background-color: #FFE9E9;
+  margin: 6px;
+  border:inset 1px #000000;
+  -moz-border-radius: 13px;
+  -webkit-border-radius: 13px;
+  border-radius: 13px;
+}
+
+.paddingform{
+  padding: 12px;
 }
