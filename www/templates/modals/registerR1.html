@@ -1,25 +1,38 @@
-<ion-modal-view  cache-view="false" >
-  <ion-header-bar >
-    <h1 class="title">Registro Colaborador</h1>
+<ion-modal-viewcache-view="false" >
+  <ion-header-bar>
+    <h1 class="title">Colaborador</h1>
     <div class="buttons">
       <button class="button" ng-click="closeModalRegisterR1()"><big>X</big></button>
     </div>
   </ion-header-bar>
 
-  <ion-content>
+  <ion-content class="backgromodal">
 
-		<div class="list card stable-bg paddingform">
+    <div  ng-include="'templates/partials/_btnsesion.html'"></div>
 
-
-      <label class="item item-input item-stacked-label">
+    
+		<div ng-show="openRegisterR1" class="list card stable-bg paddingform">
+    <form novalidate  name="formregister" ng-submit="submit(formregister)"  >
+      <label class="item typecontri">
         <span class="input-label">¿Usted representa a? </span>
-        Particular  <input checked="" type="radio" ng-model="obj.type_contributors_id" value="1">
-        Familia <input type="radio" ng-model="obj.type_contributors_id" value="2">
-        Empresa <input type="radio" ng-model="obj.type_contributors_id" value="3">
+        <ion-radio name="tc" ng-model="obj.type_contributors_id" value="1" > 
+        <span class="ion-asterisk"></span> Particular</ion-radio>
+        <ion-radio name="tc" ng-model="obj.type_contributors_id" value="2" > 
+        <span class="ion-asterisk"></span> Familia</ion-radio>
+        <ion-radio name="tc" ng-model="obj.type_contributors_id" value="3" > 
+        <span class="ion-asterisk"></span> Empresa</ion-radio>
       </label>
 
+      <div class="profilepriv">
+        <label class="item">
+          <span class="input-label">¿Quieres que tu perfil se mantenga privado?</span>
+          <ion-radio name="pri" ng-model="obj.privacy" value="true" > Si</ion-radio>
+          <ion-radio name="pri" ng-model="obj.privacy" value="false" > No</ion-radio>
+        </label>
+      </div>
+
       <label class="item item-input item-stacked-label">
-		    <span class="input-label">Nombres</span>
+		    <span class="input-label">Nombre</span>
 		    <input type="text" placeholder="" ng-model="obj.names" >
 		  </label>
 
@@ -44,11 +57,57 @@
       </label>
 
 
-      <label class="item item-input item-stacked-label">
+      <label class="item item-file ">
         <span class="input-label">Foto  <i>(persona, familia o empresa)</i> </span>
-        <input type="file" placeholder="" ng-model="obj.base64">
+        <input type="file" placeholder="indique" ng-model="obj.base64">
       </label>
 
+      <label class="item registerpassword ">
+        <div class="center">
+          <span class="input-label">Contraseña (para iniciar sesión)</span>
+          <input class="custominput" type="password" placeholder="indique" ng-model="obj.password" >
+
+          <span class="input-label">Repetir Contraseña</span>
+          <input class="custominput" type="password" placeholder="indique" ng-model="obj.confirm_password" >
+        </div>
+      </label>
+
+
+      <div class="center">
+        <br/>
+        <button type="submit" class="button button-positive">
+          <i class="ion-ios-cloud-upload"></i> Enviar
+        </button>
+        <br/>
+        <br/>
+      </div>
+      </form>
     </div>
+
+
+    <div ng-show="openLoginR1" class="list card stable-bg paddingform" >
+      <form novalidate  name="formlogin" ng-submit="submit(formlogin)"  >
+      <div class="login">
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Nombre</span>
+          <input type="text" placeholder="indique" ng-model="obj.names" >
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Contraseña</span>
+          <input type="password" placeholder="indique" ng-model="obj.password" >
+        </label>
+        <div class="center">
+          <br/>
+          <button type="submit" class="button button-positive">
+            <i class="ion-log-in"></i> Entrar
+          </button>
+          <br/>
+          <br/>
+        </div>
+      </div>
+      </form>
+    </div>
+    <br/>
+    <br/>
   </ion-content>
 </ion-modal-view>

@@ -1,4 +1,4 @@
-﻿app.controller('AppCtrl', function ($scope, $ionicModal, $ionicPopover, $timeout) {
+﻿app.controller('AppCtrl', function ($scope, $ionicModal, $ionicPopover, $timeout,$rootScope) {
     // Form data for the login modal
     $scope.loginData = {};
 
@@ -44,13 +44,21 @@
     });
 
 
-  // init vars localstorage
-    if(localStorage.getItem('r1') === null){
+    $rootScope.isSessionR1 = false;
+    $rootScope.isSessionR2 = false;
+
+
+    // init vars localstorage
+    if(localStorage.getItem('r1') === null || localStorage.getItem('r1') === ""){
       localStorage.setItem('r1',"");
+    }else{
+      $rootScope.isSessionR1 = true;
     }
 
-    if(localStorage.getItem('r2') === null){
+    if(localStorage.getItem('r2') === null  || localStorage.getItem('r1') === ""){
       localStorage.setItem('r2',"");
+    }else{
+      $rootScope.isSessionR2 = true;
     }
     // end init vars localstorage
 

@@ -289,3 +289,29 @@ p {
 .paddingform{
   padding: 12px;
 }
+
+.typecontri{
+  background-color: #FFFFFF;
+}
+
+.login{
+  background-color: #FFFFFF;
+}
+
+.profilepriv{
+  padding: 10px;
+  background-color: #D9F6FF;
+}
+
+.backgromodal{
+  height: 100%;
+  background-color: #FFFFFF;
+}
+
+.registerpassword{
+  background-color: #DDB3B3;
+}
+
+.custominput{
+  width: 100%;
+}

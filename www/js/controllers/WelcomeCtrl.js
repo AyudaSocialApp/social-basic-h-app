@@ -4,6 +4,9 @@ app.controller('WelcomeCtrl', function ($scope,$state,$ionicModal) {
   $scope.objR1 = {};
   $scope.objR2 = {};
 
+  $scope.openRegisterR1 = false;
+  $scope.openLoginR1 = false;
+
   $scope.goNeedHelp = function(){
     processNeedhelp();
   }
@@ -14,11 +17,21 @@ app.controller('WelcomeCtrl', function ($scope,$state,$ionicModal) {
 
 
 
+  $scope.fopenRegisterR1 = function(){
+    $scope.openRegisterR1 = true;
+    $scope.openLoginR1 = false;
+  }
+
+
+  $scope.fopenLoginR1 = function(){
+    $scope.openRegisterR1 = false;
+    $scope.openLoginR1 = true;
+  }
 
 
   $ionicModal.fromTemplateUrl('templates/modals/registerR1.html', {
     scope: $scope,
-    animation: 'slide-in-up'
+    animation: 'slide-in-right'
   }).then(function(ModalRegisterR1) {
     $scope.ModalRegisterR1 = ModalRegisterR1;
   });
@@ -43,7 +56,7 @@ app.controller('WelcomeCtrl', function ($scope,$state,$ionicModal) {
 
   $ionicModal.fromTemplateUrl('templates/modals/registerR2.html', {
     scope: $scope,
-    animation: 'slide-in-up'
+    animation: 'slide-in-right'
   }).then(function(ModalRegisterR2) {
     $scope.ModalRegisterR2 = ModalRegisterR2;
   });

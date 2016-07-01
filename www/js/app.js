@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 var app = angular.module('starter', ['ionic', 'ionic-material']);
 
-app.run(function ($ionicPlatform) {
+app.run(function ($ionicPlatform,$rootScope) {
     $ionicPlatform.ready(function () {
         // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
         // for form inputs)
@@ -17,14 +17,30 @@ app.run(function ($ionicPlatform) {
             StatusBar.styleDefault();
         }
     });
+
+    $rootScope.isSessionR1 = false;
+    $rootScope.isSessionR2 = false;
+
+    // init vars localstorage
+    if(localStorage.getItem('r1') === null || localStorage.getItem('r1') === ""){
+      localStorage.setItem('r1',"");
+    }else{
+      $rootScope.isSessionR1 = true;
+    }
+
+    if(localStorage.getItem('r2') === null || localStorage.getItem('r2') === ""){
+      localStorage.setItem('r2',"");
+    }else{
+      $rootScope.isSessionR2 = true;
+    }
+    // end init vars localstorage
+
 })
 
 app.config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider
 
-
     // Examples
-
     .state('appexample', {
         url: '/appexample',
         abstract: true,
