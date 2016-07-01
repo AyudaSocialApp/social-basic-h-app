@@ -1,0 +1,125 @@
+<ion-modal-view cache-view="false" ng-controller="ModalRegisterR2" >
+  <ion-header-bar>
+    <h1 class="title">Necesitado</h1>
+    <div class="buttons">
+      <button class="button" ng-click="closeModalRegisterR2()"><big>X</big></button>
+    </div>
+  </ion-header-bar>
+
+  <ion-content class="backgromodal">
+
+    <div  ng-include="'templates/partials/_btnsesion.html'"></div>
+
+    <div ng-show="openRegisterR2" class="list card stable-bg paddingform">
+    <form novalidate  name="formregister" ng-submit="saveR2(formregister)"  >
+      
+      <label class="item typecontri">
+        <span class="input-label">¿Usted representa a? </span>
+        <ion-radio name="tc" ng-model="objR2.type_needy_id" value="1" > 
+        <span class="ion-asterisk"></span> Particular</ion-radio>
+        <ion-radio name="tc" ng-model="objR2.type_needy_id" value="2" > 
+        <span class="ion-asterisk"></span> Familia</ion-radio>
+      </label>
+
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Nombre</span>
+        <input type="text" placeholder="" ng-model="objR2.names" >
+      </label>
+
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Apellidos</span>
+        <input type="text" placeholder="" ng-model="objR2.last_names" >
+      </label>
+
+      <label class="item item-input item-select " >
+          <span class="input-label">Tipo Identificación </span>
+          <select
+            required
+            ng-model="objR2.type_identifications_id"
+            ng-options="ti as ti.name for ti in list_type_identifications track by ti.id" 
+          >
+          </select>
+      </label>
+
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">N° Identificación</span>
+        <input type="number" placeholder="" ng-model="objR2.identification">
+      </label>
+
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Celular ó Teléfono</span>
+        <input type="number" placeholder="indique " ng-model="objR2.cellphone_telephone_contact">
+      </label>
+
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Ciudad</span>
+        <input type="text" placeholder="indique " ng-model="objR2.city">
+      </label>
+
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Historia</span>
+        <textarea 
+          rows="7"
+          placeholder="Describa brevemente la historia suya o de su familia"
+          ng-model="objR2.history" ></textarea>
+      </label>
+
+      <label class="item item-file ">
+        <span class="input-label">Foto  <i>(persona o familia)</i> </span>
+        <input type="file" placeholder="indique" ng-model="objR2.base64">
+      </label>
+
+      <label class="item registerpassword ">
+        <div class="center">
+          <span class="input-label">Contraseña (para iniciar sesión)</span>
+          <input class="custominput" type="password" placeholder="indique" ng-model="objR2.password" >
+
+          <span class="input-label">Repetir Contraseña</span>
+          <input class="custominput" type="password" placeholder="indique" ng-model="objR2.confirm_password" >
+        </div>
+      </label>
+
+
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">¿Esta siendo registrado por algún colaborador?</span>
+        <input type="text" placeholder=" indique el nombre si es así" ng-model="objR2.contributor">
+      </label>
+
+      <div class="center">
+        <br/>
+        <button type="submit" class="button button-positive">
+          <i class="ion-ios-cloud-upload"></i> Enviar
+        </button>
+        <br/>
+        <br/>
+      </div>
+      </form>
+    </div>
+
+
+    <div ng-show="openLoginR2" class="list card stable-bg paddingform" >
+      <form novalidate  name="formlogin" ng-submit="saveR2(formlogin)"  >
+      <div class="login">
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Nombre</span>
+          <input type="text" placeholder="indique" ng-model="objR2.names" >
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Contraseña</span>
+          <input type="password" placeholder="indique" ng-model="objR2.password" >
+        </label>
+        <div class="center">
+          <br/>
+          <button type="submit" class="button button-positive">
+            <i class="ion-log-in"></i> Entrar
+          </button>
+          <br/>
+          <br/>
+        </div>
+      </div>
+      </form>
+    </div>
+    <br/>
+    <br/>
+  </ion-content>
+</ion-modal-view>

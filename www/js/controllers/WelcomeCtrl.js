@@ -1,34 +1,18 @@
-app.controller('WelcomeCtrl', function ($scope,$state,$ionicModal) {
+app.controller('WelcomeCtrl', function ($scope,$state,$ionicModal,$timeout) {
 
 
-  $scope.objR1 = {};
-  $scope.objR2 = {};
-
-  $scope.openRegisterR1 = false;
-  $scope.openLoginR1 = false;
 
   $scope.goNeedHelp = function(){
     processNeedhelp();
   }
 
-  $scope.goWanthelp = function(){
-    processWanthelp();
+  $scope.goLwanthelp = function(){
+    processLwanthelp();
   }
 
 
 
-  $scope.fopenRegisterR1 = function(){
-    $scope.openRegisterR1 = true;
-    $scope.openLoginR1 = false;
-  }
-
-
-  $scope.fopenLoginR1 = function(){
-    $scope.openRegisterR1 = false;
-    $scope.openLoginR1 = true;
-  }
-
-
+  // ## modal del registo o login de colaborador
   $ionicModal.fromTemplateUrl('templates/modals/registerR1.html', {
     scope: $scope,
     animation: 'slide-in-right'
@@ -44,22 +28,18 @@ app.controller('WelcomeCtrl', function ($scope,$state,$ionicModal) {
   $scope.closeModalRegisterR1 = function() {
     $scope.ModalRegisterR1.hide();
   };
-
-  $scope.saveR1 = function(){
-    // Save in server, save in localStorage and then redirect to want help
-    // ***
-    // $state.transitionTo("app.wanthelp");
-  };
+  // ## 
 
 
-
-
+  // ## modal del registro o  login del necesitado
   $ionicModal.fromTemplateUrl('templates/modals/registerR2.html', {
     scope: $scope,
     animation: 'slide-in-right'
   }).then(function(ModalRegisterR2) {
     $scope.ModalRegisterR2 = ModalRegisterR2;
   });
+
+
 
   function openModalRegisterR2() {
     $scope.objR2 = {};
@@ -70,34 +50,27 @@ app.controller('WelcomeCtrl', function ($scope,$state,$ionicModal) {
     $scope.ModalRegisterR2.hide();
   };
 
-  $scope.saveR2 = function(){
-    // Save in server, save in localStorage and then redirect to want help
-    // ***
-    // $state.transitionTo("app.needhelp");
-  };
+  // ##
 
 
-
-
-
-
-
+  // verifico si existe informacion de login en localstorage
   function processLoginAndRol(rol){
-
     if(localStorage.getItem('r'+rol) !== null && localStorage.getItem('r'+rol) !== ''){
       return true;
     }
     return false;
   }
 
-  function processWanthelp(){
+  // Si hay sesión siguo para el listado de necesitados
+  function processLwanthelp(){
     if(!processLoginAndRol(1)){
       openModalRegisterR1();
     }else{
-      $state.transitionTo("app.wanthelp");
+      $state.transitionTo("app.lwanthelp");
     }
   }
 
+  // Si hay sesión siguo para el formulario de necesito ayuda
   function processNeedhelp(){
     if(!processLoginAndRol(2)){
       openModalRegisterR2();

@@ -1,4 +1,4 @@
-<ion-modal-viewcache-view="false" >
+<ion-modal-view cache-view="false" ng-controller="ModalRegisterR1" >
   <ion-header-bar>
     <h1 class="title">Colaborador</h1>
     <div class="buttons">
@@ -10,42 +10,41 @@
 
     <div  ng-include="'templates/partials/_btnsesion.html'"></div>
 
-    
 		<div ng-show="openRegisterR1" class="list card stable-bg paddingform">
-    <form novalidate  name="formregister" ng-submit="submit(formregister)"  >
+    <form novalidate  name="formregister" ng-submit="saveR1(formregister)"  >
       <label class="item typecontri">
         <span class="input-label">¿Usted representa a? </span>
-        <ion-radio name="tc" ng-model="obj.type_contributors_id" value="1" > 
+        <ion-radio name="tc" ng-model="objR1.type_contributors_id" value="1" > 
         <span class="ion-asterisk"></span> Particular</ion-radio>
-        <ion-radio name="tc" ng-model="obj.type_contributors_id" value="2" > 
+        <ion-radio name="tc" ng-model="objR1.type_contributors_id" value="2" > 
         <span class="ion-asterisk"></span> Familia</ion-radio>
-        <ion-radio name="tc" ng-model="obj.type_contributors_id" value="3" > 
+        <ion-radio name="tc" ng-model="objR1.type_contributors_id" value="3" > 
         <span class="ion-asterisk"></span> Empresa</ion-radio>
       </label>
 
       <div class="profilepriv">
         <label class="item">
           <span class="input-label">¿Quieres que tu perfil se mantenga privado?</span>
-          <ion-radio name="pri" ng-model="obj.privacy" value="true" > Si</ion-radio>
-          <ion-radio name="pri" ng-model="obj.privacy" value="false" > No</ion-radio>
+          <ion-radio name="pri" ng-model="objR1.privacy" value="true" > Si</ion-radio>
+          <ion-radio name="pri" ng-model="objR1.privacy" value="false" > No</ion-radio>
         </label>
       </div>
 
       <label class="item item-input item-stacked-label">
 		    <span class="input-label">Nombre</span>
-		    <input type="text" placeholder="" ng-model="obj.names" >
+		    <input type="text" placeholder="" ng-model="objR1.names" >
 		  </label>
 
 		  <label class="item item-input item-stacked-label">
 		    <span class="input-label">Apellidos</span>
-		    <input type="text" placeholder="" ng-model="obj.last_names" >
+		    <input type="text" placeholder="" ng-model="objR1.last_names" >
 		  </label>
 
       <label class="item item-input item-select " >
           <span class="input-label">Tipo Identificación </span>
           <select
             required
-            ng-model="obj.type_identifications_id"
+            ng-model="objR1.type_identifications_id"
             ng-options="ti as ti.name for ti in list_type_identifications track by ti.id" 
           >
           </select>
@@ -53,22 +52,22 @@
 
       <label class="item item-input item-stacked-label">
         <span class="input-label">N° Identificación/NIT</span>
-        <input type="number" placeholder="" ng-model="obj.nit_id">
+        <input type="number" placeholder="" ng-model="objR1.nit_id">
       </label>
 
 
       <label class="item item-file ">
         <span class="input-label">Foto  <i>(persona, familia o empresa)</i> </span>
-        <input type="file" placeholder="indique" ng-model="obj.base64">
+        <input type="file" placeholder="indique" ng-model="objR1.base64">
       </label>
 
       <label class="item registerpassword ">
         <div class="center">
           <span class="input-label">Contraseña (para iniciar sesión)</span>
-          <input class="custominput" type="password" placeholder="indique" ng-model="obj.password" >
+          <input class="custominput" type="password" placeholder="indique" ng-model="objR1.password" >
 
           <span class="input-label">Repetir Contraseña</span>
-          <input class="custominput" type="password" placeholder="indique" ng-model="obj.confirm_password" >
+          <input class="custominput" type="password" placeholder="indique" ng-model="objR1.confirm_password" >
         </div>
       </label>
 
@@ -86,15 +85,15 @@
 
 
     <div ng-show="openLoginR1" class="list card stable-bg paddingform" >
-      <form novalidate  name="formlogin" ng-submit="submit(formlogin)"  >
+      <form novalidate  name="formlogin" ng-submit="saveR1(formlogin)"  >
       <div class="login">
         <label class="item item-input item-stacked-label">
           <span class="input-label">Nombre</span>
-          <input type="text" placeholder="indique" ng-model="obj.names" >
+          <input type="text" placeholder="indique" ng-model="objR1.names" >
         </label>
         <label class="item item-input item-stacked-label">
           <span class="input-label">Contraseña</span>
-          <input type="password" placeholder="indique" ng-model="obj.password" >
+          <input type="password" placeholder="indique" ng-model="objR1.password" >
         </label>
         <div class="center">
           <br/>

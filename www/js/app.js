@@ -125,12 +125,12 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         }
     })
 
-    .state('app.wanthelp', {
-        url: '/wanthelp',
+    .state('app.lwanthelp', {
+        url: '/lwanthelp',
         views: {
             'menuContent': {
-                templateUrl: 'templates/views/wanthelp.html',
-                controller: 'WanthelpCtrl'
+                templateUrl: 'templates/views/lwanthelp.html',
+                controller: 'LwanthelpCtrl'
             }
         }
     })
@@ -149,6 +149,26 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             'menuContent': {
                 templateUrl: 'templates/views/aboutthis.html',
                 controller: 'AboutthisCtrl'
+            }
+        }
+    })
+
+    .state('app.wanthelp', {
+        url: '/wanthelp',
+        views: {
+            'menuContent': {
+                templateUrl: 'templates/views/wanthelp.html',
+                controller: 'WanthelpCtrl'
+            }
+        }
+    })
+
+    .state('app.needhelp', {
+        url: '/needhelp',
+        views: {
+            'menuContent': {
+                templateUrl: 'templates/views/needhelp.html',
+                controller: 'NeedhelpCtrl'
             }
         }
     })
