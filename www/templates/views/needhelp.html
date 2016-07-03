@@ -1,8 +1,32 @@
 <ion-view view-title="Necesito ayuda" cache-view="false" >
   <ion-content>
     <div class="im-wrapper contentpadding">
-      <div>
-      FORM OF NEED HELP
+      <div >
+        <form ng-show="!varcontrols.hidden" >
+          <br/>
+          <ion-checkbox 
+            class="cneedhelp" 
+            ng-model="isChecked" 
+            ng-click="fconfirmNeedHelp()" >
+              Solicitar ayuda !
+            </ion-checkbox>
+          <br/>
+        </form>
+        <div class="center">
+          <h4>Historial de solitudes</h4>
+        </div>
+        <table width="100%">
+          <tr>
+            <th>#</th>
+            <th>Fecha</th>
+            <th></th>
+          </tr>
+          <tr ng-repeat="(key, value) in histoRequest track by $index" >
+            <td>{{key+1}}</td>
+            <td>{{value.date | date:"dd/MM/yyyy"}}</td>
+            <td></td>
+          </tr>
+        </table>
       </div>
       <div class="center">
         <div ng-include="'templates/partials/_return.html'"></div>

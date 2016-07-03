@@ -153,16 +153,6 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         }
     })
 
-    .state('app.wanthelp', {
-        url: '/wanthelp',
-        views: {
-            'menuContent': {
-                templateUrl: 'templates/views/wanthelp.html',
-                controller: 'WanthelpCtrl'
-            }
-        }
-    })
-
     .state('app.needhelp', {
         url: '/needhelp',
         views: {

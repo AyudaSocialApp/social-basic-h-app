@@ -230,16 +230,22 @@ p {
 }
 
 .circleneedy{
-  border-radius: 50%;
+  border-radius: 10%;
   background: #FFE9E9;
   cursor: pointer;
   width: 100%;
   height: 100%;
-  max-width: 130px;
+  /*max-width: 130px;*/
   min-height: 130px;
-  -moz-box-shadow: 3px 4px 8px #303038;
-  -webkit-box-shadow: 3px 4px 8px #303038;
-  box-shadow: 3px 4px 8px #303038;
+  -moz-box-shadow: 3px 4px 8px #959292;
+  -webkit-box-shadow: 3px 4px 8px #959292;
+  box-shadow: 3px 4px 8px #959292;
+  text-align: center;
+}
+
+.circleneedy:hover {
+  color: #444;
+  text-decoration: none;
 }
 
 .circleblue{
@@ -314,4 +320,57 @@ p {
 
 .custominput{
   width: 100%;
+}
+
+.cneedhelp{
+  background-color: #E5E5E5;
+  -moz-box-shadow: 1px 3px 9px #000000;
+  -webkit-box-shadow: 1px 3px 9px #000000;
+  box-shadow: 1px 3px 9px #000000;
+}
+
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even){background-color: #f2f2f2}
+
+th {
+  background-color: #E0E0E0;
+  color: black;
+  font-weight: bold;
+}
+
+.detailwanthelp{
+  background-color: #FFE9E9;
+}
+
+.imgneedy{
+  left: 16px;
+  max-width: 80px;
+  text-align: center;
+}
+
+
+.custommarginp{
+  margin: 0 0 5px;
+}
+
+.dateplace{
+  font-size: 10px;
+}
+
+.paddingdetail{
+  padding: 10px;
+}
+
+.msgwanthelp{
+  background-color: #AED0FB;
 }

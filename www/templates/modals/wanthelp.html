@@ -1,0 +1,77 @@
+<ion-modal-view  cache-view="false" ng-controller="WanthelpCtrl" >
+
+  <ion-header-bar>
+    <h1 class="title">Necesitado</h1>
+    <div class="buttons">
+      <button class="button" ng-click="closemodalWantHelp()"><big>X</big></button>
+    </div>
+  </ion-header-bar>
+
+  <ion-content class="backgromodal" >
+    <div class="im-wrapper contentpadding">
+      <div class="list card detailwanthelp">
+        <form>
+          <div class="center">
+            <h4>Información Necesitado</h4>
+          </div>
+          <div class="list paddingdetail">
+            <label>
+              <span class="input-label"><b>Necesitado</b></span>
+              <span>Familia Lopez Buendía</span>
+            </label>
+
+            <label>
+              <span class="input-label"><b>De</b></span>
+              <span>Cúcuta</span>
+            </label>
+
+            <label>
+              <span class="input-label"><b>Historia</b></span>
+              <span><p align="justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+              tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+              quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo<br/>
+              <a href="#"> Ver historial de ayudas <span class="icon ion-link"></span></a>
+              </p></span>
+            </label>
+          </div>
+
+          <div class="center msgwanthelp">
+            <p>Podrás ver los datos de contacto, cuando registres la ayuda</p>
+          </div>
+          <div class="center">
+            <h4>Registra tu Ayuda</h4>
+          </div>
+
+          <div class="list paddingdetail">
+            <label>
+              <span class="input-label"><b>Tipo de ayuda</b></span>
+              
+            </label>
+            <label>
+              <span class="input-label"><b>Descripción de la ayuda</b></span>
+              
+            </label>
+            <label>
+              <span class="input-label"><b>Proponga un lugar de entrega</b></span>
+              
+            </label>
+
+            <label>
+              <span class="input-label"><b>Proponga una Fecha y hora de entrega</b></span>
+              
+            </label>
+          </div>
+
+          <div class="center">
+            <br/>
+            <button type="submit" class="button button-light">
+              <i class="ion-ios-cloud-upload"></i> Registrar ayuda
+            </button>
+            <br/>
+            <br/>
+          </div>
+        </form>
+      </div>
+    </div>
+  </ion-content>
+</ion-modal-view>

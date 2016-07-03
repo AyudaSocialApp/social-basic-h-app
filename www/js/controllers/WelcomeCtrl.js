@@ -14,8 +14,7 @@ app.controller('WelcomeCtrl', function ($scope,$state,$ionicModal,$timeout) {
 
   // ## modal del registo o login de colaborador
   $ionicModal.fromTemplateUrl('templates/modals/registerR1.html', {
-    scope: $scope,
-    animation: 'slide-in-right'
+    scope: $scope
   }).then(function(ModalRegisterR1) {
     $scope.ModalRegisterR1 = ModalRegisterR1;
   });
@@ -33,8 +32,7 @@ app.controller('WelcomeCtrl', function ($scope,$state,$ionicModal,$timeout) {
 
   // ## modal del registro o  login del necesitado
   $ionicModal.fromTemplateUrl('templates/modals/registerR2.html', {
-    scope: $scope,
-    animation: 'slide-in-right'
+    scope: $scope
   }).then(function(ModalRegisterR2) {
     $scope.ModalRegisterR2 = ModalRegisterR2;
   });

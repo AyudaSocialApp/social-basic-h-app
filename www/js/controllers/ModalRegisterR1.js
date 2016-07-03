@@ -36,7 +36,7 @@ app.controller('ModalRegisterR1', function ($scope,$state,$ionicModal,$timeout) 
     // Save in server, save in localStorage and then redirect to want help
     // ***
     $scope.closeModalRegisterR1();
-    $state.transitionTo("app.wanthelp");
+    $state.transitionTo("app.lwanthelp");
   };
 
 
