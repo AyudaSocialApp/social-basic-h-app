@@ -9,7 +9,6 @@
         });
     }
 
-
     var fab = document.getElementById('fab');
     fab.addEventListener('click', function () {
         //location.href = 'https://twitter.com/satish_vr2011';
@@ -43,10 +42,8 @@
         $scope.popover.remove();
     });
 
-
     $rootScope.isSessionR1 = false;
     $rootScope.isSessionR2 = false;
-
 
     // init vars localstorage
     if(localStorage.getItem('r1') === null || localStorage.getItem('r1') === ""){
@@ -61,6 +58,51 @@
       $rootScope.isSessionR2 = true;
     }
     // end init vars localstorage
+
+
+
+
+
+
+  // ## modal del registo o login de colaborador
+  $ionicModal.fromTemplateUrl('templates/modals/registerR1.html', {
+    scope: $scope
+  }).then(function(ModalRegisterR1) {
+    $scope.ModalRegisterR1 = ModalRegisterR1;
+  });
+
+  function openModalRegisterR1() {
+    $scope.objR1 = {};
+    $scope.ModalRegisterR1.show();
+  }
+
+  $scope.closeModalRegisterR1 = function() {
+    $scope.ModalRegisterR1.hide();
+  };
+  // ## 
+
+
+  // verifico si existe informacion de login en localstorage
+  function processLoginAndRol(rol){
+    if(localStorage.getItem('r'+rol) !== null && localStorage.getItem('r'+rol) !== ''){
+      return true;
+    }
+    return false;
+  }
+
+
+
+
+  // Si hay sesión siguo para el listado de necesitados
+  $scope.processLwanthelp = function(){
+    if(!processLoginAndRol(1)){
+      openModalRegisterR1();
+    }else{
+      $state.transitionTo("app.lwanthelp");
+    }
+  }
+
+
 
 
 });

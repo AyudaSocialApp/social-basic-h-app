@@ -1,13 +1,18 @@
-app.controller('LwanthelpCtrl', function ($scope,$ionicModal) {
+app.controller('LwanthelpCtrl', function ($scope,$ionicModal,$ionicScrollDelegate,$timeout) {
 
-  $scope.goWantHelp = function(){
+  $scope.ro = "";
+  $scope.myhelps = false;
+  $scope.needy = true;
+
+  $scope.goWantHelp = function(ro){
+    $scope.ro = ro;
     openmodalWantHelp();
   };
 
+
   // ## modal del registo o login de colaborador
   $ionicModal.fromTemplateUrl('templates/modals/wanthelp.html', {
-    scope: $scope,
-    focusFirstInput: true
+    scope: $scope
   }).then(function(modalWantHelp) {
     $scope.modalWantHelp = modalWantHelp;
   });
@@ -17,7 +22,12 @@ app.controller('LwanthelpCtrl', function ($scope,$ionicModal) {
   }
 
   $scope.closemodalWantHelp = function() {
-    $scope.modalWantHelp.hide();
+    $ionicScrollDelegate.scrollTop();
+    $timeout(
+      function(){
+        $scope.modalWantHelp.hide();
+      },250);
+    
   };
   // ## 
 

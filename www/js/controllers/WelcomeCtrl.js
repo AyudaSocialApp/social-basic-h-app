@@ -1,7 +1,6 @@
 app.controller('WelcomeCtrl', function ($scope,$state,$ionicModal,$timeout) {
 
 
-
   $scope.goNeedHelp = function(){
     processNeedhelp();
   }
@@ -9,8 +8,6 @@ app.controller('WelcomeCtrl', function ($scope,$state,$ionicModal,$timeout) {
   $scope.goLwanthelp = function(){
     processLwanthelp();
   }
-
-
 
   // ## modal del registo o login de colaborador
   $ionicModal.fromTemplateUrl('templates/modals/registerR1.html', {

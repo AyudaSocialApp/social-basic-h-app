@@ -1,71 +1,164 @@
-<ion-modal-view  cache-view="false" ng-controller="WanthelpCtrl" >
+<ion-modal-view ng-init="configView(ro)"  cache-view="false" ng-controller="WanthelpCtrl" >
 
   <ion-header-bar>
-    <h1 class="title">Necesitado</h1>
+    <h1 class="title">Información</h1>
     <div class="buttons">
       <button class="button" ng-click="closemodalWantHelp()"><big>X</big></button>
     </div>
   </ion-header-bar>
 
-  <ion-content class="backgromodal" >
-    <div class="im-wrapper contentpadding">
+  <ion-content >
+
+    <div class=" contentpadding">
+
       <div class="list card detailwanthelp">
-        <form>
-          <div class="center">
-            <h4>Información Necesitado</h4>
+        <form  novalidate  name="formhe" ng-submit="saveHelp(formhe)"  >
+
+        <!-- INFORMACIÓN DEL NECESITADO-->
+          <div ng-show="viewBtnInfo || viewinfoNeedy">
+            <div class="center">
+              <h4>Información Necesitado</h4>
+            </div>
+            <div class="list paddingdetail">
+              <label>
+                <span class="input-label"><b>Nombre</b></span>
+                <span>Familia Lopez Buendía</span>
+              </label>
+
+              <label>
+                <span class="input-label"><b>De</b></span>
+                <span>Cúcuta</span>
+              </label>
+
+              <label>
+                <span class="input-label"><b>Historia</b></span>
+                <span>
+                  <p align="justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                  quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo<br/>
+                  <button 
+                    type="button" 
+                    ng-show="controls.viewlinkHA" 
+                    ng-click="fviewHistoryHelpsRequets()" 
+                    class="spanlink"> Ver historial de ayudas 
+                    <span class="icon ion-link"></span>
+                  </button>
+                  </p>
+                </span>
+              </label>
+            </div>
           </div>
-          <div class="list paddingdetail">
-            <label>
-              <span class="input-label"><b>Necesitado</b></span>
-              <span>Familia Lopez Buendía</span>
-            </label>
 
-            <label>
-              <span class="input-label"><b>De</b></span>
-              <span>Cúcuta</span>
-            </label>
+          <!-- INFORMACIÓN DEL COLABORADOR -->
+          <div ng-show="viewBtnAccept" >
+            <div class="center">
+              <h4>Información Colaborador</h4>
+            </div>
+            <div class="list paddingdetail">
+              
+              <label>
+                <span class="input-label"><b>Nombre</b></span>
+                <span>Carmen  Buendía </span>
+              </label>
 
-            <label>
-              <span class="input-label"><b>Historia</b></span>
-              <span><p align="justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-              tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-              quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo<br/>
-              <a href="#"> Ver historial de ayudas <span class="icon ion-link"></span></a>
-              </p></span>
-            </label>
+              <label>
+                <span class="input-label"><b>De</b></span>
+                <span>Cúcuta</span>
+              </label>
+            </div>
+          </div>
+          <br/>
+          <div ng-show="viewBtnAccept"  class="center msgwanthelp">
+            <p>Al aceptar la ayuda podrás ver los datos de contacto</p>
           </div>
 
-          <div class="center msgwanthelp">
+          <div ng-show="viewInfoAcceptHelp" class="list infocontact">
+              
+              <label>
+                <b>Lugar</b>
+                <span> Parque Santander, Centro.</span>
+              </label><br/>
+
+              <label>
+                <b>Fecha y hora</b>
+                <span> 04/06/2016  <i>05:00 pm</i></span>
+              </label><br/>
+
+              <label>
+               <b>Teléfono o Celular</b>
+                <span>3124343455</span>
+              </label>
+
+          </div>
+
+          <div class="back2historequest" ng-show="controls.viewhistoryHelpsRequets">
+            <table width="100%">
+              <tr>
+                <th>#</th>
+                <th>Fecha</th>
+                <th>Estado</th>
+              </tr>
+              <tr ng-repeat="(key, value) in histoRequest track by $index" >
+                <td>{{key+1}}</td>
+                <td>{{value.date | date:"dd/MM/yyyy"}}</td>
+                <td></td>
+              </tr>
+            </table>
+          </div>
+
+          <div  ng-show="!viewBtnAccept && !viewBtnInfo && !viewMysHelps"  class="center msgwanthelp">
             <p>Podrás ver los datos de contacto, cuando registres la ayuda</p>
           </div>
-          <div class="center">
+
+          <div ng-show="!viewBtnAccept && !viewBtnInfo && !viewMysHelps" class="center">
             <h4>Registra tu Ayuda</h4>
           </div>
 
-          <div class="list paddingdetail">
-            <label>
-              <span class="input-label"><b>Tipo de ayuda</b></span>
-              
-            </label>
-            <label>
-              <span class="input-label"><b>Descripción de la ayuda</b></span>
-              
-            </label>
-            <label>
-              <span class="input-label"><b>Proponga un lugar de entrega</b></span>
-              
-            </label>
 
-            <label>
-              <span class="input-label"><b>Proponga una Fecha y hora de entrega</b></span>
-              
+
+          <!-- FORMULARIO REGISTRO DE AYUDA -->
+          <div 
+            ng-show="!viewBtnAccept && !viewBtnInfo && !viewMysHelps" 
+            class="list paddingdetail">
+            <label class="item item-input item-select">
+              <span class="input-label">Tipo de ayuda</span>
+              <select
+                required
+                ng-model="obj.type_helps_id"
+                ng-options="lth as lth.name for lth in list_type_helps track by lth.id" 
+              >
+              </select>
+            </label>
+            <label class="item item-input item-stacked-label">
+              <span class="input-label">Descripción de la ayuda</span>
+              <textarea 
+                rows="7"
+                placeholder="Describa brevemente los elementos de la ayuda"
+                ng-model="obj.description" ></textarea>
+            </label>
+            <label class="item item-input item-stacked-label">
+              <span class="input-label">Proponga un lugar de entrega</span>
+              <input type="text" placeholder="indique" ng-model="obj.place_delivery" >
+            </label>
+            <label class="item item-input item-stacked-label">
+              <span class="input-label">Proponga una Fecha y hora de entrega</span>
+              <input type="datetime-local" placeholder="indique" ng-model="obj.date_hour" >
             </label>
           </div>
 
           <div class="center">
             <br/>
-            <button type="submit" class="button button-light">
+            <button ng-show="!viewBtnAccept && !viewBtnInfo && !viewMysHelps" type="submit" class="button button-light">
               <i class="ion-ios-cloud-upload"></i> Registrar ayuda
+            </button>
+            <button ng-show="viewBtnAccept && !viewBtnInfo && !viewMysHelps && !viewInfoAcceptHelp" type="button" ng-click="acceptHelp()" class="button button-light">
+              <i class="ion-ios-cloud-upload"></i> Aceptar ayuda
+            </button>
+            <button ng-show="viewBtnInfo && !viewBtnAccept && !viewMysHelps" ng-click="closemodalWantHelp()" type="button" class="button button-light">
+              <i class="ion-ios-cloud-upload"></i> Listo
+            </button>
+            <button ng-show="viewMysHelps" ng-click="closemodalWantHelp()" type="button" class="button button-light">
+              <i class="ion-ios-cloud-upload"></i> Cerrar Ventana
             </button>
             <br/>
             <br/>

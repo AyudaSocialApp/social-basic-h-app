@@ -374,3 +374,57 @@ th {
 .msgwanthelp{
   background-color: #AED0FB;
 }
+
+.spanlink{
+  cursor: pointer;
+  font-size: 16px;
+  color: blue;
+  pointer-events: all;
+  z-index: 1000;
+  border: none;
+  background-color: transparent;
+}
+
+.btninlist{
+  pointer-events: all;
+  z-index: 1000;
+  border: none;
+}
+
+.back2historequest{
+  background-color: #FFFFFF;
+  padding: 10px;
+  padding-bottom: 25px;
+}
+
+.msgsessionorregister{
+  font-size: 16px;
+  font-weight: bold;
+  padding: 5px;
+}
+
+.infocontact{
+  padding: 7px;
+  margin-top: 10px;
+  background-color: #e5e5e5;
+  animation: startparpadeo 2s;
+  -webkit-animation: startparpadeo 2s;
+  -moz-animation: startparpadeo 2s;
+  animation-iteration-count:infinite;
+  -webkit-animation-iteration-count:infinite;
+  -moz-animation-iteration-count:infinite;
+}
+
+
+    @keyframes startparpadeo {
+    0%  {box-shadow: 0px 0px 0px orange}
+    50% {box-shadow: 0px 0px 50px orange}
+    100%{box-shadow: 0px 0px 0px orange}
+    }
+        
+    @-webkit-keyframes startparpadeo {
+    0%  {-webkit-box-shadow: 0px 0px 0px orange}
+    50% {-webkit-box-shadow: 0px 0px 50px orange}
+    100%{-webkit-box-shadow: 0px 0px 0px orange}
+    
+    }

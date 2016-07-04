@@ -1,4 +1,4 @@
-app.controller('ModalRegisterR1', function ($scope,$state,$ionicModal,$timeout) {
+app.controller('ModalRegisterR1', function ($scope,$state,$ionicModal,$timeout,$ionicScrollDelegate) {
 
 
   $scope.objR1 = {};
@@ -19,6 +19,7 @@ app.controller('ModalRegisterR1', function ($scope,$state,$ionicModal,$timeout) 
     $timeout(function(){
       $scope.openRegisterR1 = true;
       $scope.openLoginR1 = false;
+      $ionicScrollDelegate.scrollTo(0, 200);
     },400);
   }
 
@@ -28,6 +29,7 @@ app.controller('ModalRegisterR1', function ($scope,$state,$ionicModal,$timeout) 
     $timeout(function(){
       $scope.openRegisterR1 = false;
       $scope.openLoginR1 = true;
+      $ionicScrollDelegate.scrollTo(0, 200);
     },400);
   }
 
