@@ -3,7 +3,7 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-var app = angular.module('starter', ['ionic', 'ionic-material']);
+var app = angular.module('starter', ['ionic','angular-jwt','ionic-material']);
 
 app.run(function ($ionicPlatform,$rootScope) {
     $ionicPlatform.ready(function () {
@@ -45,7 +45,7 @@ app.run(function ($ionicPlatform,$rootScope) {
 
 
 app.constant('CONFIG', {
- URLAPI: "http://localhost/social/social-basic-api/public",
+ URLAPI: "http://localhost/social/social-basic-api/public/api/v1",
  APPVERSION: '1.0.0'
 });
 

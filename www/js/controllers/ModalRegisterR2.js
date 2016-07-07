@@ -19,7 +19,7 @@ app.controller('ModalRegisterR2', function ($scope,$state,$ionicModal,$timeout,$
     $timeout(function(){
       $scope.openRegisterR2 = true;
       $scope.openLoginR2 = false;
-      $ionicScrollDelegate.scrollTo(0, 200);
+      //$ionicScrollDelegate.scrollTo(0, 200);
     },400);
   }
 
@@ -29,7 +29,7 @@ app.controller('ModalRegisterR2', function ($scope,$state,$ionicModal,$timeout,$
     $timeout(function(){
       $scope.openRegisterR2 = false;
       $scope.openLoginR2 = true;
-      $ionicScrollDelegate.scrollTo(0, 200);
+      //$ionicScrollDelegate.scrollTo(0, 200);
     },400);
   }
 

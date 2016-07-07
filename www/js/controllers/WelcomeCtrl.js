@@ -1,4 +1,4 @@
-app.controller('WelcomeCtrl', function ($scope,$state,$ionicModal,$timeout) {
+app.controller('WelcomeCtrl', function ($scope,$state,$ionicModal,$timeout,Sesion) {
 
 
   $scope.goNeedHelp = function(){
@@ -74,6 +74,13 @@ app.controller('WelcomeCtrl', function ($scope,$state,$ionicModal,$timeout) {
     }
   }
 
+
+  var credentials = {
+    email: 'stivenson.rpm@gmail.com',
+    password: '123456'
+  }
+
+  Sesion.login(credentials);
 
 
 });

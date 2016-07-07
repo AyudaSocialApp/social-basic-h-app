@@ -1,4 +1,4 @@
-﻿app.controller('AppCtrl', function ($scope, $ionicModal, $ionicPopover, $timeout,$rootScope) {
+﻿app.controller('AppCtrl', function ($scope, $ionicModal, $ionicPopover, $timeout,$rootScope,Sesion) {
     // Form data for the login modal
     $scope.loginData = {};
 
@@ -102,6 +102,10 @@
     }
   }
 
+
+  $scope.logout = function(){
+    Sesion.logout();
+  }
 
 
 
