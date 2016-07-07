@@ -6,8 +6,27 @@
 			    <i class="icon ion-checkmark"></i>
 			    Saludos !
 			</h4>
-			<p>
-				Esta app fue creada por los hermanos Stivenson y Luis Angel Rincón; Un desarrollador de software y un Diseñador grafico que creen que todo es posible y que el mundo se puede cambiar si cada profesional busca la forma de dar un aporte a la sociedad a la que pertenecen desde su area. Buscando siempre un enfoque interdisciplinar y practico, sin miedos y sin prejuicios.
+			<p align="justify">
+				Esta app fue creada por los hermanos Stivenson y Luis Angel Rincón; Un desarrollador de software y un Diseñador grafico que creen que todo es posible y que el mundo se puede cambiar si cada profesional busca la forma de dar un aporte a la sociedad a la que pertenecen desde su area. </p>
+				<p align="justify" >Buscando siempre un enfoque interdisciplinar y practico, sin miedos y sin prejuicios.
+			</p>
+			<p align="center">
+				<button ng-show="!viewFields" ng-click="fViewFields()" type="button" class="button buttonidea">
+        	<p class="button-pagraph-wrap">¿Quieres aportar ideas a la aplicación?</p>
+        </button>
+        <form novalidate name="formidea" ng-submit="send(formidea)"  >
+	        <div class="center card itemlist divsendidea" ng-show="viewFields">
+		        <textarea 
+		          required
+		          rows="7"
+		          style="width:100%;" 
+		          placeholder="Describa respetuosamente tu aporte"
+		          ng-model="obj.content" ></textarea>
+							<button type="submit" class="button button-positive">
+	                Enviar
+	            </button>
+	        </div>
+        </form>
 			</p>
 			<div class="center">
 				<div ng-include="'templates/partials/_return.html'"></div>

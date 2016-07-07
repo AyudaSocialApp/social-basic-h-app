@@ -16,6 +16,12 @@ app.run(function ($ionicPlatform,$rootScope) {
         if (window.StatusBar) {
             StatusBar.styleDefault();
         }
+
+        // ################## device ###########
+        if(device.platform === "iOS") {
+            window.plugin.notification.local.promptForPermission();
+        }
+
     });
 
     $rootScope.isSessionR1 = false;
@@ -35,7 +41,14 @@ app.run(function ($ionicPlatform,$rootScope) {
     }
     // end init vars localstorage
 
-})
+});
+
+
+app.constant('CONFIG', {
+ URLAPI: "http://localhost/social/social-basic-api/public",
+ APPVERSION: '1.0.0'
+});
+
 
 app.config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider
@@ -168,4 +181,71 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 
     // if none of the above states are matched, use this as the fallback
     $urlRouterProvider.otherwise('/app/welcome');
+});
+
+
+app.factory('authHttpResponseInterceptor', ['$injector','$q', function ($injector,$q) {
+
+
+    return {
+      response: function (response) {
+        if (response.status === 401) {
+          console.log("Response 401");
+        }
+
+        if (response.status === 400) {
+          console.log("Response 400");
+
+        }
+
+        if (response.status === 500) {
+          console.log("Response 500");
+
+        }
+        if (response.status === 404) {
+          console.log("Response 500");
+
+        }
+        return response || $q.when(response);
+      },
+      responseError: function (rejection) {
+        if (rejection.status === 401) {
+          console.log("Response Error 401", rejection);
+          //$injector.get('$state').transitionTo("applogin.welcome");
+        }
+
+        if (rejection.status === 400) {
+          console.log("Response Error 400", rejection);
+        }
+        if (rejection.status === 500) {
+          console.log("Response Error 500", rejection);
+        }
+        if (rejection.status === 404) {
+          console.log("Response Error 404", rejection);
+        }
+        return $q.reject(rejection);
+      }
+    }
+  }]);
+
+app.config(['$injector', function ($injector) {
+    //Http Intercpetor to check auth failures for xhr requests
+    
+    var $hp = $injector.get('$httpProvider');
+
+    $hp.interceptors.push('authHttpResponseInterceptor');
+
+  }]);
+
+
+app.config(function Config($httpProvider, jwtInterceptorProvider) {
+
+  jwtInterceptorProvider.tokenGetter = function () {
+
+    return localStorage.getItem("jwt");
+
+  }
+
+  $httpProvider.interceptors.push('jwtInterceptor');
+
 });

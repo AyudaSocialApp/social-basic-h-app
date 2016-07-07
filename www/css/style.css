@@ -267,6 +267,16 @@ p {
   color: #FFFFFF;
 }
 
+.button-pagraph-wrap {
+  padding: 5px;
+  line-height: 1.5em;
+  white-space:normal;
+  color: blue;
+}
+
+.buttonidea{
+  background-color: #F0F0F0;
+}
 
 .itemlist{
   background-color: #EEEDED;
@@ -401,6 +411,10 @@ th {
   font-size: 16px;
   font-weight: bold;
   padding: 5px;
+}
+
+.divsendidea{
+  padding: 15px;
 }
 
 .infocontact{

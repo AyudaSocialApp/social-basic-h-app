@@ -1,4 +1,4 @@
-app.controller('ModalRegisterR1', function ($scope,$state,$ionicModal,$timeout,$ionicScrollDelegate) {
+app.controller('ModalRegisterR1', function ($scope,$state,$ionicModal,$timeout,$ionicScrollDelegate,Sesion) {
 
 
   $scope.objR1 = {};
@@ -41,6 +41,6 @@ app.controller('ModalRegisterR1', function ($scope,$state,$ionicModal,$timeout,$
     $state.transitionTo("app.lwanthelp");
   };
 
-
+  Sesion.login();
 
 });
