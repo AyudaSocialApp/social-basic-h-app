@@ -2,7 +2,7 @@
   <div  class="center msgwanthelp">
     <p class="msgsessionorregister">Debe iniciar sesión o registrarse para continuar</p>
   </div>
-<div ng-show="!isSessionR1" class="center">
+<div ng-show="(!isSessionR1 && currentRol == 'Colaborador') || (!isSessionR2 && currentRol == 'Necesitado')" class="center">
  {{currentRol}}<br/><br/>
   <button type="button" ng-click="fopenLogin()" class="button icon-left ion-home button-balanced">Iniciar Sesión</button>
   <button type="button"  ng-click="fopenRegister()"  class="button icon-left ion-star button-assertive">Registrarme</button>

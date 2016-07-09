@@ -32,12 +32,12 @@
 
       <label class="item item-input item-stacked-label">
 		    <span class="input-label">Nombre</span>
-		    <input type="text" placeholder="" ng-model="objR1.names" >
+		    <input required type="text" placeholder="" ng-model="objR1.names" >
 		  </label>
 
 		  <label class="item item-input item-stacked-label">
 		    <span class="input-label">Apellidos</span>
-		    <input type="text" placeholder="" ng-model="objR1.last_names" >
+		    <input required type="text" placeholder="" ng-model="objR1.last_names" >
 		  </label>
 
       <label class="item item-input item-select " >
@@ -52,22 +52,22 @@
 
       <label class="item item-input item-stacked-label">
         <span class="input-label">N° Identificación/NIT</span>
-        <input type="number" placeholder="" ng-model="objR1.nit_id">
+        <input required type="number" placeholder="" ng-model="objR1.nit_id">
       </label>
 
 
       <label class="item item-file ">
         <span class="input-label">Foto  <i>(persona, familia o empresa)</i> </span>
-        <input type="file" placeholder="indique" ng-model="objR1.base64">
+        <input required type="file" placeholder="indique" ng-model="objR1.base64">
       </label>
 
       <label class="item registerpassword ">
         <div class="center">
           <span class="input-label">Contraseña (para iniciar sesión)</span>
-          <input class="custominput" type="password" placeholder="indique" ng-model="objR1.password" >
+          <input required class="custominput" type="password" placeholder="indique" ng-model="objR1.password" >
 
           <span class="input-label">Repetir Contraseña</span>
-          <input class="custominput" type="password" placeholder="indique" ng-model="objR1.confirm_password" >
+          <input required class="custominput" type="password" placeholder="indique" ng-model="objR1.confirm_password" >
         </div>
       </label>
 
@@ -85,15 +85,15 @@
 
 
     <div ng-show="openLoginR1" class="list card stable-bg paddingform" >
-      <form novalidate  name="formlogin" ng-submit="saveR1(formlogin)"  >
+      <form novalidate  name="formlogin" ng-submit="loginR1(formlogin)"  >
       <div class="login">
         <label class="item item-input item-stacked-label">
           <span class="input-label">Nombre</span>
-          <input type="text" placeholder="indique" ng-model="objR1.names" >
+          <input required type="text" placeholder="indique" ng-model="objR1login.email" >
         </label>
         <label class="item item-input item-stacked-label">
           <span class="input-label">Contraseña</span>
-          <input type="password" placeholder="indique" ng-model="objR1.password" >
+          <input required type="password" placeholder="indique" ng-model="objR1login.password" >
         </label>
         <div class="center">
           <br/>

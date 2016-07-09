@@ -14,7 +14,7 @@ app.factory('Users',function($resource,CONFIG){
 });
 
 
-app.factory('Sesion',function($http,$state,$ionicPopup,CONFIG){
+app.factory('Sesion',function($http,$state,$ionicPopup,$rootScope,CONFIG){
 
 
   function msgLogout(){
@@ -37,21 +37,39 @@ app.factory('Sesion',function($http,$state,$ionicPopup,CONFIG){
   }
 
   return {
-    login: function(credentials) {
-      $http.post(CONFIG.URLAPI + "/login",credentials)
+
+    login: function(credentials,rol) {
+      return $http.post(CONFIG.URLAPI + "/login",credentials)
       .success(function (response) {
-        localStorage.setItem('jwt',response.data.token.token);
+
+          if(response.success != false){
+            localStorage.setItem('jwt',response.data.token.token);
+            if(rol == 'r1'){
+              $rootScope.isSessionR1 = true;
+              localStorage.setItem('r1',JSON.stringify(response.data.user));
+            }
+            if(rol == 'r2'){
+              $rootScope.isSessionR2 = true;
+              localStorage.setItem('r2',JSON.stringify(response.data.user));
+            }
+          }
+
+          return response;
+
       });
     },
     logout: function(){
+
       $http.get(CONFIG.URLAPI + "/logout")
       .success(function (response) {
-        $rootScope.isSessionR2 = true;
+        $rootScope.isSessionR2 = false;
+        $rootScope.isSessionR1 = false;
         localStorage.removeItem('r1');
         localStorage.removeItem('r2');
         msgLogout();
         $state.transitionTo("app.welcome");
       });
+      localStorage.removeItem('jwt');
     },
     initSesion: function(){
       process();

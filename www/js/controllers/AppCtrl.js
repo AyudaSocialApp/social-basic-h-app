@@ -52,7 +52,7 @@
       $rootScope.isSessionR1 = true;
     }
 
-    if(localStorage.getItem('r2') === null  || localStorage.getItem('r1') === ""){
+    if(localStorage.getItem('r2') === null || localStorage.getItem('r2') === ""){
       localStorage.setItem('r2',"");
     }else{
       $rootScope.isSessionR2 = true;

@@ -23,12 +23,12 @@
 
       <label class="item item-input item-stacked-label">
         <span class="input-label">Nombre</span>
-        <input type="text" placeholder="" ng-model="objR2.names" >
+        <input required type="text" placeholder="" ng-model="objR2.names" >
       </label>
 
       <label class="item item-input item-stacked-label">
         <span class="input-label">Apellidos</span>
-        <input type="text" placeholder="" ng-model="objR2.last_names" >
+        <input required type="text" placeholder="" ng-model="objR2.last_names" >
       </label>
 
       <label class="item item-input item-select " >
@@ -43,22 +43,23 @@
 
       <label class="item item-input item-stacked-label">
         <span class="input-label">N° Identificación</span>
-        <input type="number" placeholder="" ng-model="objR2.identification">
+        <input required type="number" placeholder="" ng-model="objR2.identification">
       </label>
 
       <label class="item item-input item-stacked-label">
         <span class="input-label">Celular ó Teléfono</span>
-        <input type="number" placeholder="indique " ng-model="objR2.cellphone_telephone_contact">
+        <input required type="number" placeholder="indique " ng-model="objR2.cellphone_telephone_contact">
       </label>
 
       <label class="item item-input item-stacked-label">
         <span class="input-label">Ciudad</span>
-        <input type="text" placeholder="indique " ng-model="objR2.city">
+        <input required type="text" placeholder="indique " ng-model="objR2.city">
       </label>
 
       <label class="item item-input item-stacked-label">
         <span class="input-label">Historia</span>
         <textarea 
+          required
           rows="7"
           placeholder="Describa brevemente la historia suya o de su familia"
           ng-model="objR2.history" ></textarea>
@@ -66,16 +67,16 @@
 
       <label class="item item-file ">
         <span class="input-label">Foto  <i>(persona o familia)</i> </span>
-        <input type="file" placeholder="indique" ng-model="objR2.base64">
+        <input required type="file" placeholder="indique" ng-model="objR2.base64">
       </label>
 
       <label class="item registerpassword ">
         <div class="center">
           <span class="input-label">Contraseña (para iniciar sesión)</span>
-          <input class="custominput" type="password" placeholder="indique" ng-model="objR2.password" >
+          <input required class="custominput" type="password" placeholder="indique" ng-model="objR2.password" >
 
           <span class="input-label">Repetir Contraseña</span>
-          <input class="custominput" type="password" placeholder="indique" ng-model="objR2.confirm_password" >
+          <input required class="custominput" type="password" placeholder="indique" ng-model="objR2.confirm_password" >
         </div>
       </label>
 
@@ -96,17 +97,16 @@
       </form>
     </div>
 
-
     <div ng-show="openLoginR2" class="list card stable-bg paddingform" >
-      <form novalidate  name="formlogin" ng-submit="saveR2(formlogin)"  >
+      <form novalidate  name="formlogin" ng-submit="loginR2(formlogin)"  >
       <div class="login">
         <label class="item item-input item-stacked-label">
           <span class="input-label">Nombre</span>
-          <input type="text" placeholder="indique" ng-model="objR2.names" >
+          <input required type="text" placeholder="indique" ng-model="objR2login.email" >
         </label>
         <label class="item item-input item-stacked-label">
           <span class="input-label">Contraseña</span>
-          <input type="password" placeholder="indique" ng-model="objR2.password" >
+          <input required type="password" placeholder="indique" ng-model="objR2login.password" >
         </label>
         <div class="center">
           <br/>

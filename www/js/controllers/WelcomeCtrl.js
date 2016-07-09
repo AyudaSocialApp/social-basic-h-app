@@ -75,12 +75,5 @@ app.controller('WelcomeCtrl', function ($scope,$state,$ionicModal,$timeout,Sesio
   }
 
 
-  var credentials = {
-    email: 'stivenson.rpm@gmail.com',
-    password: '123456'
-  }
-
-  Sesion.login(credentials);
-
 
 });
