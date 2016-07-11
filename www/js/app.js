@@ -3,7 +3,7 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-var app = angular.module('starter', ['ionic','angular-jwt','ionic-material']);
+var app = angular.module('starter', ['ionic','angular-jwt','ionic-material','naif.base64']);
 
 app.run(function ($ionicPlatform,$rootScope) {
     $ionicPlatform.ready(function () {
@@ -128,6 +128,15 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             }
         }
     })
+    .state('app.welcome2', {
+        url: '/welcome2/:viewdestinyloginRegister',
+        views: {
+            'menuContent': {
+                templateUrl: 'templates/views/welcome.html',
+                controller: 'WelcomeCtrl'
+            }
+        }
+    })
     .state('app.myhelps', {
         url: '/myhelps',
         views: {
@@ -187,6 +196,14 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 app.factory('authHttpResponseInterceptor', ['$injector','$q', function ($injector,$q) {
 
 
+      function msgChangeOrCreateToken(){
+          var alertPopup = $injector.get('$ionicPopup').alert({
+          title: 'Aviso',
+          template: 'Debe iniciar o reiniciar sesión como colaborador o necesitado para continuar'
+        });
+      }
+
+
     return {
       response: function (response) {
         if (response.status === 401) {
@@ -209,9 +226,12 @@ app.factory('authHttpResponseInterceptor', ['$injector','$q', function ($injecto
         return response || $q.when(response);
       },
       responseError: function (rejection) {
+        
         if (rejection.status === 401) {
           console.log("Response Error 401", rejection);
-          //$injector.get('$state').transitionTo("applogin.welcome");
+          msgChangeOrCreateToken();
+          /** POSIBLEMENTE SIEMPRE HALLA QUE ENVIAR LA VISTA DESTINO EN LA VISTA WELCOME DESPUES DE INICIAR SESIÓN **/
+          $injector.get('$state').transitionTo("app.welcome2", { viewdestinyloginRegister: 'app.welcome' });
         }
 
         if (rejection.status === 400) {

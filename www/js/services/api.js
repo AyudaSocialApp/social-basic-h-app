@@ -14,6 +14,22 @@ app.factory('Users',function($resource,CONFIG){
 });
 
 
+app.factory('Typeidentifications',function($resource,CONFIG){
+
+  return $resource(CONFIG.URLAPI+"/typeidentifications/:id",
+    {
+      id:"@_id"
+    },
+    {
+      update:
+      {
+        method:"PUT",
+        params: {id: "@id"}
+      }
+    });
+});
+
+
 app.factory('Sesion',function($http,$state,$ionicPopup,$rootScope,CONFIG){
 
 
@@ -37,6 +53,24 @@ app.factory('Sesion',function($http,$state,$ionicPopup,$rootScope,CONFIG){
   }
 
   return {
+
+    register: function(credentials,rol) {
+      var onlyNum = rol.substr(rol.length - 1);
+      return $http.post(CONFIG.URLAPI + "/register/"+onlyNum,credentials)
+      .success(function (response) {
+          if(response.success != false){
+            if(rol == 'r1'){
+              $rootScope.isSessionR1 = true;
+              localStorage.setItem('r1',JSON.stringify(response.data.user));
+            }
+            if(rol == 'r2'){
+              $rootScope.isSessionR2 = true;
+              localStorage.setItem('r2',JSON.stringify(response.data.user));
+            }
+          }
+          return response;
+      });
+    },
 
     login: function(credentials,rol) {
       return $http.post(CONFIG.URLAPI + "/login",credentials)

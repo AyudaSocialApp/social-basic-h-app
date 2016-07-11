@@ -1,4 +1,4 @@
-app.controller('WelcomeCtrl', function ($scope,$state,$ionicModal,$timeout,Sesion) {
+app.controller('WelcomeCtrl', function ($scope,$state,$ionicModal,$timeout,$stateParams,$rootScope,Sesion) {
 
 
   $scope.goNeedHelp = function(){
@@ -7,6 +7,11 @@ app.controller('WelcomeCtrl', function ($scope,$state,$ionicModal,$timeout,Sesio
 
   $scope.goLwanthelp = function(){
     processLwanthelp();
+  }
+  $rootScope.viewdestinyloginRegister = '';
+
+  if(typeof $stateParams.viewdestinyloginRegister !== 'undefined'){
+    $rootScope.viewdestinyloginRegister = $stateParams.viewdestinyloginRegister;
   }
 
   // ## modal del registo o login de colaborador
