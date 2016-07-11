@@ -116,10 +116,12 @@ app.controller('ModalRegisterR2', function ($scope,$state,$rootScope,$ionicModal
 
 
   function getTypeidentifications(){
-    var reslist = Typeidentifications.get();
-    reslist.then(function(response) {
+
+    Typeidentifications.get(function (response)
+    {
       $scope.list_type_identifications = response.data;
     });
+
   }
 
   getTypeidentifications();

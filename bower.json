@@ -6,6 +6,7 @@
   },
   "dependencies": {
     "angular-jwt": "^0.0.9",
-    "angular-base64-upload": "^0.1.19"
+    "angular-base64-upload": "^0.1.19",
+    "angular-resource": "^1.5.7"
   }
 }

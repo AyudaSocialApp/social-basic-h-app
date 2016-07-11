@@ -41,7 +41,7 @@
 		  </label>
 
       <label class="item item-input item-select " >
-          <span class="input-label">Tipo Identificación </span>
+          <span>Tipo Identificación </span><br/>
           <select
             required
             ng-model="objR1.type_identifications_id"
@@ -64,10 +64,12 @@
       <label class="item registerpassword ">
         <div class="center">
           <span class="input-label">Contraseña (para iniciar sesión)</span>
-          <input required class="custominput" type="password" placeholder="indique" ng-model="objR1.password" >
+          <input required class="custominput" type="password" placeholder="indique" 
+          ng-model="objR1.password" />
 
           <span class="input-label">Repetir Contraseña</span>
-          <input required class="custominput" type="password" placeholder="indique" ng-model="objR1.confirm_password" >
+          <input required class="custominput" type="password" placeholder="indique" 
+          ng-model="objR1.confirm" />
         </div>
       </label>
 
