@@ -22,6 +22,12 @@
         <span class="ion-asterisk"></span> Empresa</ion-radio>
       </label>
 
+      <label ng-show="objR1.type_contributors_id == 3" 
+      class="item item-input item-stacked-label name_business">
+        <span class="input-label">Nombre de la Empresa</span>
+        <input style="width:90%;" ng-required="objR1.type_contributors_id == 3" type="text" placeholder="" ng-model="objR2.name_business" >
+      </label>
+
       <div class="profilepriv">
         <label class="item">
           <span class="input-label">¿Quieres que tu perfil se mantenga privado?</span>
@@ -31,7 +37,7 @@
       </div>
 
       <label class="item item-input item-stacked-label">
-		    <span class="input-label">Nombre <span class="resaltmsglabel">(con este inicias sesión)</span></span>
+		    <span class="input-label">Nombre</span>
 		    <input required type="text" placeholder="" ng-model="objR1.names" >
 		  </label>
 
@@ -77,11 +83,18 @@
       </div>
 
       <div class="registerpassword">
+
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Usuario <span class="resaltmsglabel">(para iniciar sesión)</span></span>
+          <input required type="text" placeholder="indique" ng-model="objR1.username" >
+        </label>
+
         <label class="item center">
           <span class="input-label">Contraseña <span class="resaltmsglabel" >(para iniciar sesión)</span></span>
           <input required class="custominput" type="password" placeholder="indique" 
           ng-model="objR1.password" />
         </label>
+
         <label class="item center">
           <span class="input-label">Repetir Contraseña</span>
           <input required class="custominput" type="password" placeholder="indique" 

@@ -22,12 +22,12 @@
       </label>
 
       <label class="item item-input item-stacked-label">
-        <span class="input-label">Nombre <span class="resaltmsglabel">(con este inicias sesión)</span></span>
+        <span class="input-label">Tus Nombre</span>
         <input required type="text" placeholder="" ng-model="objR2.names" >
       </label>
 
       <label class="item item-input item-stacked-label">
-        <span class="input-label">Apellidos</span>
+        <span class="input-label">Tus Apellidos</span>
         <input required type="text" placeholder="" ng-model="objR2.last_names" >
       </label>
 
@@ -82,6 +82,12 @@
       </div>
 
       <div class="registerpassword">
+
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Usuario <span class="resaltmsglabel">(para iniciar sesión)</span></span>
+          <input required type="text" placeholder="indique" ng-model="objR2.username" >
+        </label>
+
         <label class="item center">
           <span class="input-label">Contraseña <span class="resaltmsglabel" >(para iniciar sesión)</span></span>
           <input required class="custominput" type="password" placeholder="indique" 

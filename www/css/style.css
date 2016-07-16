@@ -429,6 +429,10 @@ th {
   -moz-animation-iteration-count:infinite;
 }
 
+  .name_business{
+    background-color: #BACEFF;
+  }
+
 
   .resaltmsglabel{
     color: #0044D6;

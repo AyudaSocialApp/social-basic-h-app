@@ -3,7 +3,8 @@ app.controller('ModalRegisterR1', function ($scope,$state,$ionicModal,$rootScope
 
   $scope.objR1 = {
     privacy: false,
-    type_contributors_id: 2
+    type_contributors_id: 2,
+    name_business: ""
   };
 
   $scope.objR1login = {};
