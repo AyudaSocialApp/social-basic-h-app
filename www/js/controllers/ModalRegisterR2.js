@@ -63,7 +63,11 @@ app.controller('ModalRegisterR2', function ($scope,$state,$rootScope,$ionicModal
 
   $scope.saveR2 = function(form){
     if(form.$valid){
-      register();
+      if(verifyConfirmPass()){
+        register();
+      }else{
+        msgVerifyConfirmPass()
+      }
     }else{
       msgInvalidData();
     }
@@ -131,6 +135,22 @@ app.controller('ModalRegisterR2', function ($scope,$state,$rootScope,$ionicModal
     if($scope.objR2.base64 != null){
       $scope.textstylephoto =  "data:"+$scope.objR2.base64.filetype+";base64,"+$scope.objR2.base64.base64;
     }
+  }
+
+
+  function verifyConfirmPass(){
+    if($scope.objR2.password == $scope.objR2.confirm){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+  function msgVerifyConfirmPass(){
+      var alertPopup = $ionicPopup.alert({
+      title: 'Alerta',
+      template: 'La contraseña y su confirmación no coinciden'
+    });
   }
 
   getTypeidentifications();

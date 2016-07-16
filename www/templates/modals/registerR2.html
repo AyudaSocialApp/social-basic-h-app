@@ -81,15 +81,18 @@
         <img ng-src="{{textstylephoto}}">
       </div>
 
-      <label class="item registerpassword ">
-        <div class="center">
+      <div class="registerpassword">
+        <label class="item center">
           <span class="input-label">Contraseña <span class="resaltmsglabel" >(para iniciar sesión)</span></span>
-          <input required class="custominput" type="password" placeholder="indique" ng-model="objR2.password" >
-
+          <input required class="custominput" type="password" placeholder="indique" 
+          ng-model="objR2.password" />
+        </label>
+        <label class="item center">
           <span class="input-label">Repetir Contraseña</span>
-          <input required class="custominput" type="password" placeholder="indique" ng-model="objR2.confirm_password" >
-        </div>
-      </label>
+          <input required class="custominput" type="password" placeholder="indique" 
+          ng-model="objR2.confirm" />
+        </label>
+      </div>
 
 
       <label class="item item-input item-stacked-label">
