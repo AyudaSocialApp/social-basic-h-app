@@ -31,7 +31,7 @@
       </div>
 
       <label class="item item-input item-stacked-label">
-		    <span class="input-label">Nombre</span>
+		    <span class="input-label">Nombre <span class="resaltmsglabel">(con este inicias sesión)</span></span>
 		    <input required type="text" placeholder="" ng-model="objR1.names" >
 		  </label>
 
@@ -55,15 +55,30 @@
         <input required type="number" placeholder="" ng-model="objR1.nit_id">
       </label>
 
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Celular ó Teléfono</span>
+        <input required type="number" placeholder="indique " ng-model="objR1.cellphone_telephone_contact">
+      </label>
 
       <label class="item item-file ">
         <span class="input-label">Foto  <i>(persona, familia o empresa)</i> </span>
-        <input base-sixty-four-input required type="file" placeholder="indique" ng-model="objR1.base64">
+        <input 
+          base-sixty-four-input 
+          ng-change="viewPhoto()"
+          required 
+          type="file" 
+          placeholder="indique" 
+          ng-model="objR1.base64">
       </label>
+
+      <div 
+        class="defaultphoto" >
+        <img ng-src="{{textstylephoto}}">
+      </div>
 
       <label class="item registerpassword ">
         <div class="center">
-          <span class="input-label">Contraseña (para iniciar sesión)</span>
+          <span class="input-label">Contraseña <span class="resaltmsglabel" >(para iniciar sesión)</span></span>
           <input required class="custominput" type="password" placeholder="indique" 
           ng-model="objR1.password" />
 

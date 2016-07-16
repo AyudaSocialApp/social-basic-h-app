@@ -1,8 +1,9 @@
-app.controller('ModalRegisterR2', function ($scope,$state,$rootScope,$ionicModal,$timeout,$stateParams,$ionicScrollDelegate,Typeidentifications,Sesion) {
+app.controller('ModalRegisterR2', function ($scope,$state,$rootScope,$ionicModal,$timeout,$stateParams,$ionicPopup,$ionicScrollDelegate,Typeidentifications,Sesion) {
 
 
   $scope.objR2 = {
-    type_needy_id: 2
+    type_needy_id: 2,
+    contributor:""
   };
 
   $scope.objR2login = {};
@@ -78,7 +79,7 @@ app.controller('ModalRegisterR2', function ($scope,$state,$rootScope,$ionicModal
         msgIncorrectData();
       }else{
         var localSr2= JSON.parse(localStorage.getItem('r2'));
-        $scope.objR2login({email:localSr2.email,password:$scope.objR2.password});
+        $scope.objR2login = {email:localSr2.email,password:$scope.objR2.password};
         initSesionandcontinue();
       }
     });
@@ -122,6 +123,14 @@ app.controller('ModalRegisterR2', function ($scope,$state,$rootScope,$ionicModal
       $scope.list_type_identifications = response.data;
     });
 
+  }
+
+  $scope.textstylephoto = "";
+
+  $scope.viewPhoto= function(){
+    if($scope.objR2.base64 != null){
+      $scope.textstylephoto =  "data:"+$scope.objR2.base64.filetype+";base64,"+$scope.objR2.base64.base64;
+    }
   }
 
   getTypeidentifications();

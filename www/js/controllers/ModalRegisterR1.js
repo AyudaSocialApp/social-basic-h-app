@@ -69,7 +69,7 @@ app.controller('ModalRegisterR1', function ($scope,$state,$ionicModal,$rootScope
             msgIncorrectData();
           }else{
             var localSr1 = JSON.parse(localStorage.getItem('r1'));
-            $scope.objR1login({email:localSr1.email,password:$scope.objR1.password});
+            $scope.objR1login = {email:localSr1.email,password:$scope.objR1.password};
             initSesionandcontinue();
           }
         });
@@ -119,6 +119,16 @@ app.controller('ModalRegisterR1', function ($scope,$state,$ionicModal,$rootScope
     });
 
   }
+
+
+  $scope.textstylephoto = "";
+
+  $scope.viewPhoto= function(){
+    if($scope.objR1.base64 != null){
+      $scope.textstylephoto =  "data:"+$scope.objR1.base64.filetype+";base64,"+$scope.objR1.base64.base64;
+    }
+  }
+
 
   getTypeidentifications();
 
