@@ -1,4 +1,4 @@
-app.controller('ModalRegisterR1', function ($scope,$state,$ionicModal,$rootScope,$timeout,$ionicScrollDelegate,$stateParams,$ionicPopup,Typeidentifications,Sesion) {
+app.controller('ModalRegisterR1', function ($scope,$state,$ionicModal,$rootScope,$timeout,$ionicScrollDelegate,$stateParams,$ionicPopup,Typeidentifications,Sesion,Validations) {
 
 
   $scope.objR1 = {
@@ -77,13 +77,19 @@ app.controller('ModalRegisterR1', function ($scope,$state,$ionicModal,$rootScope
   }
 
   $scope.saveR1 = function(form){
-    // Save in server, save in localStorage and then redirect to want help
-    // ***
+
     if(form.$valid){
       if(verifyConfirmPass()){
-        register();
+        var reValidationRepeatUser = Validations.repeatUser($scope.objR1.username);
+        reValidationRepeatUser.then(function(response) {
+          if(response.data.data.res == true){
+            msgValidateRepeatUser();
+          }else{
+            register();
+          }
+        });
       }else{
-        msgVerifyConfirmPass()
+        msgVerifyConfirmPass();
       }
     }else{
       msgInvalidData();
@@ -151,6 +157,12 @@ app.controller('ModalRegisterR1', function ($scope,$state,$ionicModal,$rootScope
   }
 
 
+  function msgValidateRepeatUser(){
+      var alertPopup = $ionicPopup.alert({
+      title: 'Alerta',
+      template: 'El usuario indicado no esta disponible, por favor indique otro.'
+    });
+  }
 
   getTypeidentifications();
 

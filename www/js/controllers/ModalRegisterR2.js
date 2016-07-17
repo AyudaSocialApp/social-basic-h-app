@@ -1,4 +1,4 @@
-app.controller('ModalRegisterR2', function ($scope,$state,$rootScope,$ionicModal,$timeout,$stateParams,$ionicPopup,$ionicScrollDelegate,Typeidentifications,Sesion) {
+app.controller('ModalRegisterR2', function ($scope,$state,$rootScope,$ionicModal,$timeout,$stateParams,$ionicPopup,$ionicScrollDelegate,Typeidentifications,Sesion,Validations) {
 
 
   $scope.objR2 = {
@@ -64,14 +64,20 @@ app.controller('ModalRegisterR2', function ($scope,$state,$rootScope,$ionicModal
   $scope.saveR2 = function(form){
     if(form.$valid){
       if(verifyConfirmPass()){
-        register();
+        var reValidationRepeatUser = Validations.repeatUser($scope.objR2.username);
+        reValidationRepeatUser.then(function(response) {
+          if(response.data.data.res == true){
+            msgValidateRepeatUser();
+          }else{
+            register();
+          }
+        });
       }else{
-        msgVerifyConfirmPass()
+        msgVerifyConfirmPass();
       }
     }else{
       msgInvalidData();
     }
-
   };
 
 
@@ -152,6 +158,15 @@ app.controller('ModalRegisterR2', function ($scope,$state,$rootScope,$ionicModal
       template: 'La contraseña y su confirmación no coinciden'
     });
   }
+
+
+  function msgValidateRepeatUser(){
+      var alertPopup = $ionicPopup.alert({
+      title: 'Alerta',
+      template: 'El usuario indicado no esta disponible, por favor indique otro.'
+    });
+  }
+
 
   getTypeidentifications();
 

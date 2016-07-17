@@ -30,6 +30,18 @@ app.factory('Typeidentifications',function($resource,CONFIG){
 });
 
 
+app.factory('Validations',function($http,CONFIG){
+  return {
+    repeatUser: function(user) {
+      return $http.get(CONFIG.URLAPI + "/validate_user/"+user)
+      .success(function (response) {
+          return response;
+      });
+    }
+  };
+});
+
+
 app.factory('Sesion',function($http,$state,$ionicPopup,$rootScope,CONFIG){
 
 
