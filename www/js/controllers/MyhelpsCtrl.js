@@ -1,4 +1,4 @@
-app.controller('MyhelpsCtrl', function ($scope,$ionicModal,$ionicScrollDelegate,$timeout) {
+app.controller('MyhelpsCtrl', function ($scope,$ionicModal,$ionicScrollDelegate,$timeout,Helps) {
 
   $scope.ro = "";
   $scope.myhelps = true;
@@ -29,6 +29,18 @@ app.controller('MyhelpsCtrl', function ($scope,$ionicModal,$ionicScrollDelegate,
       },250);
   };
   // ## 
+
+  function getHelps(){
+
+    Helps.get(function (response)
+    {
+      $scope.helps = response.data;
+      console.log(localStorage.getItem('jwt'));
+    });
+
+  }
+
+  getHelps();
 
 
 });

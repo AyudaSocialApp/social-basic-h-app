@@ -71,6 +71,7 @@
           base-sixty-four-input 
           ng-change="viewPhoto()"
           required 
+          class="custom-file-input"
           type="file" 
           placeholder="indique" 
           ng-model="objR2.base64">
@@ -81,6 +82,7 @@
           <img ng-src="{{textstylephoto}}">
         </div>
       </center>
+      <br/>
       <div class="registerpassword">
 
         <label class="item item-input item-stacked-label">
@@ -125,7 +127,7 @@
           <input required type="text" placeholder="indique" ng-model="objR2login.email" >
         </label>
         <label class="item item-input item-stacked-label">
-          <span class="input-label">Contraseña <span class="resaltmsglabel" >(para iniciar sesión)</span></span>
+          <span class="input-label">Contraseña</span>
           <input required type="password" placeholder="indique" ng-model="objR2login.password" >
         </label>
         <div class="center">

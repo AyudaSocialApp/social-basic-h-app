@@ -13,6 +13,21 @@ app.factory('Users',function($resource,CONFIG){
     });
 });
 
+app.factory('Helps',function($resource,CONFIG){
+
+  return $resource(CONFIG.URLAPI+"/helps/:id",
+    {
+      id:"@_id"
+    },
+    {
+      update:
+      {
+        method:"PUT",
+        params: {id: "@id"}
+      }
+    });
+});
+
 
 app.factory('Typeidentifications',function($resource,CONFIG){
 
@@ -52,17 +67,6 @@ app.factory('Sesion',function($http,$state,$ionicPopup,$rootScope,CONFIG){
     });
   }
 
-  function process(){
-
-    // mirar si hay un token valido actualmente
-
-    // si no hay mirar los datos de sesion en localStorage para tratar de hacer otro token y reasinar variables de sesión.
-
-    // si los datos de sesion no estan o no se puede generar un token
-    // con los mismos entonces hay que mostrar el formulario de login
-    // registro de algún rol (se podría mostrar un modal indicado que debe iniciar sesión o registrarse)
-    // o enviar una bandera para mostrarle un mensaje al usuario
-  }
 
   return {
 

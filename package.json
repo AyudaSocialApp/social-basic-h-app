@@ -1,5 +1,5 @@
 {
-  "name": "ionic-project",
+  "name": "MercadosSocial",
   "version": "1.1.1",
   "description": "An Ionic project",
   "dependencies": {
@@ -14,7 +14,12 @@
     "gulp-util": "^2.2.14",
     "shelljs": "^0.3.0"
   },
-  "cordovaPlugins": [],
+  "cordovaPlugins": [
+    {
+      "locator": "https://github.com/pbernasconi/cordova-progressIndicator.git",
+      "id": "org.pbernasconi.progressindicator"
+    }
+  ],
   "cordovaPlatforms": [
     "android"
   ]

@@ -1,4 +1,4 @@
-app.controller('ModalRegisterR2', function ($scope,$state,$rootScope,$ionicModal,$timeout,$stateParams,$ionicPopup,$ionicScrollDelegate,Typeidentifications,Sesion,Validations) {
+app.controller('ModalRegisterR2', function ($scope,$timeout,$state,$rootScope,$ionicLoading,$ionicModal,$timeout,$stateParams,$ionicPopup,$ionicScrollDelegate,Typeidentifications,Sesion,Validations) {
 
 
   $scope.objR2 = {
@@ -47,21 +47,37 @@ app.controller('ModalRegisterR2', function ($scope,$state,$rootScope,$ionicModal
   }
 
 
-  function initSesionandcontinue(){
+  function msgInfoInitSesion(){
 
+   var myPopupInitSesion = $ionicPopup.show({
+     template: '<br/><center>Sesión iniciada</center><br/><br/>',
+     title: 'Aviso'
+   });
+
+   $timeout(function(){
+      myPopupInitSesion.close();
+   },1250);
+
+  }
+
+  function initSesionandcontinue(){
+        $ionicLoading.show();
         var resSesion = Sesion.login($scope.objR2login,'r2');
         resSesion.then(function(response) {
+          $ionicLoading.hide();
           if(response.data.success == false){
             msgIncorrectData();
           }else{
             $scope.closeModalRegisterR2();
             $state.transitionTo(viewdestinyloginRegister);
+            msgInfoInitSesion();
           }
         });
 
   }
 
   $scope.saveR2 = function(form){
+
     if(form.$valid){
       if(verifyConfirmPass()){
         var reValidationRepeatUser = Validations.repeatUser($scope.objR2.username);
@@ -82,9 +98,10 @@ app.controller('ModalRegisterR2', function ($scope,$state,$rootScope,$ionicModal
 
 
   function register(){
+    $ionicLoading.show();
     var resRegister = Sesion.register($scope.objR2,'r2');
     resRegister.then(function(response) {
-
+      $ionicLoading.hide();
       if(response.data.success == false){
         msgIncorrectData();
       }else{

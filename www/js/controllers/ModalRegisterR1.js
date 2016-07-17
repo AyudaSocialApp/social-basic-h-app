@@ -1,4 +1,4 @@
-app.controller('ModalRegisterR1', function ($scope,$state,$ionicModal,$rootScope,$timeout,$ionicScrollDelegate,$stateParams,$ionicPopup,Typeidentifications,Sesion,Validations) {
+app.controller('ModalRegisterR1', function ($scope,$timeout,$state,$ionicModal,$rootScope,$timeout,$ionicScrollDelegate,$stateParams,$ionicLoading,$ionicPopup,Typeidentifications,Sesion,Validations) {
 
 
   $scope.objR1 = {
@@ -49,31 +49,34 @@ app.controller('ModalRegisterR1', function ($scope,$state,$ionicModal,$rootScope
 
 
   function initSesionandcontinue(){
-
-        var regSesion = Sesion.login($scope.objR1login,'r1');
-        regSesion.then(function(response) {
-          if(response.data.success == false){
-            msgIncorrectData();
-          }else{
-            $scope.closeModalRegisterR1();
-            $state.transitionTo(viewdestinyloginRegister);
-          }
-        });
-
+    $ionicLoading.show();
+    var regSesion = Sesion.login($scope.objR1login,'r1');
+    regSesion.then(function(response) {
+      $ionicLoading.hide();
+      if(response.data.success == false){
+        msgIncorrectData();
+      }else{
+        $scope.closeModalRegisterR1();
+        $state.transitionTo(viewdestinyloginRegister);
+        // ** Message init sesion
+        msgInfoInitSesion();
+      }
+    });
   }
 
   function register(){
-        var resRegister = Sesion.register($scope.objR1,'r1');
-        resRegister.then(function(response) {
-
-          if(response.data.success == false){
-            msgIncorrectData();
-          }else{
-            var localSr1 = JSON.parse(localStorage.getItem('r1'));
-            $scope.objR1login = {email:localSr1.email,password:$scope.objR1.password};
-            initSesionandcontinue();
-          }
-        });
+    $ionicLoading.show();
+    var resRegister = Sesion.register($scope.objR1,'r1');
+    resRegister.then(function(response) {
+      $ionicLoading.hide();
+      if(response.data.success == false){
+        msgIncorrectData();
+      }else{
+        var localSr1 = JSON.parse(localStorage.getItem('r1'));
+        $scope.objR1login = {email:localSr1.email,password:$scope.objR1.password};
+        initSesionandcontinue();
+      }
+    });
   }
 
   $scope.saveR1 = function(form){
@@ -120,6 +123,18 @@ app.controller('ModalRegisterR1', function ($scope,$state,$ionicModal,$rootScope
     });
   }
 
+  function msgInfoInitSesion(){
+
+   var myPopupInitSesion = $ionicPopup.show({
+     template: '<br/><center>Sesión iniciada</center><br/><br/>',
+     title: 'Aviso'
+   });
+
+   $timeout(function(){
+      myPopupInitSesion.close();
+   },1250);
+
+  }
   
 
   function getTypeidentifications(){

@@ -3,7 +3,7 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-var app = angular.module('starter', ['ionic','angular-jwt','ionic-material','naif.base64','ngResource']);
+var app = angular.module('starter', ['ionic','angular-jwt','ionic-material','naif.base64','ngResource','ngCordova']);
 
 app.run(function ($ionicPlatform,$rootScope) {
     $ionicPlatform.ready(function () {
@@ -206,6 +206,13 @@ app.factory('authHttpResponseInterceptor', ['$injector','$q', function ($injecto
 
     return {
       response: function (response) {
+
+        // Renovar token en el cliente
+        var token = response.config.headers.Authorization;
+        if ('undefined' !== typeof token && null !== token) {
+            localStorage.setItem('jwt',token.split(' ')[1]);
+        }
+
         if (response.status === 401) {
           console.log("Response 401");
         }
@@ -226,16 +233,17 @@ app.factory('authHttpResponseInterceptor', ['$injector','$q', function ($injecto
         return response || $q.when(response);
       },
       responseError: function (rejection) {
-        
+
         if (rejection.status === 401) {
           console.log("Response Error 401", rejection);
           msgChangeOrCreateToken();
-          /** POSIBLEMENTE SIEMPRE HALLA QUE ENVIAR LA VISTA DESTINO EN LA VISTA WELCOME DESPUES DE INICIAR SESIÓN **/
           $injector.get('$state').transitionTo("app.welcome2", { viewdestinyloginRegister: 'app.welcome' });
         }
 
         if (rejection.status === 400) {
           console.log("Response Error 400", rejection);
+          msgChangeOrCreateToken();
+          $injector.get('$state').transitionTo("app.welcome2", { viewdestinyloginRegister: 'app.welcome' });
         }
         if (rejection.status === 500) {
           console.log("Response Error 500", rejection);
@@ -250,22 +258,31 @@ app.factory('authHttpResponseInterceptor', ['$injector','$q', function ($injecto
 
 app.config(['$injector', function ($injector) {
     //Http Intercpetor to check auth failures for xhr requests
-    
     var $hp = $injector.get('$httpProvider');
-
     $hp.interceptors.push('authHttpResponseInterceptor');
 
-  }]);
+}]);
 
-
-app.config(function Config($httpProvider, jwtInterceptorProvider) {
-
-  jwtInterceptorProvider.tokenGetter = function () {
-
-    return localStorage.getItem("jwt");
-
-  }
-
-  $httpProvider.interceptors.push('jwtInterceptor');
-
-});
+app.config(['jwtInterceptorProvider','$httpProvider', function(jwtInterceptorProvider,$httpProvider){
+    jwtInterceptorProvider.tokenGetter = function(jwtHelper, $http,CONFIG) {
+        var jwt = localStorage.getItem('jwt');
+        if(jwt){
+            if(jwtHelper.isTokenExpired(jwt)){
+                return $http({
+                    url : CONFIG.URLAPI + '/token',
+                    skipAuthorization : true,
+                    method: 'GET',
+                    headers : { Authorization : 'Bearer '+ jwt},
+                }).then(function(response){
+                    localStorage.setItem('jwt',response.data.token);
+                    return response.data.token;
+                },function(response){
+                    localStorage.removeItem('jwt');
+                });
+            }else{
+                return jwt; 
+            }
+        }
+    }
+    $httpProvider.interceptors.push('jwtInterceptor');
+}]);

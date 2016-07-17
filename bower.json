@@ -1,5 +1,5 @@
 {
-  "name": "HelloIonic",
+  "name": "MercadosSocial",
   "private": "true",
   "devDependencies": {
     "ionic": "driftyco/ionic-bower#1.3.1"
@@ -7,6 +7,7 @@
   "dependencies": {
     "angular-jwt": "^0.0.9",
     "angular-base64-upload": "^0.1.19",
-    "angular-resource": "^1.5.7"
+    "angular-resource": "^1.5.7",
+    "ngCordova": "^0.1.27-alpha"
   }
 }
