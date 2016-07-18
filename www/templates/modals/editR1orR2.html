@@ -1,0 +1,19 @@
+<ion-modal-view cache-view="false" ng-controller="EditR1R2" >
+  <ion-header-bar>
+    <h1 class="title">Modificar Usuario</h1>
+    <div class="buttons">
+      <button class="button" ng-click="closemodalEditR1orR2()"><big>X</big></button>
+    </div>
+  </ion-header-bar>
+  <ion-content class="backgromodal">
+
+    <div ng-include="'templates/partials/_btnRolEdit.html'"></div>
+
+    <div ng-include="'templates/partials/_formregisterR1.html'"></div>
+
+    <div ng-include="'templates/partials/_formregisterR2.html'"></div>
+
+    <br/>
+    <br/>
+  </ion-content>
+</ion-modal-view>

@@ -1,4 +1,4 @@
-app.controller('NotificationsCtrl', function ($scope,$ionicModal,$ionicScrollDelegate,$timeout) {
+app.controller('NotificationsCtrl', function ($scope,$state,$ionicModal,$ionicScrollDelegate,$timeout) {
 
 
   $scope.ro = "";

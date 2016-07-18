@@ -470,6 +470,89 @@ th {
     height: 100%;
   }
 
+  .datasesion{
+    text-align: right;
+    height: 110px;
+    position: relative;
+    padding-top: 10px;
+
+  }
+
+  .conttextdatasesion{
+    background-color: #B2CAF5;
+    border:none 1px #000000;
+    -moz-border-radius: 16px;
+    -webkit-border-radius: 16px;
+    border-radius: 16px;
+    cursor: pointer;
+  }
+
+  .iconeditusers{
+    padding: 5px;
+    font-size: 18px;
+  }
+
+  .textdatasesion{
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    color: #000000;
+    padding: 6px;
+    font-size: 14px;
+  }
+
+  .namesesion{
+    color: blue;
+  }
+
+  .has-header{
+    top 1px;
+  }
+
+  .littletop{
+    margin-top:-60px;
+  }
+
+  .rolsesion{
+    color: #000000;
+  }
+
+  
+  /* Validate colors forms elements*/
+
+  input.ng-valid{
+    border: thin solid #090;
+
+  }
+
+  select.ng-valid{
+    border: thin solid #090;
+
+  }
+
+
+  input.ng-invalid {
+    border: 1px solid #E47676;
+  }
+
+
+  select.ng-invalid {
+    border: 1px solid #E47676;
+  }
+
+
+
+  textarea.ng-invalid {
+    border: 1px solid #E47676;
+  }
+
+  textarea.ng-valid{
+    border: thin solid #090;
+
+  }
+
+
+
 
     @keyframes startparpadeo {
     0%  {box-shadow: 0px 0px 0px orange}

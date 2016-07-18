@@ -10,120 +10,13 @@
 
     <div  ng-include="'templates/partials/_btnsesion.html'"></div>
 
-    <div ng-show="openRegisterR2" class="list card stable-bg paddingform">
-    <form novalidate  name="formregister" ng-submit="saveR2(formregister)"  >
-      
-      <label class="item typecontri">
-        <span class="input-label">¿Usted representa a? </span>
-        <ion-radio name="tc" ng-model="objR2.type_needy_id" ng-value="1" > 
-        <span class="ion-asterisk"></span> Particular</ion-radio>
-        <ion-radio name="tc" ng-model="objR2.type_needy_id" ng-value="2" > 
-        <span class="ion-asterisk"></span> Familia</ion-radio>
-      </label>
-
-      <label class="item item-input item-stacked-label">
-        <span class="input-label">Tus Nombre</span>
-        <input required type="text" placeholder="" ng-model="objR2.names" >
-      </label>
-
-      <label class="item item-input item-stacked-label">
-        <span class="input-label">Tus Apellidos</span>
-        <input required type="text" placeholder="" ng-model="objR2.last_names" >
-      </label>
-
-      <label class="item item-input item-select " >
-          <span class="input-label">Tipo Identificación </span>
-          <select
-            required
-            ng-model="objR2.type_identifications_id"
-            ng-options="ti as ti.name for ti in list_type_identifications track by ti.id" 
-          >
-          </select>
-      </label>
-
-      <label class="item item-input item-stacked-label">
-        <span class="input-label">N° Identificación</span>
-        <input required type="number" placeholder="" ng-model="objR2.identification">
-      </label>
-
-      <label class="item item-input item-stacked-label">
-        <span class="input-label">Celular ó Teléfono</span>
-        <input required type="number" placeholder="indique " ng-model="objR2.cellphone_telephone_contact">
-      </label>
-
-      <label class="item item-input item-stacked-label">
-        <span class="input-label">Ciudad</span>
-        <input required type="text" placeholder="indique " ng-model="objR2.city">
-      </label>
-
-      <label class="item item-input item-stacked-label">
-        <span class="input-label">Historia</span>
-        <textarea 
-          required
-          rows="7"
-          placeholder="Describa brevemente la historia suya o de su familia"
-          ng-model="objR2.history" ></textarea>
-      </label>
-
-      <label class="item item-file ">
-        <span class="input-label">Foto  <i>(persona o familia)</i> </span>
-        <input 
-          base-sixty-four-input 
-          ng-change="viewPhoto()"
-          required 
-          class="custom-file-input"
-          type="file" 
-          placeholder="indique" 
-          ng-model="objR2.base64">
-      </label>
-      <center>
-        <div 
-          class="defaultphoto" >
-          <img ng-src="{{textstylephoto}}">
-        </div>
-      </center>
-      <br/>
-      <div class="registerpassword">
-
-        <label class="item item-input item-stacked-label">
-          <span class="input-label">Usuario <span class="resaltmsglabel">(para iniciar sesión)</span></span>
-          <input required type="text" placeholder="indique" ng-model="objR2.username" >
-        </label>
-
-        <label class="item center">
-          <span class="input-label">Contraseña <span class="resaltmsglabel" >(para iniciar sesión)</span></span>
-          <input required class="custominput" type="password" placeholder="indique" 
-          ng-model="objR2.password" />
-        </label>
-        <label class="item center">
-          <span class="input-label">Repetir Contraseña</span>
-          <input required class="custominput" type="password" placeholder="indique" 
-          ng-model="objR2.confirm" />
-        </label>
-      </div>
-
-
-      <label class="item item-input item-stacked-label">
-        <span class="input-label">¿Esta siendo registrado por algún colaborador?</span>
-        <input type="text" placeholder=" indique el nombre si es así" ng-model="objR2.contributor">
-      </label>
-
-      <div class="center">
-        <br/>
-        <button type="submit" class="button button-positive">
-          <i class="ion-ios-cloud-upload"></i> Enviar
-        </button>
-        <br/>
-        <br/>
-      </div>
-      </form>
-    </div>
+    <div  ng-include="'templates/partials/_formregisterR2.html'"></div>
 
     <div ng-show="openLoginR2" class="list card stable-bg paddingform" >
       <form novalidate  name="formlogin" ng-submit="loginR2(formlogin)"  >
       <div class="login">
         <label class="item item-input item-stacked-label">
-          <span class="input-label">Nombre</span>
+          <span class="input-label">Usuario</span>
           <input required type="text" placeholder="indique" ng-model="objR2login.email" >
         </label>
         <label class="item item-input item-stacked-label">

@@ -1,4 +1,4 @@
-﻿app.controller('AppCtrl', function ($scope, $ionicModal, $ionicPopover, $timeout,$rootScope,Sesion) {
+﻿app.controller('AppCtrl', function ($scope, $ionicModal, $ionicPopover, $timeout,$state,$rootScope,Sesion) {
     // Form data for the login modal
     $scope.loginData = {};
 
@@ -107,6 +107,39 @@
     Sesion.logout();
   }
 
+
+  if(typeof $rootScope.nameusersesionr1 === 'undefined'){
+    $rootScope.nameusersesionr1 = '';
+  }
+
+  if(typeof $rootScope.nameusersesionr2 === 'undefined'){
+    $rootScope.nameusersesionr2 = '';
+  }
+
+  if(localStorage.getItem('r1') !== null && localStorage.getItem('r1') !== ""){
+    $rootScope.nameusersesionr1 = JSON.parse(localStorage.getItem('r1')).email;
+  }
+
+  if(localStorage.getItem('r2') !== null && localStorage.getItem('r2') !== ""){
+    $rootScope.nameusersesionr2 = JSON.parse(localStorage.getItem('r2')).email;
+  }
+
+
+  // ## modal del edición  de los roles
+  $ionicModal.fromTemplateUrl('templates/modals/editR1orR2.html', {
+    scope: $scope
+  }).then(function(modalEditR1orR2) {
+    $scope.modalEditR1orR2 = modalEditR1orR2;
+  });
+
+  $scope.openmodalEditR1orR2 = function() {
+    $scope.modalEditR1orR2.show();
+  }
+
+  $scope.closemodalEditR1orR2 = function() {
+    $scope.modalEditR1orR2.hide();
+  };
+  // ##
 
 
 });

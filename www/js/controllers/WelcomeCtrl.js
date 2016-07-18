@@ -80,5 +80,22 @@ app.controller('WelcomeCtrl', function ($scope,$state,$ionicModal,$timeout,$stat
   }
 
 
+  if(typeof $rootScope.nameusersesionr1 === 'undefined'){
+    $rootScope.nameusersesionr1 = '';
+  }
+
+  if(typeof $rootScope.nameusersesionr2 === 'undefined'){
+    $rootScope.nameusersesionr2 = '';
+  }
+
+
+  if(localStorage.getItem('r1') !== null && localStorage.getItem('r1') !== ""){
+    $rootScope.nameusersesionr1 = JSON.parse(localStorage.getItem('r1')).email;
+  }
+
+  if(localStorage.getItem('r2') !== null && localStorage.getItem('r2') !== ""){
+    $rootScope.nameusersesionr2 = JSON.parse(localStorage.getItem('r2')).email;
+  }
+
 
 });

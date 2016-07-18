@@ -62,6 +62,7 @@ app.controller('ModalRegisterR2', function ($scope,$timeout,$state,$rootScope,$i
 
   function initSesionandcontinue(){
         $ionicLoading.show();
+        $scope.objR2login.rol = 2;
         var resSesion = Sesion.login($scope.objR2login,'r2');
         resSesion.then(function(response) {
           $ionicLoading.hide();
@@ -152,11 +153,11 @@ app.controller('ModalRegisterR2', function ($scope,$timeout,$state,$rootScope,$i
 
   }
 
-  $scope.textstylephoto = "";
+  $scope.textstylephoto2 = "";
 
   $scope.viewPhoto= function(){
     if($scope.objR2.base64 != null){
-      $scope.textstylephoto =  "data:"+$scope.objR2.base64.filetype+";base64,"+$scope.objR2.base64.base64;
+      $scope.textstylephoto2 =  "data:"+$scope.objR2.base64.filetype+";base64,"+$scope.objR2.base64.base64;
     }
   }
 

@@ -10,13 +10,23 @@
             <ion-nav-buttons side="right">
                 <button class="button button-icon button-clear ion-android-more-vertical" id="menu-popover" ng-click="popover.show($event)"></button>
             </ion-nav-buttons>
+            <div class="datasesion">
+              <a ng-click="openmodalEditR1orR2()" ng-show="nameusersesionr1 != '' || nameusersesionr2 != ''" 
+              class="textdatasesion conttextdatasesion"> 
+                <span class="ion-edit iconeditusers"></span><span>Sesiónes</span><br/> 
+                <b ng-show="nameusersesionr1 != ''" class="namesesion">{{nameusersesionr1}} <span class="rolsesion">(Colaborador)</span> <br/></b>
+                <b ng-show="nameusersesionr2 != ''" class="namesesion">{{nameusersesionr2}} <span class="rolsesion">(Necesitado)</span> </b>
+              </a>
+            </div>
         </ion-nav-bar>
+
         <button id="fab" class="button button-positive button-fab button-fab-bottom-right">
             <i class="icon ion-social-twitter"></i>
         </button>
         <button id="fab2" class="button button-positive button-fab button-fab-bottom-left">
             <i class="icon ion-social-facebook"></i>
         </button>
+
         <ion-nav-view name="menuContent"></ion-nav-view>
     </ion-side-menu-content>
     <ion-side-menu side="left">

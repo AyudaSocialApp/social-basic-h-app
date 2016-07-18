@@ -67,6 +67,13 @@ app.factory('Sesion',function($http,$state,$ionicPopup,$rootScope,CONFIG){
     });
   }
 
+  function initSesionR1ViewVars(user){
+    $rootScope.nameusersesionr1 = user.email;
+  }
+
+  function initSesionR2ViewVars(user){
+    $rootScope.nameusersesionr2 = user.email;
+  }
 
   return {
 
@@ -97,10 +104,14 @@ app.factory('Sesion',function($http,$state,$ionicPopup,$rootScope,CONFIG){
             if(rol == 'r1'){
               $rootScope.isSessionR1 = true;
               localStorage.setItem('r1',JSON.stringify(response.data.user));
+              localStorage.setItem('userrol1',JSON.stringify(response.data.userrol[0]));
+              initSesionR1ViewVars(response.data.user);
             }
             if(rol == 'r2'){
               $rootScope.isSessionR2 = true;
               localStorage.setItem('r2',JSON.stringify(response.data.user));
+              localStorage.setItem('userrol2',JSON.stringify(response.data.userrol[0]));
+              initSesionR2ViewVars(response.data.user);
             }
           }
 
@@ -116,6 +127,10 @@ app.factory('Sesion',function($http,$state,$ionicPopup,$rootScope,CONFIG){
         $rootScope.isSessionR1 = false;
         localStorage.removeItem('r1');
         localStorage.removeItem('r2');
+        localStorage.removeItem('userrol1');
+        localStorage.removeItem('userrol2');
+        $rootScope.nameusersesionr1 = "";
+        $rootScope.nameusersesionr2 = "";
         msgLogout();
         $state.transitionTo("app.welcome");
       });
