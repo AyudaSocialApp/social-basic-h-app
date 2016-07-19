@@ -85,13 +85,13 @@ app.factory('Sesion',function($http,$state,$ionicPopup,$rootScope,$ionicLoading,
             if(rol == 'r1'){
               $rootScope.isSessionR1 = true;
               localStorage.setItem('r1',JSON.stringify(response.data.user));
-              localStorage.setItem('userrol1',JSON.stringify(response.data.userrol[0]));
+              localStorage.setItem('userrol1',JSON.stringify(response.data.userrol));
               initSesionR1ViewVars(response.data.user);
             }
             if(rol == 'r2'){
               $rootScope.isSessionR2 = true;
               localStorage.setItem('r2',JSON.stringify(response.data.user));
-              localStorage.setItem('userrol2',JSON.stringify(response.data.userrol[0]));
+              localStorage.setItem('userrol2',JSON.stringify(response.data.userrol));
               initSesionR2ViewVars(response.data.user);
             }
           }
