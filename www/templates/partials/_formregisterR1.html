@@ -1,5 +1,5 @@
     <div ng-show="openRegisterR1" class="list card stable-bg paddingform">
-      <b ng-show="isEdit">Colaborador</b>
+      <b class="titleformedit" ng-show="isEdit">Colaborador</b>
       <form novalidate  name="formregister" ng-submit="saveR1(formregister)"  >
       <label class="item typecontri">
         <span class="input-label">¿Usted representa a? </span>
@@ -46,13 +46,13 @@
       </label>
 
       <label class="item item-input item-stacked-label">
-        <span class="input-label">N° Identificación/NIT</span>
-        <input required type="number" placeholder="" ng-model="objR1.nit_id">
+        <span class="input-label">N° Identificación ó NIT</span>
+        <input required string-to-number type="number" placeholder="" ng-model="objR1.nit_id">
       </label>
 
       <label class="item item-input item-stacked-label">
         <span class="input-label">Celular ó Teléfono</span>
-        <input required type="number" placeholder="indique " ng-model="objR1.cellphone_telephone_contact">
+        <input required string-to-number type="number" placeholder="indique " ng-model="objR1.cellphone_telephone_contact">
       </label>
 
       <label class="item item-file ">
@@ -60,8 +60,8 @@
         <input 
           base-sixty-four-input 
           ng-change="viewPhoto()"
-          required 
-          type="file" 
+          ng-required="!isEdit" 
+          type="file"
           class="custom-file-input"
           placeholder="indique" 
           ng-model="objR1.base64">
@@ -77,18 +77,18 @@
 
         <label class="item item-input item-stacked-label">
           <span class="input-label">Usuario <span class="resaltmsglabel">(para iniciar sesión)</span></span>
-          <input required type="text" ng-maxlength="12" placeholder="máximo 12 caract." ng-model="objR1.username" >
+          <input required ng-readonly="isEdit" type="text" ng-maxlength="12" placeholder="máximo 12 caract." ng-model="objR1.username" >
         </label>
 
         <label class="item center">
           <span class="input-label">Contraseña <span class="resaltmsglabel" >(para iniciar sesión)</span></span>
-          <input required class="custominput" type="password" placeholder="indique" 
+          <input ng-required="!isEdit"  class="custominput" type="password" placeholder="indique" 
           ng-model="objR1.password" />
         </label>
 
         <label class="item center">
           <span class="input-label">Repetir Contraseña</span>
-          <input required class="custominput" type="password" placeholder="indique" 
+          <input ng-required="!isEdit"  class="custominput" type="password" placeholder="indique" 
           ng-model="objR1.confirm" />
         </label>
       </div>

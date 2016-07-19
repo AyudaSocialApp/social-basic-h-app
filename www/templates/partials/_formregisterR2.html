@@ -1,5 +1,5 @@
     <div ng-show="openRegisterR2" class="list card stable-bg paddingform">
-      <b ng-show="isEdit">Necesitado</b>
+      <b class="titleformedit" ng-show="isEdit">Necesitado</b>
       <form novalidate  name="formregister" ng-submit="saveR2(formregister)"  >
       <label class="item typecontri">
         <span class="input-label">¿Usted representa a? </span>
@@ -31,12 +31,12 @@
 
       <label class="item item-input item-stacked-label">
         <span class="input-label">N° Identificación</span>
-        <input required type="number" placeholder="" ng-model="objR2.identification">
+        <input required string-to-number type="number" placeholder="" ng-model="objR2.identification">
       </label>
 
       <label class="item item-input item-stacked-label">
         <span class="input-label">Celular ó Teléfono</span>
-        <input required type="number" placeholder="indique " ng-model="objR2.cellphone_telephone_contact">
+        <input required string-to-number type="number" placeholder="indique " ng-model="objR2.cellphone_telephone_contact">
       </label>
 
       <label class="item item-input item-stacked-label">
@@ -75,7 +75,7 @@
 
         <label class="item item-input item-stacked-label">
           <span class="input-label">Usuario <span class="resaltmsglabel">(para iniciar sesión)</span></span>
-          <input required type="text" ng-maxlength="12" placeholder="máximo 12 caract." ng-model="objR2.username" >
+          <input required ng-readonly="isEdit" type="text" ng-maxlength="12" placeholder="máximo 12 caract." ng-model="objR2.username" >
         </label>
 
         <label class="item center">

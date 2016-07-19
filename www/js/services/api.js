@@ -57,7 +57,7 @@ app.factory('Validations',function($http,CONFIG){
 });
 
 
-app.factory('Sesion',function($http,$state,$ionicPopup,$rootScope,CONFIG){
+app.factory('Sesion',function($http,$state,$ionicPopup,$rootScope,$ionicLoading,CONFIG){
 
 
   function msgLogout(){
@@ -76,6 +76,29 @@ app.factory('Sesion',function($http,$state,$ionicPopup,$rootScope,CONFIG){
   }
 
   return {
+
+    editRegister: function(credentials,rol) {
+      var onlyNum = rol.substr(rol.length - 1);
+      return $http.post(CONFIG.URLAPI + "/edit_register/"+onlyNum,credentials)
+      .success(function (response) {
+          if(response.success != false){
+            if(rol == 'r1'){
+              $rootScope.isSessionR1 = true;
+              localStorage.setItem('r1',JSON.stringify(response.data.user));
+              localStorage.setItem('userrol1',JSON.stringify(response.data.userrol[0]));
+              initSesionR1ViewVars(response.data.user);
+            }
+            if(rol == 'r2'){
+              $rootScope.isSessionR2 = true;
+              localStorage.setItem('r2',JSON.stringify(response.data.user));
+              localStorage.setItem('userrol2',JSON.stringify(response.data.userrol[0]));
+              initSesionR2ViewVars(response.data.user);
+            }
+          }
+          return response;
+      });
+    },
+
 
     register: function(credentials,rol) {
       var onlyNum = rol.substr(rol.length - 1);
@@ -120,9 +143,10 @@ app.factory('Sesion',function($http,$state,$ionicPopup,$rootScope,CONFIG){
       });
     },
     logout: function(){
-
+      $ionicLoading.show();
       $http.get(CONFIG.URLAPI + "/logout")
       .success(function (response) {
+        $ionicLoading.hide();
         $rootScope.isSessionR2 = false;
         $rootScope.isSessionR1 = false;
         localStorage.removeItem('r1');

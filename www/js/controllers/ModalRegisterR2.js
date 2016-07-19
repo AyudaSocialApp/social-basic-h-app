@@ -66,15 +66,18 @@ app.controller('ModalRegisterR2', function ($scope,$timeout,$state,$rootScope,$i
         var resSesion = Sesion.login($scope.objR2login,'r2');
         resSesion.then(function(response) {
           $ionicLoading.hide();
-          if(response.data.success == false){
-            msgIncorrectData();
+          if(response.data == 'Error Rol'){
+            msgErrorRol('Necesitado');
           }else{
-            $scope.closeModalRegisterR2();
-            $state.transitionTo(viewdestinyloginRegister);
-            msgInfoInitSesion();
+            if(response.data.success == false){
+              msgIncorrectData();
+            }else{
+              $scope.closeModalRegisterR2();
+              $state.transitionTo(viewdestinyloginRegister);
+              msgInfoInitSesion();
+            }
           }
         });
-
   }
 
   $scope.saveR2 = function(form){
@@ -185,7 +188,17 @@ app.controller('ModalRegisterR2', function ($scope,$timeout,$state,$rootScope,$i
     });
   }
 
+  function msgErrorRol(namerol){
+      var alertPopup = $ionicPopup.alert({
+      title: 'Alerta',
+      template: 'Este usuario No esta registrado como '+namerol
+    });
+  }
 
   getTypeidentifications();
+
+  $scope.$on('modal.shown', function() {
+    $ionicScrollDelegate.scrollTop();
+  });
 
 });

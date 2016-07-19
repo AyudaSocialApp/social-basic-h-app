@@ -1,24 +1,82 @@
-app.controller('EditR1R2', function ($scope,$ionicModal,$rootScope,$ionicPopup,$ionicScrollDelegate,$timeout) {
+app.controller('EditR1R2', function ($scope,$timeout,$state,$ionicModal,$rootScope,$ionicScrollDelegate,$stateParams,$ionicLoading,$ionicPopup,Typeidentifications,Sesion,Validations) {
 
   // Bandera para validar elementos de las interfaz
   $scope.isEdit = true;
 
   $scope.objR1 = {
-    names:""
+    id_user:"",
+    id_user_rol:"",
+    password:"",
+    names:"",
+    last_names:"",
+    privacy:"",
+    nit_id:"",
+    type_identifications_id:{id:""},
+    type_contributors_id:{id:""},
+    cellphone_telephone_contact:"",
+    name_business:"",
+    base64:{base64:"",filetype:""}
   };
+
   $scope.objR2 = {
-    names:""
+    id_user:"",
+    id_user_rol:"",
+    password:"",
+    names:"",
+    last_names:"",
+    type_identifications_id:{id:""},
+    identification:"",
+    history:"",
+    contributor:"",
+    cellphone_telephone_contact:"",
+    city:"",
+    base64:{base64:"",filetype:""},
+    type_needy_id:""
   };
-  $scope.isTwoRoles = ($rootScope.isSessionR1 && $rootScope.isSessionR2);
-  $scope.textstylephoto1 = "";
-  $scope.textstylephoto2 = "";
+
+  var currentUserRol1 = "";
+  var currentUserRol2 = "";
+  var user1 = "";
+  var user2 = "";
+
+
+  function init(){
+
+    if($rootScope.isSessionR1){
+      currentUserRol1 = JSON.parse(localStorage.getItem('userrol1'));
+      user1 = JSON.parse(localStorage.getItem('r1'));
+    }
+    if($rootScope.isSessionR2){
+      currentUserRol2 = JSON.parse(localStorage.getItem('userrol2'));
+      user2 = JSON.parse(localStorage.getItem('r2'));
+    }
+
+    $scope.isTwoRoles = ($rootScope.isSessionR1 && $rootScope.isSessionR2);
+    $scope.textstylephoto1 = "";
+    $scope.textstylephoto2 = "";
+  }
+
+  init();
+
 
   function fillobjR1(){
     if($rootScope.isSessionR1){
-      var currentR1 =  JSON.parse(localStorage.getItem('userrol1'));
-      $scope.objR1.names = $rootScope.currentR1.names;
-      // *** Resto de campos
-      // cargar imagen despues de tener el obj lleno
+      $scope.objR1.id_user = user1.id;
+      $scope.objR1.id_user_rol = currentUserRol1.id;
+      $scope.objR1.username =  user1.email;
+      $scope.objR1.names = currentUserRol1.names;
+      $scope.objR1.last_names = currentUserRol1.last_names;
+      $scope.objR1.privacy = currentUserRol1.privacy;
+      $scope.objR1.type_identifications_id = {id:currentUserRol1.type_identifications_id};
+
+      $scope.objR1.nit_id = currentUserRol1.nit_id;
+      $scope.objR1.type_contributors_id = currentUserRol1.type_contributors_id;
+      $scope.objR1.cellphone_telephone_contact = currentUserRol1.cellphone_telephone_contact;
+      $scope.objR1.name_business = currentUserRol1.name_business;
+
+      // Objeto foto
+      $scope.objR1.base64 = {base64:currentUserRol1.base64,filetype:currentUserRol1.filetype};
+      // Mostrar foto actual
       $scope.viewPhoto1();
     }
   }
@@ -31,10 +89,23 @@ app.controller('EditR1R2', function ($scope,$ionicModal,$rootScope,$ionicPopup,$
 
   function fillobjR2(){
     if($rootScope.isSessionR2){
-      var currentR2 =  JSON.parse(localStorage.getItem('userrol2'));
-      $scope.objR2.names = $rootScope.currentR2.names;
-      // *** Resto de campos
-      // cargar imagen despues de tener el obj lleno
+
+      $scope.objR2.id_user = user2.id;
+      $scope.objR2.id_user_rol = currentUserRol2.id;
+      $scope.objR2.username =  user2.email;
+      $scope.objR2.names = currentUserRol2.names;
+      $scope.objR2.last_names = currentUserRol2.last_names;
+      $scope.objR2.identification = currentUserRol2.identification;
+      $scope.objR2.type_identifications_id = {id:currentUserRol2.type_identifications_id};
+
+      $scope.objR2.history = currentUserRol2.history;
+      $scope.objR2.contributor = currentUserRol2.contributor;
+      $scope.objR2.cellphone_telephone_contact = currentUserRol2.cellphone_telephone_contact;
+      $scope.objR2.city = currentUserRol2.city;
+      $scope.objR2.type_needy_id = currentUserRol2.type_needy_id;
+      // objeto foto
+      $scope.objR2.base64 = {base64:currentUserRol2.base64,filetype:currentUserRol2.filetype};
+      // Mostrar foto actual
       $scope.viewPhoto2();
     }
   }
@@ -86,15 +157,67 @@ app.controller('EditR1R2', function ($scope,$ionicModal,$rootScope,$ionicPopup,$
 
   // Despues de editar solo se muestra un mensaje de editado con exito
   $scope.saveR1 = function(){
-    // editar el obj1
-    // mostrar mensaje de editado correctamente
-    $scope.closemodalEditR1orR2();
+    $ionicLoading.show();
+    var editSe = Sesion.editRegister($scope.objR1,'r1');
+    editSe.then(function(response) {
+      $ionicLoading.hide();
+      msgSuccessEdit();
+      $scope.closemodalEditR1orR2();
+    });
   }
 
+
   $scope.saveR2 = function(){
-    // editar el obj2
-    // mostrar mensaje de editado correctamente
-    $scope.closemodalEditR1orR2();
+    $ionicLoading.show();
+    var editSe = Sesion.editRegister($scope.objR2,'r2');
+    editSe.then(function(response) {
+      $ionicLoading.hide();
+      msgSuccessEdit();
+      $scope.closemodalEditR1orR2();
+    });
   }
+
+  function msgSuccessEdit(){
+      var alertPopup = $ionicPopup.alert({
+      title: 'Aviso',
+      template: 'Datos Actualizados correctamente'
+    });
+  }
+
+
+
+  function verifyConfirmPass(){
+    if($scope.objR1.password == $scope.objR1.confirm){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+  function msgVerifyConfirmPass(){
+      var alertPopup = $ionicPopup.alert({
+      title: 'Alerta',
+      template: 'La contraseña y su confirmación no coinciden'
+    });
+  }
+
+  function getTypeidentifications(){
+
+    Typeidentifications.get(function (response)
+    {
+      $scope.list_type_identifications = response.data;
+    });
+
+  }
+
+  getTypeidentifications();
+
+  $scope.$on('modal.shown', function() {
+    $ionicScrollDelegate.scrollTop();
+    init();
+    determiteInitShow();
+    fillobjR1();
+    fillobjR2();
+  });
 
 });
