@@ -1,4 +1,4 @@
-app.controller('EditR1R2', function ($scope,$timeout,$state,$ionicModal,$rootScope,$ionicScrollDelegate,$stateParams,$ionicLoading,$ionicPopup,Typeidentifications,Sesion,Validations) {
+app.controller('EditR1R2', function ($scope,$timeout,$state,$ionicModal,$rootScope,$ionicScrollDelegate,$stateParams,$ionicLoading,$ionicPopup,Typeidentifications,Sesion,Validations,anchorSmoothScroll,$location) {
 
   // Bandera para validar elementos de las interfaz
   $scope.isEdit = true;
@@ -58,6 +58,17 @@ app.controller('EditR1R2', function ($scope,$timeout,$state,$ionicModal,$rootSco
 
   init();
 
+  $scope.gotoElement = function (eID){
+    if(!$scope.isEdit){
+      // set the location.hash to the id of
+      // the element you wish to scroll to.
+      $location.hash('bottom');
+
+      // call $anchorScroll()
+      anchorSmoothScroll.scrollTo(eID);
+    }
+  };
+
 
   function fillobjR1(){
     if($rootScope.isSessionR1){
@@ -84,6 +95,7 @@ app.controller('EditR1R2', function ($scope,$timeout,$state,$ionicModal,$rootSco
   $scope.viewPhoto1= function(){
     if($scope.objR1.base64 != null){
       $scope.textstylephoto1 =  "data:"+$scope.objR1.base64.filetype+";base64,"+$scope.objR1.base64.base64;
+      $scope.gotoElement('inputphoto1');
     }
   }
 
@@ -113,6 +125,7 @@ app.controller('EditR1R2', function ($scope,$timeout,$state,$ionicModal,$rootSco
   $scope.viewPhoto2= function(){
     if($scope.objR2.base64 != null){
       $scope.textstylephoto2 =  "data:"+$scope.objR2.base64.filetype+";base64,"+$scope.objR2.base64.base64;
+      $scope.gotoElement('inputphoto2');
     }
   }
 
@@ -219,5 +232,6 @@ app.controller('EditR1R2', function ($scope,$timeout,$state,$ionicModal,$rootSco
     fillobjR1();
     fillobjR2();
   });
+
 
 });

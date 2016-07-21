@@ -123,7 +123,10 @@ app.factory('Sesion',function($http,$state,$ionicPopup,$rootScope,$ionicLoading,
       .success(function (response) {
 
           if(response.success != false){
-            localStorage.setItem('jwt',response.data.token.token);
+            if(typeof response.data.token !== 'undefined'){
+              localStorage.setItem('jwt',response.data.token.token);
+            }
+            
             if(rol == 'r1'){
               $rootScope.isSessionR1 = true;
               localStorage.setItem('r1',JSON.stringify(response.data.user));

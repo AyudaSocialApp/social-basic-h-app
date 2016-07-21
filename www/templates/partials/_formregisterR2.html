@@ -53,12 +53,12 @@
           ng-model="objR2.history" ></textarea>
       </label>
 
-      <label class="item item-file ">
+      <label id="inputphoto2" class="item item-file ">
         <span class="input-label">Foto  <i>(persona o familia)</i> </span>
         <input 
           base-sixty-four-input 
           ng-change="viewPhoto()"
-          required 
+          ng-required="!isEdit" 
           class="custom-file-input"
           type="file" 
           placeholder="indique" 
@@ -80,12 +80,12 @@
 
         <label class="item center">
           <span class="input-label">Contraseña <span class="resaltmsglabel" >(para iniciar sesión)</span></span>
-          <input required class="custominput" type="password" placeholder="indique" 
+          <input ng-required="!isEdit"  class="custominput" type="password" placeholder="indique" 
           ng-model="objR2.password" />
         </label>
         <label class="item center">
           <span class="input-label">Repetir Contraseña</span>
-          <input required class="custominput" type="password" placeholder="indique" 
+          <input ng-required="!isEdit"  class="custominput" type="password" placeholder="indique" 
           ng-model="objR2.confirm" />
         </label>
       </div>

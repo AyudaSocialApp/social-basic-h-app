@@ -1,4 +1,4 @@
-app.controller('ModalRegisterR2', function ($scope,$timeout,$state,$rootScope,$ionicLoading,$ionicModal,$timeout,$stateParams,$ionicPopup,$ionicScrollDelegate,Typeidentifications,Sesion,Validations) {
+app.controller('ModalRegisterR2', function ($scope,$timeout,$state,$rootScope,$ionicLoading,$ionicModal,$timeout,$stateParams,$ionicPopup,$ionicScrollDelegate,Typeidentifications,Sesion,Validations,anchorSmoothScroll,$location) {
 
 
   $scope.objR2 = {
@@ -21,6 +21,14 @@ app.controller('ModalRegisterR2', function ($scope,$timeout,$state,$rootScope,$i
     }
   }
 
+  $scope.gotoElement = function (eID){
+      // set the location.hash to the id of
+      // the element you wish to scroll to.
+      $location.hash('bottom');
+
+      // call $anchorScroll()
+      anchorSmoothScroll.scrollTo(eID);
+  };
 
   function allToFalse(){
     $scope.openRegisterR2 = false;
@@ -161,6 +169,7 @@ app.controller('ModalRegisterR2', function ($scope,$timeout,$state,$rootScope,$i
   $scope.viewPhoto= function(){
     if($scope.objR2.base64 != null){
       $scope.textstylephoto2 =  "data:"+$scope.objR2.base64.filetype+";base64,"+$scope.objR2.base64.base64;
+      $scope.gotoElement('inputphoto2');
     }
   }
 
