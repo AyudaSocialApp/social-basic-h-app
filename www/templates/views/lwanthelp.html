@@ -3,13 +3,23 @@
 	  <div class="im-wrapper contentpadding">
 	   	<div class="center">
 	   	
-		   	<div class="row">
+		   	<div ng-repeat=" (key, help) in list track by $index" class="row">
 		   		<div class="col">
 		   			<div class="circleneedy" ng-click="goWantHelp(2)">
 		   				<div class="center">
-		   				<img class="imgneedy" src="img/material1.jpg">
+		   				<img class="imgneedy" ng-src="data:{{help.needy.filetype}};base64,{{help.needy.preview}}">
 		   				</div>
-		   				<p class="custommarginp"><b>Familia</b><br/>Romero Lopez<br/> <span class="dateplace">03/04/2015 (Cúcuta)</span></p>
+		   				<p class="custommarginp">
+								 <b ng-show="help.needy.type_needy_id == 2">Familia</b>
+                 <b ng-show="help.needy.type_needy_id == 1">Persona</b>
+								 <br/> 
+                    <span ng-show="help.needy.type_needy_id == 1" ></n>{{help.needy.names}} {{help.needy.last_names}}</span>
+                    <span ng-show="help.needy.type_needy_id == 2" ></n>{{help.needy.last_names}}</span>
+                 <br/> 
+								 <span class="dateplace">
+									 {{help.date | date:"dd/MM/yyyy" }} ({{help.needy.city}})
+								 </span>
+							</p>
 		   			</div>
 		   		</div>
 		   		<div class="col">
@@ -19,18 +29,6 @@
 		   		</div>
 		   	</div>
 
-		   	<div class="row">
-		   		<div class="col">
-		   			<div class="circleneedy">
-		   				
-		   			</div>
-		   		</div>
-		   		<div class="col">
-		   			<div class="circleneedy">
-		   				
-		   			</div>
-		   		</div>
-		   	</div>
 
 			</div>
 			<div class="center">

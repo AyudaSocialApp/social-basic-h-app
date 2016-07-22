@@ -1,4 +1,4 @@
-app.controller('LwanthelpCtrl', function ($scope,$ionicModal,$ionicScrollDelegate,$timeout) {
+app.controller('LwanthelpCtrl', function ($scope,$ionicModal,$ionicLoading,$ionicScrollDelegate,$timeout,HelpsSpecialOperations) {
 
   $scope.ro = "";
   $scope.myhelps = false;
@@ -8,7 +8,6 @@ app.controller('LwanthelpCtrl', function ($scope,$ionicModal,$ionicScrollDelegat
     $scope.ro = ro;
     openmodalWantHelp();
   };
-
 
   // ## modal del registo o login de colaborador
   $ionicModal.fromTemplateUrl('templates/modals/wanthelp.html', {
@@ -30,5 +29,17 @@ app.controller('LwanthelpCtrl', function ($scope,$ionicModal,$ionicScrollDelegat
     
   };
   // ## 
+
+  function getNeedies(){
+    $ionicLoading.show();
+    var hso = HelpsSpecialOperations.needies(10);
+    hso.then(function(response) {
+      $ionicLoading.hide();
+      $scope.list = response.data.data;
+    });
+  }
+
+  getNeedies();
+
 
 });

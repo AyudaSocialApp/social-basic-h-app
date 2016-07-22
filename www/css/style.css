@@ -93,6 +93,10 @@ p {
     width: 33.333%;
 }
 
+.slchelp{
+  padding:10px;
+}
+
 .directions.button-bar button {
     line-height: 26px;
 }
@@ -174,6 +178,29 @@ p {
     font-weight: bold;
     padding: 10px 8px;
     text-decoration: underline;
+}
+
+.select-style {
+    text-align: center;
+    border: 1px solid #ccc;
+    width: 170px;
+    border-radius: 3px;
+    overflow: hidden;
+    background: #fafafa url("../img/icon-select.png") no-repeat 90% 50%;
+}
+
+.select-style select {
+    padding: 5px 8px;
+    width: 130%;
+    border: none;
+    box-shadow: none;
+    background: transparent;
+    background-image: none;
+    -webkit-appearance: none;
+}
+
+.select-style select:focus {
+    outline: none;
 }
 
 .code-wrapper .code {

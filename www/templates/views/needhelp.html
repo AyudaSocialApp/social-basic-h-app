@@ -1,30 +1,50 @@
 <ion-view view-title="Necesito ayuda" cache-view="false" >
   <ion-content class="littletop">
     <div class="im-wrapper contentpadding">
-      <div >
-        <form ng-show="!varcontrols.hidden" >
-          <br/>
-          <ion-checkbox 
-            class="cneedhelp" 
-            ng-model="isChecked" 
-            ng-click="fconfirmNeedHelp()" >
-              Solicitar ayuda !
-            </ion-checkbox>
-          <br/>
+      <div>
+        <form class="cneedhelp" ng-show="!varcontrols.hidden" name="formrequesthelp" ng-submit="fconfirmNeedHelp(formrequesthelp)" >
+          <div class="center slchelp">
+                <h3>Seleccione Ayuda</h3>
+                <br/>
+                <center>
+                  <div class="select-style">
+                    <select
+                      required
+                      ng-model="help.type_helps_id"
+                      ng-options="he as he.name for he in list_type_helps track by he.id" 
+                    >
+                    </select>
+                  </div>
+                </center>
+                <br/>
+                <br/>
+            <button type="submit" class="button button-positive">
+              <i class="ion-log-in"></i> Solicitar Ayuda !
+            </button>
+            <br/>
+            <br/>
+          </div>
         </form>
+        <br/>
+        <br/>
         <div class="center">
-          <h4>Historial de solitudes</h4>
+          <h4>Ultimas solicitudes</h4>
         </div>
         <table width="100%">
           <tr>
             <th>#</th>
             <th>Fecha</th>
-            <th>Marcar Como Entregado</th>
+            <th>Tipo</th>
+            <th>Entregado</th>
           </tr>
           <tr ng-repeat="(key, value) in histoRequest track by $index" >
             <td>{{key+1}}</td>
             <td>{{value.date | date:"dd/MM/yyyy"}}</td>
-            <td></td>
+            <td>{{value.typehelp.name}}</td>
+            <td>
+              <span ng-show="value.delivered">SI</span>
+              <span ng-show="!value.delivered"> No </span>
+            </td>
           </tr>
         </table>
       </div>

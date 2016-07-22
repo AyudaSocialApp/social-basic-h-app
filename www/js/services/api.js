@@ -29,6 +29,21 @@ app.factory('Helps',function($resource,CONFIG){
 });
 
 
+app.factory('Typehelps',function($resource,CONFIG){
+
+  return $resource(CONFIG.URLAPI+"/typehelps/:id",
+    {
+      id:"@_id"
+    },
+    {
+      update:
+      {
+        method:"PUT",
+        params: {id: "@id"}
+      }
+    });
+});
+
 app.factory('Typeidentifications',function($resource,CONFIG){
 
   return $resource(CONFIG.URLAPI+"/typeidentifications/:id",
@@ -49,6 +64,29 @@ app.factory('Validations',function($http,CONFIG){
   return {
     repeatUser: function(user) {
       return $http.get(CONFIG.URLAPI + "/validate_user/"+user)
+      .success(function (response) {
+          return response;
+      });
+    }
+  };
+});
+
+app.factory('HelpsSpecialOperations',function($http,CONFIG){
+  return {
+    store: function(obj) {
+      return $http.post(CONFIG.URLAPI + "/helps_e",obj)
+      .success(function (response) {
+          return response;
+      });
+    },
+    lastHelpsNeedy: function(idneedy) {
+      return $http.get(CONFIG.URLAPI + "/helps_e/lastneedy/"+idneedy)
+      .success(function (response) {
+          return response;
+      });
+    },
+    needies: function(maxId) {
+      return $http.get(CONFIG.URLAPI + "/helps_e/allneedy/"+maxId)
       .success(function (response) {
           return response;
       });

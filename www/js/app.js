@@ -251,7 +251,7 @@ app.factory('authHttpResponseInterceptor', ['$injector','$q', function ($injecto
       },
       responseError: function (rejection) {
 
-        $inyector.get('$ionicLoading').hide();
+        // $inyector.get('$ionicLoading').hide();
 
         if (rejection.status === 401) {
           console.log("Response Error 401", rejection);
