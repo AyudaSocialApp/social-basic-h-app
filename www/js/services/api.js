@@ -85,6 +85,18 @@ app.factory('HelpsSpecialOperations',function($http,CONFIG){
           return response;
       });
     },
+    helpsColaborator: function(idcontributor,maxId) {
+      return $http.get(CONFIG.URLAPI + "/helps_e/contributor/"+idcontributor+"/"+maxId)
+      .success(function (response) {
+          return response;
+      });
+    },
+    helpsNeedy: function(idneedy,maxId) {
+      return $http.get(CONFIG.URLAPI + "/helps_e/needy/"+idneedy+"/"+maxId)
+      .success(function (response) {
+          return response;
+      });
+    },
     needies: function(maxId) {
       return $http.get(CONFIG.URLAPI + "/helps_e/allneedy/"+maxId)
       .success(function (response) {

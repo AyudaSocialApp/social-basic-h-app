@@ -582,7 +582,10 @@ th {
 
   }
 
-
+  .paddingcol{
+    padding: 10px;
+    padding-bottom: 2px;
+  }
 
 
     @keyframes startparpadeo {

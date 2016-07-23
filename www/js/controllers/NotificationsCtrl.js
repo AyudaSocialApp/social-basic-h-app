@@ -1,8 +1,7 @@
-app.controller('NotificationsCtrl', function ($scope,$state,$ionicModal,$ionicScrollDelegate,$timeout) {
-
+app.controller('NotificationsCtrl', function ($scope,$state,$ionicModal,$ionicScrollDelegate,$timeout,Helps) {
 
   $scope.ro = "";
-  $scope.myhelps = false;
+  $scope.myhelps = true;
 
   $scope.goWantHelp = function(ro){
     $scope.ro = ro;
@@ -31,6 +30,16 @@ app.controller('NotificationsCtrl', function ($scope,$state,$ionicModal,$ionicSc
   };
   // ## 
 
+  function getHelps(){
+
+    Helps.get(function (response)
+    {
+      $scope.helps = response.data;
+    });
+
+  }
+
+  getHelps();
 
 
 });

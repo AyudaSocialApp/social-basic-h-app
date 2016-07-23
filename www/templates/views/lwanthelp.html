@@ -3,8 +3,8 @@
 	  <div class="im-wrapper contentpadding">
 	   	<div class="center">
 	   	
-		   	<div ng-repeat=" (key, help) in list track by $index" class="row"  style="flex-wrap: wrap;" >
-		   		<div class="col">
+		   	<div class="row" style="flex-wrap: wrap;" >
+		   		<div class="col-50 paddingcol" ng-repeat=" (key, help) in list track by $index" >
 		   			<div class="circleneedy" ng-click="goWantHelp(2)">
 		   				<div class="center">
 		   				<img class="imgneedy" ng-src="data:{{help.needy.filetype}};base64,{{help.needy.preview}}">
@@ -22,27 +22,7 @@
 							</p>
 		   			</div>
 		   		</div>
-		   		<div class="col">
-		   			<div class="circleneedy" ng-click="goWantHelp(2)">
-		   				<div class="center">
-		   				<img class="imgneedy" ng-src="data:{{list[$index+1].needy.filetype}};base64,{{list[$index+1].needy.preview}}">
-		   				</div>
-		   				<p class="custommarginp">
-								 <b ng-show="list[$index+1].needy.type_needy_id == 2">Familia</b>
-                 <b ng-show="list[$index+1].needy.type_needy_id == 1">Persona</b>
-								 <br/> 
-                    <span ng-show="list[$index+1].needy.type_needy_id == 1" ></n>{{list[$index+1].needy.names}} {{list[$index+1].needy.last_names}}</span>
-                    <span ng-show="list[$index+1].needy.type_needy_id == 2" ></n>{{list[$index+1].needy.last_names}}</span>
-                 <br/> 
-								 <span class="dateplace">
-									 {{list[$index+1].date | date:"dd/MM/yyyy" }} ({{list[$index+1].needy.city}})
-								 </span>
-							</p>
-		   			</div>
-						 <span style="display:none;" ng-init="$index = $index + 1" ></span>
-		   		</div>
 		   	</div>
-
 
 			</div>
 			<div class="center">
