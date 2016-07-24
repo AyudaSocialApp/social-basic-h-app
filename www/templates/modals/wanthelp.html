@@ -17,14 +17,17 @@
         <!-- INFORMACIÓN DEL NECESITADO-->
           <div ng-show="viewBtnInfo || viewinfoNeedy">
             <div class="center">
-              <h4>Información Necesitado</h4>
+              <b>Información Necesitado</b>
             </div>
             <div class="list paddingdetail">
-              <label>
-                <span class="input-label"><b>Nombre</b></span>
-                <span ng-show="currentHelpDetail.needy.type_needy_id == 2">Familia {{currentHelpDetail.needy.last_names}}</span>
-                <span ng-show="currentHelpDetail.needy.type_needy_id == 1">{{currentHelpDetail.needy.names}} {{currentHelpDetail.needy.last_names}}</span>
-              </label>
+
+              <center>
+                <label>
+                  <h4 ng-show="currentHelpDetail.needy.type_needy_id == 2">Familia {{currentHelpDetail.needy.last_names}}</h4>
+                  <h4 ng-show="currentHelpDetail.needy.type_needy_id == 1">{{currentHelpDetail.needy.names}} {{currentHelpDetail.needy.last_names}}</h4>
+                </label>
+                <img ng-show="currentHelpDetail.needy != null" ng-src="{{currentImageNeedy || '//:0' }}" alt="Imagen necesitado">
+              </center>
 
               <label>
                 <span class="input-label"><b>De</b></span>
@@ -108,6 +111,7 @@
                 </td>
               </tr>
             </table>
+          <br/>
           </div>
 
           <div  ng-show="!viewBtnAccept && !viewBtnInfo && !viewMysHelps"  class="center msgwanthelp">
@@ -136,23 +140,24 @@
             <label class="item item-input item-stacked-label">
               <span class="input-label">Descripción de la ayuda</span>
               <textarea 
+                required
                 rows="7"
                 placeholder="Describa brevemente los elementos de la ayuda"
                 ng-model="obj.description" ></textarea>
             </label>
             <label class="item item-input item-stacked-label">
               <span class="input-label">Proponga un lugar de entrega</span>
-              <input type="text" placeholder="indique" ng-model="obj.place_delivery" >
+              <input required type="text" placeholder="indique" ng-model="obj.place_delivery" >
             </label>
             <label class="item item-input item-stacked-label">
               <span class="input-label">Proponga una Fecha y hora de entrega</span>
-              <input type="datetime-local" placeholder="indique" ng-model="obj.date_hour" >
+              <input required type="datetime" placeholder="indique" ng-model="obj.date_hour" >
             </label>
           </div>
 
           <div class="center">
             <br/>
-            <button ng-show="!viewBtnAccept && !viewBtnInfo && !viewMysHelps" type="submit" class="button button-light">
+            <button ng-show="!viewBtnAccept && !viewBtnInfo && !viewMysHelps && !sending" type="submit" class="button button-light">
               <i class="ion-ios-cloud-upload"></i> Registrar ayuda
             </button>
             <button ng-show="viewBtnAccept && !viewBtnInfo && !viewMysHelps && !viewInfoAcceptHelp" type="button" ng-click="acceptHelp()" class="button button-light">

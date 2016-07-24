@@ -1,4 +1,4 @@
-app.controller('WanthelpCtrl', function ($scope,$ionicScrollDelegate,$rootScope,$ionicPopup,HelpsSpecialOperations) {
+app.controller('WanthelpCtrl', function ($scope,$ionicScrollDelegate,$rootScope,$ionicPopup,Typehelps,HelpsSpecialOperations,ContributorsSpecialOperations,NeediesSpecialOperations) {
 
   // mostrar boton de aceptar si es true
   $scope.viewBtnAccept = false;
@@ -12,11 +12,15 @@ app.controller('WanthelpCtrl', function ($scope,$ionicScrollDelegate,$rootScope,
   // si estoy viendo los necesidatos
   $scope.viewinfoNeedy = false;
 
+  $scope.currentImageNeedy = "";
+
+  $scope.sending = false;
+
   $scope.viewInfoAcceptHelp = false;
 
   $scope.controls = {
     viewhistoryHelpsRequets: false,
-    viewlinkHA: false
+    viewlinkHA: true
   }
 
   function configView(){
@@ -55,18 +59,31 @@ app.controller('WanthelpCtrl', function ($scope,$ionicScrollDelegate,$rootScope,
     msgAcceptHelp();
   }
 
-  $scope.saveHelp = function(){
+  $scope.saveHelp = function(form){
     // guardar ayuda en bs
+    if(form.$valid){
+      $scope.sending = true; 
+      // pending service
+      msgResWithContact();
+      $scope.modalWantHelp.hide();
+    }else{
+      msgInvalidData();
+    }
+    
+  }
 
-    // muestro la confirmación
-    msgResWithContact();
+  function msgInvalidData(){
+      var alertPopup = $ionicPopup.alert({
+      title: 'Aviso',
+      template: 'Faltan campos o se han indicado campos erroneos.'
+    });
   }
 
 
   function msgResWithContact(){
       var alertPopup = $ionicPopup.alert({
       title: 'Aviso',
-      template: 'Ayuda registrada con éxito. El necesitado debe aceptar la ayuda a traves de la misma app para que el sistema te muestre los datos de contacto.'
+      template: 'Ayuda registrada con éxito. Cuando el necesitado acepte la ayuda, el sistema te avisará y podras ver el telefono de contacto'
     });
   }
 
@@ -84,12 +101,31 @@ app.controller('WanthelpCtrl', function ($scope,$ionicScrollDelegate,$rootScope,
     });
   }
 
+
+  function getBigImageNeedy(idneedy) {
+    $scope.currentImageNeedy = "";
+    var req = NeediesSpecialOperations.getBigImage(idneedy);
+    req.then(function (response) {
+      $scope.currentImageNeedy = 'data:'+$rootScope.currentHelpDetail.needy.filetype+";base64,"+response.data.data;
+    });
+  }
   
+
+
+  function getTypehelps(){
+    Typehelps.get(function (response)
+    {
+      $scope.list_type_helps = response.data;
+    });
+  }
+
+  getTypehelps();
 
 
   $scope.$on('modal.shown', function() {
     configView();
     getHistoRequest();
+    getBigImageNeedy($rootScope.currentHelpDetail.needy.id);
   });
 
 

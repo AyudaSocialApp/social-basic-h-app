@@ -107,6 +107,29 @@ app.factory('HelpsSpecialOperations',function($http,CONFIG){
 });
 
 
+app.factory('ContributorsSpecialOperations',function($http,CONFIG){
+  return {
+    getBigImage: function(idcontributor) {
+      return $http.get(CONFIG.URLAPI + "/contributors_big_image/"+idcontributor)
+      .success(function (response) {
+          return response;
+      });
+    }
+    }
+});
+
+app.factory('NeediesSpecialOperations',function($http,CONFIG){
+  return {
+    getBigImage: function(idneedy) {
+      return $http.get(CONFIG.URLAPI + "/needies_big_image/"+idneedy)
+      .success(function (response) {
+          return response;
+      });
+    }
+    }
+});
+
+
 app.factory('Sesion',function($http,$state,$ionicPopup,$rootScope,$ionicLoading,CONFIG){
 
 
