@@ -1,4 +1,4 @@
-app.controller('NeedhelpCtrl', function ($scope, $timeout, $rootScope, $ionicPopup,Typehelps,HelpsSpecialOperations) {
+app.controller('NeedhelpCtrl', function ($scope, $timeout, $rootScope, $ionicPopup, Typehelps, HelpsSpecialOperations) {
 
   var currentUserRol2 = "";
   var user2 = "";
@@ -26,33 +26,46 @@ app.controller('NeedhelpCtrl', function ($scope, $timeout, $rootScope, $ionicPop
     });
   }
 
-  function getTypehelps(){
-    Typehelps.get(function (response)
-    {
+  function getTypehelps() {
+    Typehelps.get(function (response) {
       $scope.list_type_helps = response.data;
     });
   }
 
   getTypehelps();
 
-  $scope.fconfirmNeedHelp = function(){    
-    $scope.varcontrols.hidden = true;
-    var shelp = HelpsSpecialOperations.store($scope.help);
-    shelp.then(function(response) {
-      msgRequest();
-      getHistoRequest();
-    });
+  $scope.fconfirmNeedHelp = function (form) {
+
+    if (form.$valid) {
+      $scope.varcontrols.hidden = true;
+      var shelp = HelpsSpecialOperations.store($scope.help);
+      shelp.then(function (response) {
+        msgRequest();
+        getHistoRequest();
+      });
+    } else {
+      msgInvalidData();
+    }
+
   }
 
-  function getHistoRequest(){    
+
+  function getHistoRequest() {
     var lashelp = HelpsSpecialOperations.lastHelpsNeedy(currentUserRol2.id);
-    lashelp.then(function(response) {
+    lashelp.then(function (response) {
       $scope.histoRequest = response.data.data;
     });
   }
 
   getHistoRequest();
 
+
+  function msgInvalidData() {
+    var alertPopup = $ionicPopup.alert({
+      title: 'Aviso',
+      template: 'Faltan campos o se han indicado campos erroneos.'
+    });
+  }
 
 
 });

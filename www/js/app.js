@@ -58,6 +58,9 @@ app.run(function ($ionicPlatform,$rootScope) {
     $rootScope.nameusersesionr2 = JSON.parse(localStorage.getItem('r2')).email;
   }
 
+  // Roles a detallar
+  $rootScope.currentHelpDetail = {};
+
 });
 
 

@@ -22,20 +22,20 @@
             <div class="list paddingdetail">
               <label>
                 <span class="input-label"><b>Nombre</b></span>
-                <span>Familia Lopez Buendía</span>
+                <span ng-show="currentHelpDetail.needy.type_needy_id == 2">Familia {{currentHelpDetail.needy.last_names}}</span>
+                <span ng-show="currentHelpDetail.needy.type_needy_id == 1">{{currentHelpDetail.needy.names}} {{currentHelpDetail.needy.last_names}}</span>
               </label>
 
               <label>
                 <span class="input-label"><b>De</b></span>
-                <span>Cúcuta</span>
+                <span>{{currentHelpDetail.needy.city}}</span>
               </label>
 
               <label>
                 <span class="input-label"><b>Historia</b></span>
                 <span>
-                  <p align="justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                  quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo<br/>
+                  <p align="justify">
+                  {{currentHelpDetail.needy.history}}<br/>
                   <button 
                     type="button" 
                     ng-show="controls.viewlinkHA" 
@@ -58,12 +58,13 @@
               
               <label>
                 <span class="input-label"><b>Nombre</b></span>
-                <span>Carmen  Buendía </span>
+                <span ng-show="currentHelpDetail.contributor.type_contributors_id == 2">Familia {{currentHelpDetail.contributor.last_names}}</span>
+                <span ng-show="currentHelpDetail.contributor.type_contributors_id == 1">{{currentHelpDetail.contributor.names}} {{currentHelpDetail.contributor.last_names}}</span>
               </label>
 
               <label>
                 <span class="input-label"><b>De</b></span>
-                <span>Cúcuta</span>
+                <span>{{currentHelpDetail.contributor.city}}</span>
               </label>
             </div>
           </div>
@@ -76,17 +77,17 @@
               
               <label>
                 <b>Lugar</b>
-                <span> Parque Santander, Centro.</span>
+                <span> {{currentHelpDetail.place_delivery}}</span>
               </label><br/>
 
               <label>
                 <b>Fecha y hora</b>
-                <span> 04/06/2016  <i>05:00 pm</i></span>
+                <span> {{currentHelpDetail.date_hour  | date:"dd/MM/yyyy 'a las' h:mma" }}</span>
               </label><br/>
 
               <label>
                <b>Teléfono o Celular</b>
-                <span>3124343455</span>
+                <span>{{currentHelpDetail.contributor.cellphone_telephone_contact}}</span>
               </label>
 
           </div>
@@ -98,10 +99,13 @@
                 <th>Fecha</th>
                 <th>Estado</th>
               </tr>
-              <tr ng-repeat="(key, value) in histoRequest track by $index" >
+              <tr ng-repeat="(key, value) in currenthistoRequest track by $index" >
                 <td>{{key+1}}</td>
-                <td>{{value.date | date:"dd/MM/yyyy"}}</td>
-                <td></td>
+                <td>{{value.date | date:'dd/MM/yyyy'}}</td>
+                <td>
+                  <span ng-show="value.delivered"> SI </span>
+                  <span ng-show="!value.delivered"> No </span>                  
+                </td>
               </tr>
             </table>
           </div>

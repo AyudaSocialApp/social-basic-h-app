@@ -5,7 +5,8 @@
 	   	
 		   	<div class="row" style="flex-wrap: wrap;" >
 		   		<div class="col-50 paddingcol" ng-repeat=" (key, help) in list track by $index" >
-		   			<div class="circleneedy" ng-click="goWantHelp(2)">
+						 <!-- Always two -->
+		   			<div class="circleneedy" ng-click="goWantHelp(2,help)">
 		   				<div class="center">
 		   				<img class="imgneedy" ng-src="data:{{help.needy.filetype}};base64,{{help.needy.preview}}">
 		   				</div>

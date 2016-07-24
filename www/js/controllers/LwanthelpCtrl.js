@@ -1,13 +1,15 @@
-app.controller('LwanthelpCtrl', function ($scope,$ionicModal,$ionicLoading,$ionicScrollDelegate,$timeout,HelpsSpecialOperations) {
+app.controller('LwanthelpCtrl', function ($scope,$rootScope,$ionicModal,$ionicLoading,$ionicScrollDelegate,$timeout,HelpsSpecialOperations) {
 
   $scope.ro = "";
   $scope.myhelps = false;
   $scope.needy = true;
 
-  $scope.goWantHelp = function(ro){
+  $scope.goWantHelp = function(ro,help){
     $scope.ro = ro;
+    $rootScope.currentHelpDetail = help;
     openmodalWantHelp();
   };
+
 
   // ## modal del registo o login de colaborador
   $ionicModal.fromTemplateUrl('templates/modals/wanthelp.html', {

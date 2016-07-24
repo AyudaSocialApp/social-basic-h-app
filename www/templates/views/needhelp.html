@@ -2,7 +2,7 @@
   <ion-content class="littletop">
     <div class="im-wrapper contentpadding">
       <div>
-        <form class="cneedhelp" ng-show="!varcontrols.hidden" name="formrequesthelp" ng-submit="fconfirmNeedHelp(formrequesthelp)" >
+        <form novalidate class="cneedhelp" ng-show="!varcontrols.hidden" name="formrequesthelp" ng-submit="fconfirmNeedHelp(formrequesthelp)" >
           <div class="center slchelp">
                 <h3>Seleccione Ayuda</h3>
                 <br/>
@@ -42,7 +42,7 @@
             <td>{{value.date | date:"dd/MM/yyyy"}}</td>
             <td>{{value.typehelp.name}}</td>
             <td>
-              <span ng-show="value.delivered">SI</span>
+              <span ng-show="value.delivered"> SI </span>
               <span ng-show="!value.delivered"> No </span>
             </td>
           </tr>

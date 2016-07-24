@@ -1,4 +1,4 @@
-app.controller('WanthelpCtrl', function ($scope,$ionicScrollDelegate,$ionicPopup) {
+app.controller('WanthelpCtrl', function ($scope,$ionicScrollDelegate,$rootScope,$ionicPopup,HelpsSpecialOperations) {
 
   // mostrar boton de aceptar si es true
   $scope.viewBtnAccept = false;
@@ -77,9 +77,19 @@ app.controller('WanthelpCtrl', function ($scope,$ionicScrollDelegate,$ionicPopup
     });
   }
 
+  function getHistoRequest() {
+    var lashelp = HelpsSpecialOperations.lastHelpsNeedy($rootScope.currentHelpDetail.needy.id);
+    lashelp.then(function (response) {
+      $scope.currenthistoRequest = response.data.data;
+    });
+  }
+
+  
+
 
   $scope.$on('modal.shown', function() {
     configView();
+    getHistoRequest();
   });
 
 

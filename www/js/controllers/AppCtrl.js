@@ -1,4 +1,4 @@
-﻿app.controller('AppCtrl', function ($scope, $ionicModal, $ionicPopover, $timeout,$state,$rootScope,Sesion) {
+﻿app.controller('AppCtrl', function ($scope, $ionicModal,$ionicPopup, $ionicPopover, $timeout,$state,$rootScope,Sesion) {
     // Form data for the login modal
     $scope.loginData = {};
 
@@ -96,12 +96,22 @@
   // Si hay sesión siguo para el listado de necesitados
   $scope.processLwanthelp = function(){
     if(!processLoginAndRol(1)){
+      msgInitSesionR1();
       openModalRegisterR1();
     }else{
       $state.transitionTo("app.lwanthelp");
     }
   }
 
+  // Si hay sesión siguo para el listado de necesitados
+  $scope.processMyHelps = function(){
+    if(!processLoginAndRol(1) && !processLoginAndRol(2)){
+      msgInitSesionR1R2();
+      $state.transitionTo("app.welcome2", { viewdestinyloginRegister: 'app.welcome' });
+    }else{
+      $state.transitionTo("app.myhelps");
+    }
+  }
 
   $scope.logout = function(){
     Sesion.logout();
@@ -141,5 +151,18 @@
   };
   // ##
 
+  function msgInitSesionR1(){
+      var alertPopup = $ionicPopup.alert({
+      title: 'Alerta',
+      template: 'Debe iniciar sesión como un colaborador'
+    });
+  }
+
+  function msgInitSesionR1R2(){
+      var alertPopup = $ionicPopup.alert({
+      title: 'Alerta',
+      template: 'Debe iniciar sesión como un colaborador o necesitado'
+    });
+  }
 
 });
