@@ -23,6 +23,26 @@ app.controller('WanthelpCtrl', function ($scope,$ionicScrollDelegate,$rootScope,
     viewlinkHA: true
   }
 
+
+  $scope.obj = {
+    id_help:"",
+    id_contributor:""
+  }
+
+  var currentUserRol1 = "";
+
+  try {
+    if($rootScope.isSessionR1){
+      currentUserRol1 = JSON.parse(localStorage.getItem('userrol1'));
+    }
+  } catch (error) {}
+
+
+  function fillCurrentObj(){
+    $scope.obj.id_help = $rootScope.currentHelpDetail.needy.id; 
+    $scope.obj.id_contributor = currentUserRol1.id;
+  }
+
   function configView(){
     if($scope.ro == 1){
       $scope.viewBtnInfo = false;
@@ -124,6 +144,7 @@ app.controller('WanthelpCtrl', function ($scope,$ionicScrollDelegate,$rootScope,
 
   $scope.$on('modal.shown', function() {
     configView();
+    fillCurrentObj();
     getHistoRequest();
     getBigImageNeedy($rootScope.currentHelpDetail.needy.id);
   });
