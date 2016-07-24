@@ -97,6 +97,12 @@ app.factory('HelpsSpecialOperations',function($http,CONFIG){
           return response;
       });
     },
+    registerHelpContributor: function(obj) {
+      return $http.post(CONFIG.URLAPI + "/helps_e/register_help",obj)
+      .success(function (response) {
+          return response;
+      });
+    },
     needies: function(maxId) {
       return $http.get(CONFIG.URLAPI + "/helps_e/allneedy/"+maxId)
       .success(function (response) {

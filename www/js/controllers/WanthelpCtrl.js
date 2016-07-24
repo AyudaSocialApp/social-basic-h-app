@@ -83,9 +83,13 @@ app.controller('WanthelpCtrl', function ($scope,$ionicScrollDelegate,$rootScope,
     // guardar ayuda en bs
     if(form.$valid){
       $scope.sending = true; 
-      // pending service
-      msgResWithContact();
-      $scope.modalWantHelp.hide();
+ 
+      var req = HelpsSpecialOperations.registerHelpContributor($scope.obj);
+      req.then(function (response) {
+        msgResWithContact();
+        $scope.modalWantHelp.hide();
+      });
+  
     }else{
       msgInvalidData();
     }
@@ -145,6 +149,7 @@ app.controller('WanthelpCtrl', function ($scope,$ionicScrollDelegate,$rootScope,
   $scope.$on('modal.shown', function() {
     configView();
     fillCurrentObj();
+    $scope.sending = false;
     getHistoRequest();
     getBigImageNeedy($rootScope.currentHelpDetail.needy.id);
   });
