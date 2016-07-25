@@ -1,4 +1,4 @@
-app.controller('WanthelpCtrl', function ($scope, $ionicLoading,$ionicScrollDelegate, $rootScope, $ionicPopup, Typehelps, HelpsSpecialOperations, ContributorsSpecialOperations, NeediesSpecialOperations) {
+app.controller('WanthelpCtrl', function ($scope, $ionicLoading,$ionicScrollDelegate, $state,$rootScope, $ionicPopup, Typehelps, HelpsSpecialOperations, ContributorsSpecialOperations, NeediesSpecialOperations) {
 
   // mostrar boton de aceptar si es true
   $scope.viewBtnAccept = false;
@@ -50,6 +50,7 @@ app.controller('WanthelpCtrl', function ($scope, $ionicLoading,$ionicScrollDeleg
     $scope.obj.id_contributor = currentUserRol1.id;
     $scope.objaccept.accepted = true;
     $scope.objaccept.id_help = $rootScope.currentHelpDetail.id;
+    $scope.viewInfoAcceptHelp = $rootScope.currentHelpDetail.accepted;
   }
 
   function configView() {
@@ -85,19 +86,21 @@ app.controller('WanthelpCtrl', function ($scope, $ionicLoading,$ionicScrollDeleg
   }
 
   $scope.acceptHelp = function () {
-
+    $ionicLoading.show();
     var req = HelpsSpecialOperations.registerHelpAccepted($scope.objaccept);
     req.then(function (response) {
+      $ionicLoading.hide();
       $scope.viewInfoAcceptHelp = true;
       msgAcceptHelp();
-      $scope.modalWantHelp.hide();
     });
 
   }
 
   $scope.saveHelp = function (form) {
+    $ionicLoading.show();
     // guardar ayuda en bs
     if (form.$valid) {
+      $ionicLoading.hide();
       $scope.sending = true;
 
       var req = HelpsSpecialOperations.registerHelpContributor($scope.obj);
@@ -198,6 +201,15 @@ app.controller('WanthelpCtrl', function ($scope, $ionicLoading,$ionicScrollDeleg
     }
 
   });
+
+
+  $scope.$on('modal.hidden', function () {
+
+    $state.go($state.current, {}, {reload: true});
+
+  });
+
+
 
 
 });

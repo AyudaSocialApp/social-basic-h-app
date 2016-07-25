@@ -75,22 +75,22 @@
           </div>
 
           <div ng-show="viewInfoAcceptHelp" class="list infocontact">
-              
+              <div class="center">
+                <b>Datos de contacto y entrega propuestos por colaborador</b>
+                <hr/>
+              </div>
               <label>
                 <b>Lugar</b>
                 <span> {{currentHelpDetail.place_delivery}}</span>
               </label><br/>
-
               <label>
                 <b>Fecha y hora</b>
                 <span> {{currentHelpDetail.date_hour  | date:"dd/MM/yyyy 'a las' h:mma" }}</span>
               </label><br/>
-
               <label>
                <b>Teléfono o Celular</b>
                 <span>{{currentHelpDetail.contributor.cellphone_telephone_contact}}</span>
               </label>
-
           </div>
 
           <div class="back2historequest" ng-show="controls.viewhistoryHelpsRequets">
@@ -98,7 +98,7 @@
               <tr>
                 <th>#</th>
                 <th>Fecha</th>
-                <th>Estado</th>
+                <th>Entregado</th>
               </tr>
               <tr ng-repeat="(key, value) in currenthistoRequest track by $index" >
                 <td>{{key+1}}</td>
@@ -150,7 +150,7 @@
             </label>
             <label class="item item-input item-stacked-label">
               <span class="input-label">Proponga una Fecha y hora de entrega</span>
-              <input required type="datetime-local" placeholder="indique" ng-model="obj.date_hour" >
+              <input required type="datetime" placeholder="indique" ng-model="obj.date_hour" >
             </label>
           </div>
 

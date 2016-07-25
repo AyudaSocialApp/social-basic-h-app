@@ -1,4 +1,4 @@
-app.controller('NeedhelpCtrl', function ($scope, $timeout, $rootScope, $ionicPopup, Typehelps, HelpsSpecialOperations) {
+app.controller('NeedhelpCtrl', function ($scope, $timeout, $rootScope,$ionicLoading, $ionicPopup, Typehelps, HelpsSpecialOperations) {
 
   var currentUserRol2 = "";
   var user2 = "";
@@ -80,10 +80,12 @@ app.controller('NeedhelpCtrl', function ($scope, $timeout, $rootScope, $ionicPop
   }
 
   $scope.deliveredHelp = function (help) {
+    $ionicLoading.show();
     $scope.objdelivered.delivered = true;
     $scope.objdelivered.id_help = help.id;
     var req = HelpsSpecialOperations.registerHelpDelivered($scope.objdelivered);
     req.then(function (response) {
+      $ionicLoading.hide();
       msgDeliveredHelp();
       getHistoRequest();
     });

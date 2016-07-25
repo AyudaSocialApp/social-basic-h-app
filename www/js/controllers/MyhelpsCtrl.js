@@ -33,14 +33,15 @@ app.controller('MyhelpsCtrl', function ($scope, $state, $ionicModal, $rootScope,
     } catch (error) { }
 
 
-    $scope.goWantHelp = function (help) {
+    $scope.goWantHelp = function (r,help) {
 
-        if(help.needy != null && help.needy.id == $scope.sesionIdNeedy && help.contributor != null && help.accepted == false){
-            $scope.ro = 1;
-        }else{
-            $scope.ro = 2;
+        $scope.ro = r;
+
+        if($scope.ro == 2){
+          if(help.needy != null && help.needy.id == $scope.sesionIdNeedy && help.contributor != null && help.accepted == false){
+              $scope.ro = 2;
+          }
         }
-
 
         $rootScope.currentHelpDetail = help;
         openmodalWantHelp();
