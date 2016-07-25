@@ -12,6 +12,11 @@ app.controller('NeedhelpCtrl', function ($scope, $timeout, $rootScope, $ionicPop
     hidden: false
   }
 
+  $scope.objdelivered = {
+    delivered:"",
+    id_help:""
+  }
+
   $scope.help = {
     type_helps_id: 1,
     description: currentUserRol2.history,
@@ -67,5 +72,21 @@ app.controller('NeedhelpCtrl', function ($scope, $timeout, $rootScope, $ionicPop
     });
   }
 
+  function msgDeliveredHelp() {
+    var alertPopup = $ionicPopup.alert({
+      title: 'Aviso',
+      template: 'Ayuda concluida exitosamente'
+    });
+  }
+
+  $scope.deliveredHelp = function (help) {
+    $scope.objdelivered.delivered = true;
+    $scope.objdelivered.id_help = help.id;
+    var req = HelpsSpecialOperations.registerHelpDelivered($scope.objdelivered);
+    req.then(function (response) {
+      msgDeliveredHelp();
+      getHistoRequest();
+    });
+  }
 
 });

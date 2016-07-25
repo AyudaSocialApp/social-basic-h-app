@@ -10,6 +10,8 @@ app.controller('MyhelpsCtrl', function ($scope, $state, $ionicModal, $rootScope,
     var currentUserRol2 = "";
     var user1 = "";
     var user2 = "";
+    $scope.allList = [];
+    $scope.listWithoutRepeat = [];
 
     var listHelpsColaborators = [];
     var listHelpsNeedies = [];
@@ -32,13 +34,14 @@ app.controller('MyhelpsCtrl', function ($scope, $state, $ionicModal, $rootScope,
 
 
     $scope.goWantHelp = function (help) {
-        if(help.contributor != null){
-            $scope.ro = 1;
-        }
 
-        if(help.needy !=  null){
+        if(help.needy != null && help.needy.id == $scope.sesionIdNeedy && help.contributor != null && help.accepted == false){
+            $scope.ro = 1;
+        }else{
             $scope.ro = 2;
         }
+
+
         $rootScope.currentHelpDetail = help;
         openmodalWantHelp();
     };
@@ -69,7 +72,7 @@ app.controller('MyhelpsCtrl', function ($scope, $state, $ionicModal, $rootScope,
 
         if (currentUserRol1 != "") {
             $ionicLoading.show();
-            var hso = HelpsSpecialOperations.helpsColaborator(currentUserRol1.id, 10);
+            var hso = HelpsSpecialOperations.helpsColaborator(currentUserRol1.id, 1000);
             hso.then(function (response) {
                 $ionicLoading.hide();
                 listHelpsColaborators = response.data.data;
@@ -84,7 +87,7 @@ app.controller('MyhelpsCtrl', function ($scope, $state, $ionicModal, $rootScope,
     function getHelpsNeedy() {
         if (currentUserRol2 != "") {
             $ionicLoading.show();
-            var hso = HelpsSpecialOperations.helpsNeedy(currentUserRol2.id, 10);
+            var hso = HelpsSpecialOperations.helpsNeedy(currentUserRol2.id, 1000);
             hso.then(function (response) {
                 $ionicLoading.hide();
                 listHelpsNeedies = response.data.data;
@@ -109,6 +112,8 @@ app.controller('MyhelpsCtrl', function ($scope, $state, $ionicModal, $rootScope,
         }
 
         orderListByDateDesc();
+        deleteDuplicHelps();
+        $scope.allList = $scope.listWithoutRepeat;
     }
 
 
@@ -120,6 +125,25 @@ app.controller('MyhelpsCtrl', function ($scope, $state, $ionicModal, $rootScope,
 
     getHelpsColaborator();
 
+
+  function findidInHelps(id){
+    var resFindR = false;
+    $scope.listWithoutRepeat.forEach( function(element, index) {
+        if(element.id == id){
+            resFindR = true;
+        }
+    });
+    return resFindR;
+  }
+
+  function deleteDuplicHelps(){
+    $scope.listWithoutRepeat = [];
+    $scope.allList.forEach( function(element, index) {
+      if(findidInHelps(element.id) == false){
+        $scope.listWithoutRepeat.push(element);
+      }
+    });
+  }
 
 
 });

@@ -17,6 +17,7 @@ h4:first-child {
     padding-top: initial;
 }
 
+
 .title-bordered {
     border-top: solid 2px #bbb;
     padding-top: 30px;
@@ -327,6 +328,7 @@ p {
   -moz-border-radius: 13px;
   -webkit-border-radius: 13px;
   border-radius: 13px;
+  margin-bottom: 14px;
 }
 
 .paddingform{
@@ -503,6 +505,17 @@ th {
     position: relative;
     padding-top: 10px;
 
+  }
+
+  .itemdatausersesion{
+    text-align: right;
+    padding: 3px;
+    background-color: #B2CAF5;
+    right: 0;
+  }
+  .contitemdatausersesion{
+    width: 100%;
+    text-align: right;
   }
 
   .conttextdatasesion{

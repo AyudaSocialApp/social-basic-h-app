@@ -57,18 +57,16 @@
             <div class="center">
               <h4>Información Colaborador</h4>
             </div>
-            <div class="list paddingdetail">
-              
-              <label>
-                <span class="input-label"><b>Nombre</b></span>
-                <span ng-show="currentHelpDetail.contributor.type_contributors_id == 2">Familia {{currentHelpDetail.contributor.last_names}}</span>
-                <span ng-show="currentHelpDetail.contributor.type_contributors_id == 1">{{currentHelpDetail.contributor.names}} {{currentHelpDetail.contributor.last_names}}</span>
-              </label>
-
-              <label>
-                <span class="input-label"><b>De</b></span>
-                <span>{{currentHelpDetail.contributor.city}}</span>
-              </label>
+            <div class="list paddingdetail center">
+              <center>
+                <label>
+                  <b>Nombre</b>
+                  <span ng-show="currentHelpDetail.contributor.type_contributors_id == 2">
+                  Familia {{currentHelpDetail.contributor.last_names}}</span>
+                  <span ng-show="currentHelpDetail.contributor.type_contributors_id == 1">{{currentHelpDetail.contributor.names}} {{currentHelpDetail.contributor.last_names}}</span>
+                  <img ng-show="currentHelpDetail.contributor != null" ng-src="{{currentImageContributor || '//:0' }}" alt="Imagen colaborador">
+                </label>
+              </center>
             </div>
           </div>
           <br/>
@@ -132,6 +130,7 @@
               <span class="input-label">Tipo de ayuda</span>
               <select
                 required
+                readonly
                 ng-model="obj.type_helps_id"
                 ng-options="lth as lth.name for lth in list_type_helps track by lth.id" 
               >
@@ -151,7 +150,7 @@
             </label>
             <label class="item item-input item-stacked-label">
               <span class="input-label">Proponga una Fecha y hora de entrega</span>
-              <input required type="datetime" placeholder="indique" ng-model="obj.date_hour" >
+              <input required type="datetime-local" placeholder="indique" ng-model="obj.date_hour" >
             </label>
           </div>
 

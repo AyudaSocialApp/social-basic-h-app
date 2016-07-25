@@ -32,16 +32,16 @@ app.controller('LwanthelpCtrl', function ($scope,$rootScope,$ionicModal,$ionicLo
   };
   // ## 
 
-  function getNeedies(){
+  $scope.getNeedies = function(){
     $ionicLoading.show();
-    var hso = HelpsSpecialOperations.needies(10);
+    var hso = HelpsSpecialOperations.needies(1000);
     hso.then(function(response) {
       $ionicLoading.hide();
       $scope.list = response.data.data;
     });
   }
 
-  getNeedies();
+  $scope.getNeedies();
 
 
 });

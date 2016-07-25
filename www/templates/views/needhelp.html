@@ -42,8 +42,12 @@
             <td>{{value.date | date:"dd/MM/yyyy"}}</td>
             <td>{{value.typehelp.name}}</td>
             <td>
-              <span ng-show="value.delivered"> SI </span>
-              <span ng-show="!value.delivered"> No </span>
+              <span ng-show="value.delivered"> 
+                SI 
+              </span>
+              <span ng-show="!value.delivered">
+                <button type="button" ng-click="deliveredHelp(value)"><b>No</b> Marcar como entregado</button>
+              </span>
             </td>
           </tr>
         </table>

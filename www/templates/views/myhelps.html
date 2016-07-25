@@ -3,28 +3,40 @@
 	  <div class="im-wrapper contentpadding">
 	   	<div class="center">
 			  <div class="list">
-          <a ng-repeat=" (key, help) in allList track by $index"  class="item item-avatar itemlistnotification" 
-            ng-click="goWantHelp(help)" >
-              
-              <div ng-if="help.contributor != null && help.contributor.id == sesionIdColaborator" >
-                <img ng-show="help.needy != null"  ng-src="data:{{help.needy.filetype}};base64,{{help.needy.preview}}">
-                <h2 ng-show="help.needy.type_needy_id == 2">Familia {{help.needy.last_names}}</h2>
-                <h2 ng-show="help.needy.type_needy_id == 1">{{help.needy.names}} {{help.needy.last_names}}</h2>
-                <p ng-show=" help.accepted == true" > Aceptó tu ayuda<br/><i>{{help.date}}</i> <span class="ion-ios-search-strong seeicon"></span></p>
-                <p ng-show=" help.accepted == false" > Esperando aceptación<br/><i>{{help.date}}</i> <span class="ion-ios-search-strong seeicon"></span></p>
-              </div>
+          <div ng-repeat=" (key, help) in allList track by $index"  
+             >
+              <a ng-click="goWantHelp(help)" class="row item itemlistnotification" ng-if="help.contributor != null && help.contributor.id == sesionIdColaborator"  width="100%"  >
+                  <div class="col-25">
+                    <img ng-if="help.contributor != null && help.contributor.id == sesionIdColaborator" ng-show="help.needy != null"  ng-src="data:{{help.needy.filetype}};base64,{{help.needy.preview}}">
+                  </div>
+                  <div class="col-75">
+                    <div class="contitemdatausersesion">
+                      <span class="itemdatausersesion">{{nameusersesionr1}}</span>
+                    </div>
+                    <h2 ng-if="help.contributor != null && help.contributor.id == sesionIdColaborator" ng-show="help.needy.type_needy_id == 2">Familia {{help.needy.last_names}}</h2>
+                    <h2 ng-if="help.contributor != null && help.contributor.id == sesionIdColaborator" ng-show="help.needy.type_needy_id == 1">{{help.needy.names}} {{help.needy.last_names}}</h2>
+                    <p ng-if="help.contributor != null && help.contributor.id == sesionIdColaborator" ng-show=" help.accepted == true" > Aceptó tu ayuda<br/><i>{{help.date}}</i> <span class="ion-ios-search-strong seeicon"></span></p>
+                    <p ng-if="help.contributor != null && help.contributor.id == sesionIdColaborator" ng-show=" help.accepted == false" > Esperando aceptación<br/><i>{{help.date}}</i> <span class="ion-ios-search-strong seeicon"></span></p>
+                  </div>
+              </a>
 
-              <div ng-show=" help.needy != null && help.needy.id == sesionIdNeedy " >
-                <img ng-show=" help.contributor != null"  ng-src="data:{{help.contributor.filetype}};base64,{{help.contributor.preview}}">
-                <img ng-show=" help.contributor == null"  ng-src="data:{{help.needy.filetype}};base64,{{help.needy.preview}}">
-
-                <h2 ng-show=" help.contributor != null && help.contributor.type_contributors_id == 2">Familia {{help.contributor.last_names}}</h2>
-                <h2 ng-show=" help.contributor != null && help.contributor.type_contributors_id == 1">{{help.contributor.names}} {{help.contributor.last_names}}</h2>
-                <p ng-show=" help.contributor != null && help.accepted == false "> Quiere Ayudarte <br/><i>{{help.date}}</i> <span class="ion-ios-search-strong seeicon"></span></p>
-                <p ng-show=" help.contributor != null && help.accepted == true "> Ayuda aceptada <br/><i>{{help.date}}</i> <span class="ion-ios-search-strong seeicon"></span></p>               
-                <p ng-show=" help.contributor == null"> Esperando ayuda <br/><i>desde {{help.date}}</i> <span class="ion-ios-search-strong seeicon"></span></p>
-              </div>
-          </a>
+              <a ng-click="goWantHelp(help)" class="row item itemlistnotification" class="settingstablelist" ng-if=" help.needy != null && help.needy.id == sesionIdNeedy "  width="100%"   >
+                  <div class="col-25" width="25%">
+                    <img ng-if=" help.needy != null && help.needy.id == sesionIdNeedy " ng-show=" help.contributor != null"  ng-src="data:{{help.contributor.filetype}};base64,{{help.contributor.preview}}">
+                    <img  ng-if=" help.needy != null && help.needy.id == sesionIdNeedy "  ng-show=" help.contributor == null"  ng-src="data:{{help.needy.filetype}};base64,{{help.needy.preview}}">
+                  </div>
+                  <div class="col-75" width="75%">
+                    <div class="contitemdatausersesion">
+                      <span class="itemdatausersesion">{{nameusersesionr2}}</span>
+                    </div>
+                    <h2  ng-if=" help.needy != null && help.needy.id == sesionIdNeedy "  ng-show=" help.contributor != null && help.contributor.type_contributors_id == 2">Familia {{help.contributor.last_names}}</h2>
+                    <h2  ng-if=" help.needy != null && help.needy.id == sesionIdNeedy "  ng-show=" help.contributor != null && help.contributor.type_contributors_id == 1">{{help.contributor.names}} {{help.contributor.last_names}}</h2>
+                    <p  ng-if=" help.needy != null && help.needy.id == sesionIdNeedy "  ng-show=" help.contributor != null && help.accepted == false "> Quiere Ayudarte <br/><i>{{help.date}}</i> <span class="ion-ios-search-strong seeicon"></span></p>
+                    <p  ng-if=" help.needy != null && help.needy.id == sesionIdNeedy "  ng-show=" help.contributor != null && help.accepted == true "> Ayuda aceptada <br/><i>{{help.date}}</i> <span class="ion-ios-search-strong seeicon"></span></p>               
+                    <p  ng-if=" help.needy != null && help.needy.id == sesionIdNeedy "  ng-show=" help.contributor == null"> Esperando ayuda <br/><i>desde {{help.date}}</i> <span class="ion-ios-search-strong seeicon"></span></p>
+                  </div>
+              </a>
+          </div>
         </div>
 			</div>
 			<div class="center">

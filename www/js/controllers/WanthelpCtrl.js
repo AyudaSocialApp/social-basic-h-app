@@ -1,4 +1,4 @@
-app.controller('WanthelpCtrl', function ($scope,$ionicScrollDelegate,$rootScope,$ionicPopup,Typehelps,HelpsSpecialOperations,ContributorsSpecialOperations,NeediesSpecialOperations) {
+app.controller('WanthelpCtrl', function ($scope, $ionicLoading,$ionicScrollDelegate, $rootScope, $ionicPopup, Typehelps, HelpsSpecialOperations, ContributorsSpecialOperations, NeediesSpecialOperations) {
 
   // mostrar boton de aceptar si es true
   $scope.viewBtnAccept = false;
@@ -14,6 +14,8 @@ app.controller('WanthelpCtrl', function ($scope,$ionicScrollDelegate,$rootScope,
 
   $scope.currentImageNeedy = "";
 
+  $scope.currentImageContributor = "";
+
   $scope.sending = false;
 
   $scope.viewInfoAcceptHelp = false;
@@ -25,41 +27,49 @@ app.controller('WanthelpCtrl', function ($scope,$ionicScrollDelegate,$rootScope,
 
 
   $scope.obj = {
-    id_help:"",
-    id_contributor:""
+    id_help: "",
+    id_contributor: ""
+  }
+
+  $scope.objaccept = {
+    id_help: "",
+    accepted: ""
   }
 
   var currentUserRol1 = "";
 
   try {
-    if($rootScope.isSessionR1){
+    if ($rootScope.isSessionR1) {
       currentUserRol1 = JSON.parse(localStorage.getItem('userrol1'));
     }
-  } catch (error) {}
+  } catch (error) { }
 
 
-  function fillCurrentObj(){
-    $scope.obj.id_help = $rootScope.currentHelpDetail.needy.id; 
+  function fillCurrentObj() {
+    $scope.obj.id_help = $rootScope.currentHelpDetail.id;
     $scope.obj.id_contributor = currentUserRol1.id;
+    $scope.objaccept.accepted = true;
+    $scope.objaccept.id_help = $rootScope.currentHelpDetail.id;
   }
 
-  function configView(){
-    if($scope.ro == 1){
+  function configView() {
+
+    if ($scope.ro == 1) {
       $scope.viewBtnInfo = false;
       $scope.viewBtnAccept = true;
       $scope.viewMysHelps = false;
     }
-    if($scope.ro== 2){
+    if ($scope.ro == 2) {
       $scope.viewBtnInfo = true;
       $scope.viewBtnAccept = false;
       $scope.viewMysHelps = false;
     }
 
-    if($scope.myhelps){
+    if ($scope.myhelps) {
       $scope.viewMysHelps = true;
     }
 
-    if($scope.needy){
+    if ($scope.needy) {
       $scope.viewBtnInfo = false;
       $scope.viewBtnAccept = false;
       $scope.viewMysHelps = false;
@@ -68,61 +78,82 @@ app.controller('WanthelpCtrl', function ($scope,$ionicScrollDelegate,$rootScope,
 
   }
 
-  $scope.fviewHistoryHelpsRequets = function (){
-     // Traer historial en este momento (ultimos 3 meses)
-     $scope.controls.viewhistoryHelpsRequets = true;
-     $scope.controls.viewlinkHA = false;
+  $scope.fviewHistoryHelpsRequets = function () {
+    // Traer historial en este momento (ultimos 3 meses)
+    $scope.controls.viewhistoryHelpsRequets = true;
+    $scope.controls.viewlinkHA = false;
   }
 
-  $scope.acceptHelp = function(){
-    $scope.viewInfoAcceptHelp = true;
-    msgAcceptHelp();
+  $scope.acceptHelp = function () {
+
+    var req = HelpsSpecialOperations.registerHelpAccepted($scope.objaccept);
+    req.then(function (response) {
+      $scope.viewInfoAcceptHelp = true;
+      msgAcceptHelp();
+      $scope.modalWantHelp.hide();
+    });
+
   }
 
-  $scope.saveHelp = function(form){
+  $scope.saveHelp = function (form) {
     // guardar ayuda en bs
-    if(form.$valid){
-      $scope.sending = true; 
- 
+    if (form.$valid) {
+      $scope.sending = true;
+
       var req = HelpsSpecialOperations.registerHelpContributor($scope.obj);
       req.then(function (response) {
         msgResWithContact();
+        $scope.getNeedies();
         $scope.modalWantHelp.hide();
       });
-  
-    }else{
+
+    } else {
       msgInvalidData();
     }
-    
+
   }
 
-  function msgInvalidData(){
-      var alertPopup = $ionicPopup.alert({
+  $scope.getNeedies = function(){
+    $ionicLoading.show();
+    var hso = HelpsSpecialOperations.needies(1000);
+    hso.then(function(response) {
+      $ionicLoading.hide();
+      $scope.list = response.data.data;
+    });
+  }
+
+  function msgInvalidData() {
+    var alertPopup = $ionicPopup.alert({
       title: 'Aviso',
       template: 'Faltan campos o se han indicado campos erroneos.'
     });
   }
 
 
-  function msgResWithContact(){
-      var alertPopup = $ionicPopup.alert({
+  function msgResWithContact() {
+    var alertPopup = $ionicPopup.alert({
       title: 'Aviso',
       template: 'Ayuda registrada con éxito. Cuando el necesitado acepte la ayuda, el sistema te avisará y podras ver el telefono de contacto'
     });
   }
 
-  function msgAcceptHelp(){
-      var alertPopup = $ionicPopup.alert({
+  function msgAcceptHelp() {
+    var alertPopup = $ionicPopup.alert({
       title: 'Aviso',
       template: 'Ayuda aceptada con éxito. Ahora puedes ver el lugar, día y hora que propone el cliente para entregarte la ayuda y así como tu, él también tendrá acceso a tu número celular.'
     });
   }
+  
 
   function getHistoRequest() {
-    var lashelp = HelpsSpecialOperations.lastHelpsNeedy($rootScope.currentHelpDetail.needy.id);
-    lashelp.then(function (response) {
-      $scope.currenthistoRequest = response.data.data;
-    });
+
+    if(typeof $rootScope.currentHelpDetail.needy !== 'undefined'){
+      var lashelp = HelpsSpecialOperations.lastHelpsNeedy($rootScope.currentHelpDetail.needy.id);
+      lashelp.then(function (response) {
+        $scope.currenthistoRequest = response.data.data;
+      });
+    }
+
   }
 
 
@@ -130,28 +161,42 @@ app.controller('WanthelpCtrl', function ($scope,$ionicScrollDelegate,$rootScope,
     $scope.currentImageNeedy = "";
     var req = NeediesSpecialOperations.getBigImage(idneedy);
     req.then(function (response) {
-      $scope.currentImageNeedy = 'data:'+$rootScope.currentHelpDetail.needy.filetype+";base64,"+response.data.data;
+      $scope.currentImageNeedy = 'data:' + $rootScope.currentHelpDetail.needy.filetype + ";base64," + response.data.data;
     });
   }
-  
+
+  function getBigImageContributor(idcontributor) {
+    $scope.currentImageNeedy = "";
+    var req = ContributorsSpecialOperations.getBigImage(idcontributor);
+    req.then(function (response) {
+      $scope.currentImageContributor = 'data:' + $rootScope.currentHelpDetail.contributor.filetype + ";base64," + response.data.data;
+    });
+  }
 
 
-  function getTypehelps(){
-    Typehelps.get(function (response)
-    {
+
+  function getTypehelps() {
+    Typehelps.get(function (response) {
       $scope.list_type_helps = response.data;
     });
   }
 
   getTypehelps();
 
+  $scope.$on('modal.shown', function () {
 
-  $scope.$on('modal.shown', function() {
     configView();
     fillCurrentObj();
     $scope.sending = false;
     getHistoRequest();
-    getBigImageNeedy($rootScope.currentHelpDetail.needy.id);
+    if(typeof $rootScope.currentHelpDetail.needy !== 'undefined' ){
+      getBigImageNeedy($rootScope.currentHelpDetail.needy.id);
+    }
+
+    if(typeof $rootScope.currentHelpDetail.contributor !== 'undefined'){
+      getBigImageContributor($rootScope.currentHelpDetail.contributor.id);
+    }
+
   });
 
 
