@@ -339,9 +339,15 @@ p {
   background-color: #FFFFFF;
 }
 
+.paddingcontentitem{
+  padding-left: 8px;
+}
+
 .login{
   background-color: #FFFFFF;
 }
+
+
 
 .profilepriv{
   padding: 10px;
@@ -559,6 +565,10 @@ th {
 
   .titleformedit{
     color: #000000;
+  }
+
+  .im-wrapper{
+    height: 800px;
   }
 
   

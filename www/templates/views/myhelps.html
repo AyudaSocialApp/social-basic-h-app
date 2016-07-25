@@ -9,14 +9,14 @@
                   <div class="col-25">
                     <img ng-if="help.contributor != null && help.contributor.id == sesionIdColaborator" ng-show="help.needy != null"  ng-src="data:{{help.needy.filetype}};base64,{{help.needy.preview}}">
                   </div>
-                  <div class="col-75">
+                  <div class="col-75 paddingcontentitem">
                     <div class="contitemdatausersesion">
                       <span class="itemdatausersesion">{{nameusersesionr1}}</span>
                     </div>
                     <h2 ng-if="help.contributor != null && help.contributor.id == sesionIdColaborator" ng-show="help.needy.type_needy_id == 2">Familia {{help.needy.last_names}}</h2>
                     <h2 ng-if="help.contributor != null && help.contributor.id == sesionIdColaborator" ng-show="help.needy.type_needy_id == 1">{{help.needy.names}} {{help.needy.last_names}}</h2>
-                    <p ng-if="help.contributor != null && help.contributor.id == sesionIdColaborator" ng-show=" help.accepted == true" > Aceptó tu ayuda<br/><i>{{help.date}}</i> <span class="ion-ios-search-strong seeicon"></span></p>
-                    <p ng-if="help.contributor != null && help.contributor.id == sesionIdColaborator" ng-show=" help.accepted == false" > Esperando aceptación<br/><i>{{help.date}}</i> <span class="ion-ios-search-strong seeicon"></span></p>
+                    <p ng-if="help.contributor != null && help.contributor.id == sesionIdColaborator" ng-show=" help.accepted == true" > Aceptó tu ayuda<br/><i>{{help.updated_at}}</i> <span class="ion-ios-search-strong seeicon"></span></p>
+                    <p ng-if="help.contributor != null && help.contributor.id == sesionIdColaborator" ng-show=" help.accepted == false" > Esperando aceptación<br/><i>{{help.updated_at}}</i> <span class="ion-ios-search-strong seeicon"></span></p>
                   </div>
               </a>
 
@@ -25,15 +25,15 @@
                     <img ng-if=" help.needy != null && help.needy.id == sesionIdNeedy " ng-show=" help.contributor != null"  ng-src="data:{{help.contributor.filetype}};base64,{{help.contributor.preview}}">
                     <img  ng-if=" help.needy != null && help.needy.id == sesionIdNeedy "  ng-show=" help.contributor == null"  ng-src="data:{{help.needy.filetype}};base64,{{help.needy.preview}}">
                   </div>
-                  <div class="col-75" width="75%">
+                  <div class="col-75 paddingcontentitem">
                     <div class="contitemdatausersesion">
                       <span class="itemdatausersesion">{{nameusersesionr2}}</span>
                     </div>
                     <h2  ng-if=" help.needy != null && help.needy.id == sesionIdNeedy "  ng-show=" help.contributor != null && help.contributor.type_contributors_id == 2">Familia {{help.contributor.last_names}}</h2>
                     <h2  ng-if=" help.needy != null && help.needy.id == sesionIdNeedy "  ng-show=" help.contributor != null && help.contributor.type_contributors_id == 1">{{help.contributor.names}} {{help.contributor.last_names}}</h2>
-                    <p  ng-if=" help.needy != null && help.needy.id == sesionIdNeedy "  ng-show=" help.contributor != null && help.accepted == false "> Quiere Ayudarte <br/><i>{{help.date}}</i> <span class="ion-ios-search-strong seeicon"></span></p>
-                    <p  ng-if=" help.needy != null && help.needy.id == sesionIdNeedy "  ng-show=" help.contributor != null && help.accepted == true "> Ayuda aceptada <br/><i>{{help.date}}</i> <span class="ion-ios-search-strong seeicon"></span></p>               
-                    <p  ng-if=" help.needy != null && help.needy.id == sesionIdNeedy "  ng-show=" help.contributor == null"> Esperando ayuda <br/><i>desde {{help.date}}</i> <span class="ion-ios-search-strong seeicon"></span></p>
+                    <p  ng-if=" help.needy != null && help.needy.id == sesionIdNeedy "  ng-show=" help.contributor != null && help.accepted == false "> Quiere Ayudarte <br/><i>{{help.updated_at}}</i> <span class="ion-ios-search-strong seeicon"></span></p>
+                    <p  ng-if=" help.needy != null && help.needy.id == sesionIdNeedy "  ng-show=" help.contributor != null && help.accepted == true "> Ayuda aceptada <br/><i>{{help.updated_at}}</i> <span class="ion-ios-search-strong seeicon"></span></p>               
+                    <p  ng-if=" help.needy != null && help.needy.id == sesionIdNeedy "  ng-show=" help.contributor == null"> Esperando ayuda <br/><i>desde {{help.updated_at}}</i> <span class="ion-ios-search-strong seeicon"></span></p>
                   </div>
               </a>
           </div>

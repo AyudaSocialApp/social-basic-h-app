@@ -26,6 +26,30 @@
                   <h4 ng-show="currentHelpDetail.needy.type_needy_id == 2">Familia {{currentHelpDetail.needy.last_names}}</h4>
                   <h4 ng-show="currentHelpDetail.needy.type_needy_id == 1">{{currentHelpDetail.needy.names}} {{currentHelpDetail.needy.last_names}}</h4>
                 </label>
+
+                <div ng-show="viewInfoAcceptHelp" class="list infocontact">
+                    <div class="center">
+                      <b>Datos de contacto y entrega</b>
+                      <hr/>
+                    </div>
+                    <label>
+                     <b>Teléfono o Celular Colaborador</b>
+                      <span>{{currentHelpDetail.contributor.cellphone_telephone_contact}}</span>
+                    </label><br/>
+                    <label>
+                     <b>Teléfono o Celular Necesitado</b>
+                      <span>{{currentHelpDetail.needy.cellphone_telephone_contact}}</span>
+                    </label><br/>
+                    <label>
+                      <b>Lugar</b>
+                      <span> {{currentHelpDetail.place_delivery}}</span>
+                    </label><br/>
+                    <label>
+                      <b>Fecha y hora</b>
+                      <span> {{currentHelpDetail.date_hour  | date:"dd/MM/yyyy 'a las' h:mma" }}</span>
+                    </label>
+                </div>
+
                 <img ng-show="currentHelpDetail.needy != null" ng-src="{{currentImageNeedy || '//:0' }}" alt="Imagen necesitado">
               </center>
 
@@ -64,33 +88,39 @@
                   <span ng-show="currentHelpDetail.contributor.type_contributors_id == 2">
                   Familia {{currentHelpDetail.contributor.last_names}}</span>
                   <span ng-show="currentHelpDetail.contributor.type_contributors_id == 1">{{currentHelpDetail.contributor.names}} {{currentHelpDetail.contributor.last_names}}</span>
+
+                  <div ng-show="viewInfoAcceptHelp" class="list infocontact">
+                      <div class="center">
+                        <b>Datos de contacto y entrega</b>
+                        <hr/>
+                      </div>
+                      <label>
+                       <b>Teléfono o Celular Colaborador</b>
+                        <span>{{currentHelpDetail.contributor.cellphone_telephone_contact}}</span>
+                      </label><br/>
+                      <label>
+                       <b>Teléfono o Celular Necesitado</b>
+                        <span>{{currentHelpDetail.needy.cellphone_telephone_contact}}</span>
+                      </label><br/>
+                      <label>
+                        <b>Lugar</b>
+                        <span> {{currentHelpDetail.place_delivery}}</span>
+                      </label><br/>
+                      <label>
+                        <b>Fecha y hora</b>
+                        <span> {{currentHelpDetail.date_hour  | date:"dd/MM/yyyy 'a las' h:mma" }}</span>
+                      </label>
+                  </div>
+
                   <img ng-show="currentHelpDetail.contributor != null" ng-src="{{currentImageContributor || '//:0' }}" alt="Imagen colaborador">
                 </label>
+
               </center>
             </div>
           </div>
           <br/>
           <div ng-show="viewBtnAccept"  class="center msgwanthelp">
             <p>Al aceptar la ayuda podrás ver los datos de contacto</p>
-          </div>
-
-          <div ng-show="viewInfoAcceptHelp" class="list infocontact">
-              <div class="center">
-                <b>Datos de contacto y entrega propuestos por colaborador</b>
-                <hr/>
-              </div>
-              <label>
-                <b>Lugar</b>
-                <span> {{currentHelpDetail.place_delivery}}</span>
-              </label><br/>
-              <label>
-                <b>Fecha y hora</b>
-                <span> {{currentHelpDetail.date_hour  | date:"dd/MM/yyyy 'a las' h:mma" }}</span>
-              </label><br/>
-              <label>
-               <b>Teléfono o Celular</b>
-                <span>{{currentHelpDetail.contributor.cellphone_telephone_contact}}</span>
-              </label>
           </div>
 
           <div class="back2historequest" ng-show="controls.viewhistoryHelpsRequets">

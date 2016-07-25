@@ -120,7 +120,7 @@ app.controller('MyhelpsCtrl', function ($scope, $state, $ionicModal, $rootScope,
 
     function orderListByDateDesc() {
         $scope.allList.sort(function (a, b) {
-            return new Date(a.date).getTime() - new Date(b.date).getTime();
+            return new Date(a.updated_at).getTime() - new Date(b.updated_at).getTime();
         });
     }
 
