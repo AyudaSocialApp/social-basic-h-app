@@ -19,10 +19,11 @@
         <input required type="text" placeholder="" ng-model="objR2.last_names" >
       </label>
 
-      <label class="item item-input item-select " >
-          <span class="input-label">Tipo Identificación </span>
+      <label class="item  " >
+          <span>Tipo Identificación </span><br/>
           <select
             required
+            style="width: 100%;"
             ng-model="objR2.type_identifications_id"
             ng-options="ti as ti.name for ti in list_type_identifications track by ti.id" 
           >
@@ -40,7 +41,7 @@
       </label>
 
       <label class="item item-input item-stacked-label">
-        <span class="input-label">Ciudad</span>
+        <span class="input-label">Ciudad/Municipio</span>
         <input required type="text" placeholder="indique " ng-model="objR2.city">
       </label>
 

@@ -94,6 +94,10 @@ p {
     width: 33.333%;
 }
 
+.avoid-clicks {
+  pointer-events: none;
+}
+
 .slchelp{
   padding:10px;
 }

@@ -156,18 +156,14 @@
           <div 
             ng-show="!viewBtnAccept && !viewBtnInfo && !viewMysHelps" 
             class="list paddingdetail">
-            <label class="item item-input item-select">
-              <span class="input-label">Tipo de ayuda</span>
-              <select
-                required
-                readonly
-                ng-model="obj.type_helps_id"
-                ng-options="lth as lth.name for lth in list_type_helps track by lth.id" 
-              >
-              </select>
-            </label>
+            
+            <center>
+              <span>Ayuda solicitada <b>{{currentHelpDetail.typehelp.name}}</b></span>
+            </center>
+            <br/>
+
             <label class="item item-input item-stacked-label">
-              <span class="input-label">Descripción de la ayuda</span>
+              <span class="input-label">Descripción de tu ayuda</span>
               <textarea 
                 required
                 rows="7"

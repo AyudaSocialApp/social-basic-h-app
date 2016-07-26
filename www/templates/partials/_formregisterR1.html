@@ -35,9 +35,10 @@
         <input required type="text" placeholder="" ng-model="objR1.last_names" >
       </label>
 
-      <label class="item item-input item-select " >
+      <label class="item" >
           <span>Tipo Identificación </span><br/>
           <select
+            style="width: 100%;"
             required
             ng-model="objR1.type_identifications_id"
             ng-options="ti as ti.name for ti in list_type_identifications track by ti.id" 

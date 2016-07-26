@@ -49,6 +49,7 @@ app.controller('WanthelpCtrl', function ($scope, $ionicLoading,$ionicScrollDeleg
     $scope.obj.id_help = $rootScope.currentHelpDetail.id;
     $scope.obj.id_contributor = currentUserRol1.id;
     $scope.objaccept.accepted = true;
+    $scope.obj.type_helps_id = {id:$rootScope.currentHelpDetail.type_helps_id};
     $scope.objaccept.id_help = $rootScope.currentHelpDetail.id;
     $scope.viewInfoAcceptHelp = $rootScope.currentHelpDetail.accepted;
   }
