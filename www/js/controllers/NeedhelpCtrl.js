@@ -42,9 +42,11 @@ app.controller('NeedhelpCtrl', function ($scope, $timeout, $rootScope,$ionicLoad
   $scope.fconfirmNeedHelp = function (form) {
 
     if (form.$valid) {
-      $scope.varcontrols.hidden = true;
+      $ionicLoading.show();
       var shelp = HelpsSpecialOperations.store($scope.help);
       shelp.then(function (response) {
+        $ionicLoading.hide();
+        $scope.varcontrols.hidden = true;
         msgRequest();
         getHistoRequest();
       });

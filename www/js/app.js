@@ -243,6 +243,7 @@ app.factory('authHttpResponseInterceptor', ['$injector','$q', function ($injecto
         }
 
         if (response.status === 500) {
+          
           console.log("Response 500");
 
         }
@@ -250,11 +251,10 @@ app.factory('authHttpResponseInterceptor', ['$injector','$q', function ($injecto
           console.log("Response 500");
 
         }
+
         return response || $q.when(response);
       },
       responseError: function (rejection) {
-
-        // $inyector.get('$ionicLoading').hide();
 
         if (rejection.status === 401) {
           console.log("Response Error 401", rejection);
@@ -273,6 +273,11 @@ app.factory('authHttpResponseInterceptor', ['$injector','$q', function ($injecto
         if (rejection.status === 404) {
           console.log("Response Error 404", rejection);
         }
+
+        try {
+          $injector.get('$ionicLoading').hide();
+        } catch(e) { }
+
         return $q.reject(rejection);
       }
     }

@@ -13,6 +13,22 @@ app.factory('Users',function($resource,CONFIG){
     });
 });
 
+app.factory('Ideas',function($resource,CONFIG){
+
+  return $resource(CONFIG.URLAPI+"/ideas/:id",
+    {
+      id:"@_id"
+    },
+    {
+      update:
+      {
+        method:"PUT",
+        params: {id: "@id"}
+      }
+    });
+});
+
+
 app.factory('Helps',function($resource,CONFIG){
 
   return $resource(CONFIG.URLAPI+"/helps/:id",
