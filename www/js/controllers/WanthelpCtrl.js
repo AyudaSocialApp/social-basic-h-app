@@ -18,6 +18,8 @@ app.controller('WanthelpCtrl', function ($scope, $ionicLoading,$ionicScrollDeleg
 
   $scope.sending = false;
 
+  $scope.maxId = "-";
+
   $scope.viewInfoAcceptHelp = false;
 
   $scope.controls = {
@@ -118,12 +120,29 @@ app.controller('WanthelpCtrl', function ($scope, $ionicLoading,$ionicScrollDeleg
   }
 
   $scope.getNeedies = function(){
-    $ionicLoading.show();
-    var hso = HelpsSpecialOperations.needies(1000);
-    hso.then(function(response) {
-      $ionicLoading.hide();
-      $scope.list = response.data.data;
-    });
+
+    if($scope.maxId < 1){
+      forMomentNotMoreNedies();
+    }else{
+
+      $ionicLoading.show();
+      var hso = HelpsSpecialOperations.needies($scope.maxId);
+      hso.then(function(response) {
+        $ionicLoading.hide();
+        mixArrays(response.data.data.list);
+        $scope.maxId = response.data.data.maxId;
+      });
+
+    }
+
+  }
+
+  function mixArrays(data) {
+      if ($scope.list != "") {
+          $scope.list = $scope.list.concat(data);
+      }else{
+        $scope.list = data;
+      }
   }
 
   function msgInvalidData() {
@@ -210,6 +229,13 @@ app.controller('WanthelpCtrl', function ($scope, $ionicLoading,$ionicScrollDeleg
 
   });
 
+
+  function forMomentNotMoreNedies() {
+    var alertPopup = $ionicPopup.alert({
+      title: 'Aviso',
+      template: 'En el momento No hay (mas) solicitudes de ayuda'
+    });
+  }
 
 
 

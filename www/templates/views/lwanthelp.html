@@ -24,7 +24,14 @@
 		   			</div>
 		   		</div>
 		   	</div>
-
+		   	<br/>
+		   	<button 
+		   	  ng-show="maxId > 0"
+		   		class="ion-arrow-down-c button button-outline button-assertive" 
+		   		type="button" 
+		   		ng-click="getNeedies()">
+		   		Ver mas
+		   	</button>
 			</div>
 			<div class="center">
 				<div ng-include="'templates/partials/_return.html'"></div>

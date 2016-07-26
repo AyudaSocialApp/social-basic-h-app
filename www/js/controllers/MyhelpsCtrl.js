@@ -5,6 +5,7 @@ app.controller('MyhelpsCtrl', function ($scope, $state, $ionicModal, $rootScope,
     $scope.myhelps = false;
     $scope.sesionIdColaborator = "";
     $scope.sesionIdNeedy = "";
+    $scope.maxId = "-";
 
     var currentUserRol1 = "";
     var currentUserRol2 = "";
@@ -41,11 +42,11 @@ app.controller('MyhelpsCtrl', function ($scope, $state, $ionicModal, $rootScope,
           if(help.needy != null && help.needy.id == $scope.sesionIdNeedy && help.contributor != null && help.accepted == false){
               $scope.ro = 2;
           }
-        }
+      }
 
-        $rootScope.currentHelpDetail = help;
-        openmodalWantHelp();
-    };
+      $rootScope.currentHelpDetail = help;
+      openmodalWantHelp();
+  };
 
     // ## modal del registo o login de colaborador
     $ionicModal.fromTemplateUrl('templates/modals/wanthelp.html', {
@@ -73,10 +74,10 @@ app.controller('MyhelpsCtrl', function ($scope, $state, $ionicModal, $rootScope,
 
         if (currentUserRol1 != "") {
             $ionicLoading.show();
-            var hso = HelpsSpecialOperations.helpsColaborator(currentUserRol1.id, 1000);
+            var hso = HelpsSpecialOperations.helpsColaborator(currentUserRol1.id, $scope.maxId);
             hso.then(function (response) {
                 $ionicLoading.hide();
-                listHelpsColaborators = response.data.data;
+                mixArraysHelpsC(response.data.data.list);
                 getHelpsNeedy();
             });
         } else {
@@ -85,49 +86,65 @@ app.controller('MyhelpsCtrl', function ($scope, $state, $ionicModal, $rootScope,
 
     }
 
-    function getHelpsNeedy() {
-        if (currentUserRol2 != "") {
-            $ionicLoading.show();
-            var hso = HelpsSpecialOperations.helpsNeedy(currentUserRol2.id, 1000);
-            hso.then(function (response) {
-                $ionicLoading.hide();
-                listHelpsNeedies = response.data.data;
-                 mixArrays();
-            });
-        } else {
+    function mixArraysHelpsC(data) {
+      if (listHelpsColaborators.length > 0) {
+          listHelpsColaborators = listHelpsColaborators.concat(data);
+      }else{
+        listHelpsColaborators = data;
+      }
+    }
+
+function getHelpsNeedy() {
+    if (currentUserRol2 != "") {
+        $ionicLoading.show();
+        var hso = HelpsSpecialOperations.helpsNeedy(currentUserRol2.id, $scope.maxId);
+        hso.then(function (response) {
+            $ionicLoading.hide();
+            mixArraysHelpsN(response.data.data.list);
             mixArrays();
-        }
-    }
-
-    function mixArrays() {
-        if (listHelpsColaborators.length < 1 && listHelpsNeedies.length > 0) {
-            $scope.allList = listHelpsNeedies;
-        }
-
-        if (listHelpsNeedies.length < 1 && listHelpsColaborators.length > 0) {
-            $scope.allList = listHelpsColaborators;
-        }
-
-        if (listHelpsColaborators.length > 0 && listHelpsNeedies.length > 0) {
-            $scope.allList = listHelpsColaborators.concat(listHelpsNeedies);
-        }
-
-        orderListByDateDesc();
-        deleteDuplicHelps();
-        $scope.allList = $scope.listWithoutRepeat;
-    }
-
-
-    function orderListByDateDesc() {
-        $scope.allList.sort(function (a, b) {
-            return new Date(a.updated_at).getTime() - new Date(b.updated_at).getTime();
         });
+    } else {
+        mixArrays();
+    }
+}
+
+function mixArraysHelpsN(data) {
+  if (listHelpsNeedies.length > 0) {
+      listHelpsNeedies = listHelpsNeedies.concat(data);
+  }else{
+    listHelpsNeedies = data;
+  }
+}
+
+function mixArrays() {
+    if (listHelpsColaborators.length < 1 && listHelpsNeedies.length > 0) {
+        $scope.allList = listHelpsNeedies;
     }
 
-    getHelpsColaborator();
+    if (listHelpsNeedies.length < 1 && listHelpsColaborators.length > 0) {
+        $scope.allList = listHelpsColaborators;
+    }
+
+    if (listHelpsColaborators.length > 0 && listHelpsNeedies.length > 0) {
+        $scope.allList = listHelpsColaborators.concat(listHelpsNeedies);
+    }
+
+    orderListByDateDesc();
+    deleteDuplicHelps();
+    $scope.allList = $scope.listWithoutRepeat;
+}
 
 
-  function findidInHelps(id){
+function orderListByDateDesc() {
+    $scope.allList.sort(function (a, b) {
+        return new Date(a.updated_at).getTime() - new Date(b.updated_at).getTime();
+    });
+}
+
+getHelpsColaborator();
+
+
+function findidInHelps(id){
     var resFindR = false;
     $scope.listWithoutRepeat.forEach( function(element, index) {
         if(element.id == id){
@@ -135,16 +152,18 @@ app.controller('MyhelpsCtrl', function ($scope, $state, $ionicModal, $rootScope,
         }
     });
     return resFindR;
-  }
+}
 
-  function deleteDuplicHelps(){
+function deleteDuplicHelps(){
     $scope.listWithoutRepeat = [];
     $scope.allList.forEach( function(element, index) {
       if(findidInHelps(element.id) == false){
         $scope.listWithoutRepeat.push(element);
-      }
-    });
-  }
+    }
+});
+}
+
+
 
 
 });
